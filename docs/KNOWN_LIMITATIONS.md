@@ -44,8 +44,8 @@ What is not done, what was not run, and what the results cannot support. Nothing
     which limits any winter correlation involving humidity whatever the underlying physics.
 11. **The guard is pattern matching.** It blocks listed overclaims in English and Russian. A determined writer can
     phrase a causal claim it does not recognise; passing the guard is not validation.
-12. **`REPLICATED` is narrow.** It marks numbers that two AI systems obtained independently from NASA data. It does
-    not cover interpretations, and no human has reviewed them.
+12. **Replication is narrow.** "Replicated" marks individual numbers that two AI systems obtained independently from
+    NASA data. No record as a whole, and no interpretation, is above `OBSERVED`, and no human has reviewed them.
 
 ## Engineering limits
 

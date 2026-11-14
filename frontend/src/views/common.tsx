@@ -30,10 +30,22 @@ export function Verdict({ code }: { code: string | null | undefined }) {
 const STATUS_HELP: Record<string, string> = {
   HYPOTHESIS: 'Proposed, not tested here',
   OBSERVED: 'Computed from real data by this engine',
-  REPLICATED: 'The same number was reported independently (values only)',
 }
 export function Status({ code }: { code: string }) {
   return <span className={`status s-${code.toLowerCase()}`} title={STATUS_HELP[code] ?? code}>{code}</span>
+}
+
+/** Record status plus, where independent reports agree, how many of its numbers were replicated. */
+export function EvidenceStatus({ ev }: { ev: { status: string; replicated_values?: string[] } | undefined }) {
+  if (!ev) return null
+  const n = ev.replicated_values?.length ?? 0
+  return (
+    <>
+      <Status code={ev.status} />
+      {n > 0 && <span className="status s-replicated" title="These numbers were also reported independently and agree. The record as a whole stays OBSERVED.">
+        ✔ {n} {n === 1 ? 'value' : 'values'} replicated</span>}
+    </>
+  )
 }
 
 export function Card({ title, right, children, className }: { title?: ReactNode; right?: ReactNode; children: ReactNode; className?: string }) {

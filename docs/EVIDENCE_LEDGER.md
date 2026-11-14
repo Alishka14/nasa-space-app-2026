@@ -4,7 +4,7 @@
 
 Every record below was computed by the EARTH SENSES engines from the raw NASA files in `data/raw` (SHA-256 in `data/provenance`). Record ids are derived from the claim type, region, period, variables, method, parameters and data hash: the same inputs always give the same id.
 
-Status ladder (MIZAN): `HYPOTHESIS` → `OBSERVED` → `REPLICATED` → `PRACTICALLY_VALIDATED` → `TRANSFER_VALIDATED`. The engine assigns only `OBSERVED` and `HYPOTHESIS`. `REPLICATED` appears only where a value reported independently (here: by Gemini, for Pavlodar 2001–2024) agrees with ours; it covers the number, not any interpretation. Nothing in this ledger is above `REPLICATED`.
+Status ladder (MIZAN): `HYPOTHESIS` → `OBSERVED` → `REPLICATED` → `PRACTICALLY_VALIDATED` → `TRANSFER_VALIDATED`. Every record here is `OBSERVED` or `HYPOTHESIS`. Where a value was also reported independently (here: by Gemini, for Pavlodar 2001–2024) and agrees with ours, that value is marked as replicated inside the record; the record as a whole is not promoted, and no interpretation is.
 
 ## Pavlodar 2001–2024 (the case Gemini analysed)
 
@@ -13,16 +13,16 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 | id | status | verdict | variables | period | claim |
 |---|---|---|---|---|---|
 | `EV-7997ff910553` | OBSERVED | CHECKS_PASSED | T2M, RH2M, PRECTOTCORR | 2001–2024 | Input data checks passed: 288 monthly values per variable for 2001-2024, 0 missing; annual-summary keys (YYYY13) kept apart from months; units taken from the response; values are cache-sourced from 1 raw file(s) whose SHA-256 matches the provenance record. |
-| `EV-a28cc417ed2b` | REPLICATED | NO_SIGNIFICANT_TREND_DETECTED | T2M | 2001–2024 | Air temperature (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope -0.021 °C/year (95% CI -0.067 to +0.046), autocorrelation-adjusted p = 0.578, q = 0.578). A record of this length and variability would only be likely to show trends larger than about 0.095 °C/year (80% power), so smaller real changes cannot be ruled out. |
-| `EV-183c60c7f20d` | REPLICATED | FRAGILE_TREND | RH2M | 2001–2024 | Relative humidity (2 m) over 2001-2024: Theil-Sen slope +0.164 percentage points/year (95% CI +0.007 to +0.293), autocorrelation-adjusted p = 0.035, q = 0.105. Some tests indicate a trend, but the result is fragile: not significant after false-discovery correction (q = 0.105); significance depends on single years (2002, 2008, 2017, 2018, 2024). |
-| `EV-3b6b68c6f1e3` | REPLICATED | NO_SIGNIFICANT_TREND_DETECTED | PRECTOTCORR | 2001–2024 | Precipitation (bias-corrected): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.005 mm/day per year (95% CI -0.004 to +0.015), autocorrelation-adjusted p = 0.264, q = 0.397). A record of this length and variability would only be likely to show trends larger than about 0.014 mm/day per year (80% power), so smaller real changes cannot be ruled out. |
-| `EV-3f760323195e` | REPLICATED | WEAK | T2M, PRECTOTCORR | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Precipitation (bias-corrected) vary in opposite directions over 2001-2024: detrended r = -0.12 (95% CI -0.23 to -0.00, effective n = 283). Raw r = +0.44; the two seasonal cycles alone give r = +0.86. The association is statistically detectable but small. |
+| `EV-a28cc417ed2b` | OBSERVED · 2 values replicated | NO_SIGNIFICANT_TREND_DETECTED | T2M | 2001–2024 | Air temperature (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope -0.021 °C/year (95% CI -0.067 to +0.046), autocorrelation-adjusted p = 0.578, q = 0.578). A record of this length and variability would only be likely to show trends larger than about 0.095 °C/year (80% power), so smaller real changes cannot be ruled out. |
+| `EV-183c60c7f20d` | OBSERVED · 3 values replicated | FRAGILE_TREND | RH2M | 2001–2024 | Relative humidity (2 m) over 2001-2024: Theil-Sen slope +0.164 percentage points/year (95% CI +0.007 to +0.293), autocorrelation-adjusted p = 0.035, q = 0.105. Some tests indicate a trend, but the result is fragile: not significant after false-discovery correction (q = 0.105); significance depends on single years (2002, 2008, 2017, 2018, 2024). |
+| `EV-3b6b68c6f1e3` | OBSERVED · 2 values replicated | NO_SIGNIFICANT_TREND_DETECTED | PRECTOTCORR | 2001–2024 | Precipitation (bias-corrected): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.005 mm/day per year (95% CI -0.004 to +0.015), autocorrelation-adjusted p = 0.264, q = 0.397). A record of this length and variability would only be likely to show trends larger than about 0.014 mm/day per year (80% power), so smaller real changes cannot be ruled out. |
+| `EV-3f760323195e` | OBSERVED · 2 values replicated | WEAK | T2M, PRECTOTCORR | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Precipitation (bias-corrected) vary in opposite directions over 2001-2024: detrended r = -0.12 (95% CI -0.23 to -0.00, effective n = 283). Raw r = +0.44; the two seasonal cycles alone give r = +0.86. The association is statistically detectable but small. |
 | `EV-b14da6e2225f` | OBSERVED | INCONCLUSIVE | T2M, PRECTOTCORR | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Precipitation (bias-corrected), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag -6 (r = -0.14). Some non-zero lags pass an uncorrected test (-6, +6) but none stays significant after correcting for the number of lags tried. Positive lags pair Air temperature (2 m) with later Precipitation (bias-corrected). A lead or lag is a timing statistic only. |
 | `EV-5eb092cbce35` | HYPOTHESIS | UNTESTED | T2M, PRECTOTCORR | 2001–2024 | Hypothesis (untested here): in the warm season wet months are cloudier and evaporation cools the surface, while in winter mild air masses are also the moist ones, which would reverse the sign. A test: analyse seasons separately and add cloud amount or surface solar radiation. |
-| `EV-01be4b227209` | REPLICATED | SUPPORTED | T2M, RH2M | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.32 (95% CI -0.42 to -0.20, effective n = 252). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control. |
-| `EV-85f154766dfc` | REPLICATED | LAGGED_ASSOCIATION_DETECTED | T2M, RH2M | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.32). Non-zero lags that stay significant after correction: +1 (r = -0.18). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
+| `EV-01be4b227209` | OBSERVED · 2 values replicated | SUPPORTED | T2M, RH2M | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.32 (95% CI -0.42 to -0.20, effective n = 252). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-85f154766dfc` | OBSERVED · 3 values replicated | LAGGED_ASSOCIATION_DETECTED | T2M, RH2M | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.32). Non-zero lags that stay significant after correction: +1 (r = -0.18). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
 | `EV-d6888d4dbe3b` | HYPOTHESIS | UNTESTED | T2M, RH2M | 2001–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason. |
-| `EV-5f08da1044a1` | REPLICATED | SUPPORTED | PRECTOTCORR, RH2M | 2001–2024 | Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.59 (95% CI +0.51 to +0.66, effective n = 278). Raw r = -0.28; the two seasonal cycles alone give r = -0.78. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-5f08da1044a1` | OBSERVED · 2 values replicated | SUPPORTED | PRECTOTCORR, RH2M | 2001–2024 | Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.59 (95% CI +0.51 to +0.66, effective n = 278). Raw r = -0.28; the two seasonal cycles alone give r = -0.78. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-7591f20da4ac` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | PRECTOTCORR, RH2M | 2001–2024 | Lag scan of detrended anomalies, Precipitation (bias-corrected) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.59). Non-zero lags that stay significant after correction: +1 (r = +0.33), +2 (r = +0.16), +4 (r = +0.19). Positive lags pair Precipitation (bias-corrected) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
 | `EV-9d3a30f880bb` | HYPOTHESIS | UNTESTED | PRECTOTCORR, RH2M | 2001–2024 | Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both raise near-surface humidity; humidity staying high in the following month would fit soil-moisture memory. A test: add surface soil wetness (GWETTOP) and check whether it carries the one-month lag. |
 
@@ -52,7 +52,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 - Validation covers structure and internal consistency, not the physical accuracy of MERRA-2.
 
-### EV-a28cc417ed2b — REPLICATED
+### EV-a28cc417ed2b — OBSERVED
 
 **Claim.** Air temperature (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope -0.021 °C/year (95% CI -0.067 to +0.046), autocorrelation-adjusted p = 0.578, q = 0.578). A record of this length and variability would only be likely to show trends larger than about 0.095 °C/year (80% power), so smaller real changes cannot be ruled out.
 
@@ -88,16 +88,16 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
 - Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
 - Results hold for the stated period; other periods can and do give different answers.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
 | trend.T2M.sen_slope_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.021 | -0.0210 | 0.0000 | yes |
 | trend.T2M.mk_p_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.427 | 0.4265 | 0.0005 | yes |
 
-### EV-183c60c7f20d — REPLICATED
+### EV-183c60c7f20d — OBSERVED
 
 **Claim.** Relative humidity (2 m) over 2001-2024: Theil-Sen slope +0.164 percentage points/year (95% CI +0.007 to +0.293), autocorrelation-adjusted p = 0.035, q = 0.105. Some tests indicate a trend, but the result is fragile: not significant after false-discovery correction (q = 0.105); significance depends on single years (2002, 2008, 2017, 2018, 2024).
 
@@ -134,9 +134,9 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
 - Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
 - Results hold for the stated period; other periods can and do give different answers.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
@@ -144,7 +144,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 | trend.RH2M.mk_p_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.035 | 0.0350 | 0.0000 | yes |
 | trend.RH2M.q | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.105 | 0.1050 | 0.0000 | yes |
 
-### EV-3b6b68c6f1e3 — REPLICATED
+### EV-3b6b68c6f1e3 — OBSERVED
 
 **Claim.** Precipitation (bias-corrected): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.005 mm/day per year (95% CI -0.004 to +0.015), autocorrelation-adjusted p = 0.264, q = 0.397). A record of this length and variability would only be likely to show trends larger than about 0.014 mm/day per year (80% power), so smaller real changes cannot be ruled out.
 
@@ -180,16 +180,16 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
 - Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
 - Results hold for the stated period; other periods can and do give different answers.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
 | trend.PRECTOTCORR.sen_slope_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.005 | 0.0050 | 0.0000 | yes |
 | trend.PRECTOTCORR.mk_p_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.275 | 0.2740 | 0.0010 | yes |
 
-### EV-3f760323195e — REPLICATED
+### EV-3f760323195e — OBSERVED
 
 **Claim.** Monthly anomalies of Air temperature (2 m) and Precipitation (bias-corrected) vary in opposite directions over 2001-2024: detrended r = -0.12 (95% CI -0.23 to -0.00, effective n = 283). Raw r = +0.44; the two seasonal cycles alone give r = +0.86. The association is statistically detectable but small.
 
@@ -226,9 +226,9 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
 - Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
 - Results hold for the stated period; other periods can and do give different answers.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
@@ -282,7 +282,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 - Not tested here. It must not be reported as a finding.
 
-### EV-01be4b227209 — REPLICATED
+### EV-01be4b227209 — OBSERVED
 
 **Claim.** Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.32 (95% CI -0.42 to -0.20, effective n = 252). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control.
 
@@ -319,16 +319,16 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
 - Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
 - Results hold for the stated period; other periods can and do give different answers.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
 | corr.T2M-RH2M.raw | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.945 | -0.9451 | 0.0001 | yes |
 | corr.T2M-RH2M.deseasonalized | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.316 | -0.3158 | 0.0002 | yes |
 
-### EV-85f154766dfc — REPLICATED
+### EV-85f154766dfc — OBSERVED
 
 **Claim.** Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.32). Non-zero lags that stay significant after correction: +1 (r = -0.18). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only.
 
@@ -357,9 +357,9 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 - Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
 - Monthly means cannot resolve lead-lag behaviour shorter than a month.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
@@ -384,7 +384,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 - Not tested here. It must not be reported as a finding.
 
-### EV-5f08da1044a1 — REPLICATED
+### EV-5f08da1044a1 — OBSERVED
 
 **Claim.** Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.59 (95% CI +0.51 to +0.66, effective n = 278). Raw r = -0.28; the two seasonal cycles alone give r = -0.78. The association holds in both halves of the record and against a year-shuffled control.
 
@@ -421,9 +421,9 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
 - Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
 - Results hold for the stated period; other periods can and do give different answers.
-- REPLICATED applies to the listed numeric values only (two assessors, independently retrieved data). It does not validate any interpretation, and both assessors are AI systems: human review remains required.
+- Replication covers the listed numeric values only (two assessors, independently retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
 
-**Independent reports**
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
 
 | metric | source | reported | ours | abs. diff | agrees |
 |---|---|---:|---:|---:|---|
@@ -478,7 +478,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Not tested here. It must not be reported as a finding.
 
 
-Records: 13 (HYPOTHESIS 3, OBSERVED 3, REPLICATED 7). Data hash `d9bebf2c77a09f4947ab24c7dd750d64e9dd9059a8324fde9dffdf85efcba0ea`.
+Records: 13 (HYPOTHESIS 3, OBSERVED 10); values replicated by an independent report: 16. Data hash `d9bebf2c77a09f4947ab24c7dd750d64e9dd9059a8324fde9dffdf85efcba0ea`.
 
 ## Pavlodar 1981–2024 (longer record: period-sensitivity check)
 
@@ -890,7 +890,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Not tested here. It must not be reported as a finding.
 
 
-Records: 13 (HYPOTHESIS 3, OBSERVED 10). Data hash `cbe154cccd9b436a6d5bd38be3b072541a2cf34a10971ebd94b9d826ee8fefe5`.
+Records: 13 (HYPOTHESIS 3, OBSERVED 10); values replicated by an independent report: 0. Data hash `cbe154cccd9b436a6d5bd38be3b072541a2cf34a10971ebd94b9d826ee8fefe5`.
 
 ## Almaty grid cell 2001–2024 (second region)
 
@@ -1302,7 +1302,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Not tested here. It must not be reported as a finding.
 
 
-Records: 13 (HYPOTHESIS 3, OBSERVED 10). Data hash `96b0e7bee5e9f1d69035fd08eafd32f4cef1c3d7441cd6a1e594ce82ca62dafa`.
+Records: 13 (HYPOTHESIS 3, OBSERVED 10); values replicated by an independent report: 0. Data hash `96b0e7bee5e9f1d69035fd08eafd32f4cef1c3d7441cd6a1e594ce82ca62dafa`.
 
 ## Region comparison: Pavlodar vs Almaty grid cell, 2001–2024
 

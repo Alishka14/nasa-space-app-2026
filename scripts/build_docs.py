@@ -36,9 +36,9 @@ def main() -> int:
              "(SHA-256 in `data/provenance`). Record ids are derived from the claim type, region, period, variables, "
              "method, parameters and data hash: the same inputs always give the same id.", "",
              "Status ladder (MIZAN): `HYPOTHESIS` → `OBSERVED` → `REPLICATED` → `PRACTICALLY_VALIDATED` → "
-             "`TRANSFER_VALIDATED`. The engine assigns only `OBSERVED` and `HYPOTHESIS`. `REPLICATED` appears only where "
-             "a value reported independently (here: by Gemini, for Pavlodar 2001–2024) agrees with ours; it covers the "
-             "number, not any interpretation. Nothing in this ledger is above `REPLICATED`.", ""]
+             "`TRANSFER_VALIDATED`. Every record here is `OBSERVED` or `HYPOTHESIS`. Where a value was also reported "
+             "independently (here: by Gemini, for Pavlodar 2001–2024) and agrees with ours, that value is marked as "
+             "replicated inside the record; the record as a whole is not promoted, and no interpretation is.", ""]
     for slug, reg, start, end, title in cases:
         inv = investigate(store, lat=reg["latitude"], lon=reg["longitude"], start=start, end=end, variables=VARS,
                           region_name=reg["name"], independent_reports=reports)
@@ -46,9 +46,10 @@ def main() -> int:
         counts: dict[str, int] = {}
         for e in inv["evidence"]:
             counts[e["status"]] = counts.get(e["status"], 0) + 1
+        n_rep = sum(len(e["replicated_values"]) for e in inv["evidence"])
         body = ledger_markdown(inv["evidence"], title=title).replace("# ", "## ", 1).replace("\n## EV-", "\n### EV-")
-        parts += [body, f"Records: {len(inv['evidence'])} ({', '.join(f'{k} {v}' for k, v in sorted(counts.items()))}). "
-                        f"Data hash `{inv['data_hash']}`.", ""]
+        parts += [body, f"Records: {len(inv['evidence'])} ({', '.join(f'{k} {v}' for k, v in sorted(counts.items()))}); "
+                        f"values replicated by an independent report: {n_rep}. Data hash `{inv['data_hash']}`.", ""]
         print(f"{slug}: {len(inv['evidence'])} records {counts}")
 
     cmp_ = compare_regions(store, PAV, ALM, start=2001, end=2024, variables=VARS)

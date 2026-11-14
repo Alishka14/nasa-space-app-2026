@@ -5,11 +5,14 @@ variables, method, parameters, data hash), so the same analysis on the same
 bytes always produces the same id, and a change of data or method produces a
 new one. Nothing here calls an LLM.
 
-Status follows the MIZAN ladder. The engine itself only ever assigns
+Status follows the MIZAN ladder. A record as a whole is only ever
 ``OBSERVED`` (computed on real data) or ``HYPOTHESIS`` (a proposed, untested
-explanation). ``REPLICATED`` is granted to a single metric only when an
-independent report of the same quantity (another assessor, independently
-obtained data) is registered and agrees within its stated tolerance.
+explanation). Replication is tracked per VALUE, not per record: a number
+inside a record is listed in ``replicated_values`` when an independent report
+of the same quantity (another assessor, independently obtained data) is
+registered and agrees within its stated tolerance. A record's claim usually
+contains more than the replicated numbers, so the record itself is not
+promoted.
 """
 from __future__ import annotations
 
@@ -46,6 +49,7 @@ class EvidenceRecord:
     alternatives: list[str] = field(default_factory=list)
     verdict: str | None = None
     independent_reports: list[dict[str, Any]] = field(default_factory=list)
+    replicated_values: list[str] = field(default_factory=list)
     engine_version: str = ""
 
     def to_dict(self) -> dict[str, Any]:
@@ -109,8 +113,9 @@ def _scope_matches(scope: dict[str, Any], region: dict[str, Any], period: list[i
 def attach_independent_reports(record: EvidenceRecord, metrics: dict[str, float],
                                reports: list[dict[str, Any]]) -> EvidenceRecord:
     """Compare our metrics with independently reported values for the same
-    region, period and quantity. Promote to REPLICATED only if at least one
-    independent report exists for this record and all of them agree."""
+    region, period and quantity. Values that agree are listed as replicated,
+    but only if every report matched to this record agrees. The record's own
+    status is never changed here."""
     matched = []
     for rep in reports:
         if not _scope_matches(rep["scope"], record.region, record.period):
@@ -127,11 +132,11 @@ def attach_independent_reports(record: EvidenceRecord, metrics: dict[str, float]
     if matched:
         record.independent_reports = matched
         if all(m["agrees"] for m in matched) and record.status == "OBSERVED":
-            record.status = "REPLICATED"
+            record.replicated_values = [m["metric"] for m in matched]
             record.limitations = record.limitations + [
-                "REPLICATED applies to the listed numeric values only (two assessors, independently "
-                "retrieved data). It does not validate any interpretation, and both assessors are AI "
-                "systems: human review remains required."]
+                "Replication covers the listed numeric values only (two assessors, independently "
+                "retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both "
+                "assessors are AI systems: human review remains required."]
     return record
 
 
@@ -145,7 +150,8 @@ def ledger_markdown(records: list[dict[str, Any]], title: str = "Evidence Ledger
              "with the stated method and parameters. No LLM is involved in the computation.", ""]
     lines += ["| id | status | verdict | variables | period | claim |", "|---|---|---|---|---|---|"]
     for r in records:
-        lines.append(f"| `{r['id']}` | {r['status']} | {r.get('verdict') or ''} | {', '.join(r['variables'])} | "
+        status = r["status"] + (f" · {len(r['replicated_values'])} values replicated" if r.get("replicated_values") else "")
+        lines.append(f"| `{r['id']}` | {status} | {r.get('verdict') or ''} | {', '.join(r['variables'])} | "
                      f"{r['period'][0]}–{r['period'][1]} | {r['claim']} |")
     lines.append("")
     for r in records:
@@ -168,7 +174,7 @@ def ledger_markdown(records: list[dict[str, Any]], title: str = "Evidence Ledger
         if r["limitations"]:
             lines += ["**Limitations**", ""] + [f"- {s}" for s in r["limitations"]] + [""]
         if r.get("independent_reports"):
-            lines += ["**Independent reports**", "",
+            lines += ["**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)", "",
                       "| metric | source | reported | ours | abs. diff | agrees |", "|---|---|---:|---:|---:|---|"]
             for m in r["independent_reports"]:
                 lines.append(f"| {m['metric']} | {m['source']} | {m['reported']} | {m['ours']:.4f} | "

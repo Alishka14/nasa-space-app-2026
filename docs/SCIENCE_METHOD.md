@@ -157,10 +157,11 @@ result, uncertainty, status, supporting_evidence, counterevidence, alternatives,
 
 - The `id` is a hash of claim type, region, period, variables, method, parameters and data hash. Same inputs, same id.
 - `data_hash` identifies the raw files (by SHA-256) and the slice used.
-- **Status** follows the MIZAN ladder. The engine can assign only `OBSERVED` and `HYPOTHESIS`. A record becomes
-  `REPLICATED` only when a value registered in `data/independent_reports/` — reported by a different assessor from
-  separately obtained data — matches ours within its stated tolerance for the same place, period and quantity. One
-  disagreeing report blocks the promotion. `REPLICATED` covers numbers, never interpretations.
+- **Status** follows the MIZAN ladder. A record is `OBSERVED` or `HYPOTHESIS`; the engine cannot assign anything
+  higher. Replication is tracked per value: a number is listed under `replicated_values` only when a value registered
+  in `data/independent_reports/` — reported by a different assessor from separately obtained data — matches ours
+  within its stated tolerance for the same place, period and quantity. One disagreeing report for a record blocks
+  it. The record itself stays `OBSERVED`, because its claim contains more than the replicated numbers.
 - **Relationship graph.** Nodes are variables. An edge exists only if a relationship record was computed, and carries
   that record's id. Hypotheses can annotate an edge; they cannot create one.
 - **EarthChangeEpisode.** For each trend and relationship the path Observation → Hypothesis → Test → Counterexample →

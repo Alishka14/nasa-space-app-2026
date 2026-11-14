@@ -142,7 +142,7 @@ def test_every_result_has_a_complete_evidence_record(inv):
     for e in inv["evidence"]:
         assert all(k in e for k in REQUIRED), e["id"]
         assert e["data_hash"] == inv["data_hash"] and e["period"] == [2001, 2024]
-        assert e["status"] in ("OBSERVED", "REPLICATED", "HYPOTHESIS")
+        assert e["status"] in ("OBSERVED", "HYPOTHESIS")        # a whole record is never promoted
     for t in inv["trends"].values():
         assert t["evidence_id"] in ids
     for r in inv["relationships"]:
@@ -184,27 +184,27 @@ def test_variable_order_does_not_change_pair_ids_or_lag_signs(store, inv):
 
 # ---- replication status ---------------------------------------------------------------------------------
 
-def test_replicated_only_where_an_independent_report_agrees(inv, store):
-    statuses = {e["id"]: e["status"] for e in inv["evidence"]}
+def test_values_are_replicated_only_where_an_independent_report_agrees(inv, store):
     rep = [e for e in inv["evidence"] if e["independent_reports"]]
-    assert rep and all(e["status"] == "REPLICATED" for e in rep)
+    assert rep and all(e["status"] == "OBSERVED" for e in rep)            # the record itself is not promoted
     assert all(m["agrees"] for e in rep for m in e["independent_reports"])
-    assert sum(len(e["independent_reports"]) for e in rep) == 16          # every registered Gemini value
+    assert sum(len(e["replicated_values"]) for e in rep) == 16            # every registered Gemini value
+    assert all(e["replicated_values"] == [m["metric"] for m in e["independent_reports"]] for e in rep)
     no_report = [e for e in inv["evidence"] if not e["independent_reports"]]
-    assert no_report and all(e["status"] in ("OBSERVED", "HYPOTHESIS") for e in no_report)
-    # the P-RH lag scan was not reported by anyone else: it must stay OBSERVED
+    assert no_report and all(e["replicated_values"] == [] for e in no_report)
+    # the P-RH lag scan was not reported by anyone else
     lag = next(e for e in inv["evidence"] if e["variables"] == ["PRECTOTCORR", "RH2M"] and "Lag scan" in e["claim"])
-    assert statuses[lag["id"]] == "OBSERVED"
-    # another period or place: no report applies, nothing is promoted
+    assert lag["replicated_values"] == []
+    # another period or place: no report applies, nothing is marked
     other = investigate(store, lat=52.29, lon=76.97, start=2005, end=2024, variables=["T2M", "RH2M"], n_perm=200,
                         independent_reports=load_independent_reports(DATA / "independent_reports"))
-    assert all(e["status"] != "REPLICATED" for e in other["evidence"])
+    assert all(e["replicated_values"] == [] for e in other["evidence"])
     almaty = investigate(store, lat=43.24, lon=76.95, start=2001, end=2024, variables=["T2M", "RH2M"], n_perm=200,
                          independent_reports=load_independent_reports(DATA / "independent_reports"))
-    assert all(e["status"] != "REPLICATED" for e in almaty["evidence"])
+    assert all(e["replicated_values"] == [] for e in almaty["evidence"])
 
 
-def test_a_disagreeing_report_blocks_promotion():
+def test_a_disagreeing_report_blocks_replication():
     rec = make_record(claim="A and B vary together.", claim_type="statistical_relationship", region=REGION,
                       period=[2001, 2024], variables=["A", "B"], method="m", parameters={}, data_hash="abc",
                       result={}, uncertainty={})
@@ -213,11 +213,12 @@ def test_a_disagreeing_report_blocks_promotion():
             "independence": "i"}
     bad = {**good, "reported": 0.70}
     a = attach_independent_reports(copy.deepcopy(rec), {"r": 0.5004}, [good])
-    assert a.status == "REPLICATED" and any("numeric values only" in x for x in a.limitations)
+    assert a.status == "OBSERVED" and a.replicated_values == ["r"]
+    assert any("numeric values only" in x for x in a.limitations)
     b = attach_independent_reports(copy.deepcopy(rec), {"r": 0.5004}, [good, bad])
-    assert b.status == "OBSERVED" and not b.independent_reports[1]["agrees"]
+    assert b.replicated_values == [] and not b.independent_reports[1]["agrees"]
     c = attach_independent_reports(copy.deepcopy(rec), {"r": 0.5004}, [{**good, "scope": {**scope, "period": [1981, 2024]}}])
-    assert c.status == "OBSERVED" and c.independent_reports == []
+    assert c.replicated_values == [] and c.independent_reports == []
 
 
 def test_ledger_renders_every_record(inv):

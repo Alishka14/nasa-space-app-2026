@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { api, type Investigation } from '../api'
 import { chrome, fmt, seriesColor, type Mode } from '../theme'
-import { Card, Status, Verdict, type T } from './common'
+import { Card, EvidenceStatus, Verdict, type T } from './common'
 
 const W = 760
 const H = 470
@@ -23,7 +23,7 @@ export default function GraphView({ inv, t, mode, onEvidence }: {
     const a = -Math.PI / 2 + (2 * Math.PI * i) / nodes.length
     pos[n.id] = nodes.length === 1 ? [W / 2, H / 2] : [W / 2 + 250 * Math.cos(a), H / 2 + 34 + 140 * Math.sin(a)]
   })
-  const statusOf = (id: string) => inv.evidence.find((e: any) => e.id === id)?.status ?? 'OBSERVED'
+  const ev = (id: string) => inv.evidence.find((e: any) => e.id === id)
 
   return (
     <div className="stack">
@@ -43,7 +43,7 @@ export default function GraphView({ inv, t, mode, onEvidence }: {
                 <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={col} strokeWidth={2 + 12 * Math.abs(e.r_detrended)}
                       strokeDasharray={DASH[e.status]} strokeLinecap="round" opacity={e.status === 'NOT_SUPPORTED' ? 0.45 : 1} />
                 <g transform={`translate(${mx},${my})`}>
-                  <rect x={-74} y={-25} width={148} height={50} rx={8} fill={c.surface} stroke={c.axis} />
+                  <rect x={-88} y={-25} width={176} height={50} rx={8} fill={c.surface} stroke={c.axis} />
                   <text textAnchor="middle" y={-6} fill={c.ink} fontSize={14} fontWeight={700}>r = {fmt(e.r_detrended, 2)}</text>
                   <text textAnchor="middle" y={12} fill={c.ink2} fontSize={11}>{e.status}{e.hypothesis_id ? ' · ✎' : ''}{e.sign_differs_between_seasons ? ' · ▲ season' : ''}</text>
                 </g>
@@ -76,7 +76,7 @@ export default function GraphView({ inv, t, mode, onEvidence }: {
 
       <div className="grid cards-3">
         {edges.map(e => (
-          <Card key={e.id} title={`${e.source} ↔ ${e.target}`} right={<Status code={statusOf(e.evidence_id)} />}>
+          <Card key={e.id} title={`${e.source} ↔ ${e.target}`} right={<EvidenceStatus ev={ev(e.evidence_id)} />}>
             <Verdict code={e.status} />
             <dl className="facts">
               <dt>raw r</dt><dd>{fmt(e.r_raw, 2)}</dd>

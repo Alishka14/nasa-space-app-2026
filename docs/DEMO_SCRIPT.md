@@ -41,4 +41,4 @@ Pavlodar data; check the current Space Apps rules for the allowed length and for
 | Did an AI make the conclusions? | No. All numbers come from deterministic code on hashed data. AI wrote the code and a first analysis; the tests and the evidence records are what the results rest on. |
 | How do you know the statistics are right? | Cross-checked against `pymannkendall` and `statsmodels`, against synthetic series with known answers, and against Gemini's independent numbers. |
 | Why is "no significant trend" not "no change"? | The confidence interval for temperature runs from −0.67 to +0.46 °C per decade. |
-| What is REPLICATED? | A number that two independent assessors obtained from separately retrieved NASA data. It does not cover interpretations. |
+| What does "values replicated" mean? | Those numbers were also obtained by a second, independent assessor from separately retrieved NASA data. The finding as a whole stays OBSERVED. |

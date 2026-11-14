@@ -33,7 +33,7 @@ The last three were not opened in this session. Nothing in this project depends 
 |---|---|
 | Claim → Evidence → Counterevidence → Alternatives → Verdict | The fields of every `EvidenceRecord` (`evidence.py`); shown in View Evidence and in the report |
 | Status ladder HYPOTHESIS → OBSERVED → REPLICATED → … | `STATUS_ORDER` in `guard.py`; the engine can assign only the first two |
-| REPLICATED needs an independent assessor or independently obtained artifact | `attach_independent_reports`: promotion only when a registered external value agrees; one disagreement blocks it |
+| REPLICATED needs an independent assessor or independently obtained artifact | `attach_independent_reports`: a value is marked replicated only when a registered external value agrees; one disagreement blocks it; the record as a whole stays OBSERVED |
 | A passing test is not universal proof | `PROOF_LANGUAGE` and `ABSENCE_OF_EVIDENCE` rules; "what cannot be concluded" in every investigation |
 | Separate observation, supported relation, hypothesis, unverified explanation | Four `claim_type` values; causal wording admitted only in labelled hypotheses |
 
@@ -46,7 +46,7 @@ tool. `PRACTICALLY_VALIDATED` and `TRANSFER_VALIDATED` are defined but nothing i
 |---|---|
 | AI proposes | Gemini's preliminary analysis is treated as a proposal and stored as an *independent report*, not as a result |
 | Evidence decides | Results come only from deterministic code on hashed data; no language model in the computation path |
-| Humans remain accountable | The `REPLICATED` limitation text states that both assessors are AI systems and that human review is required |
+| Humans remain accountable | Every record with replicated values states that both assessors are AI systems and that human review is required |
 | Independent roles | See "Independence" below |
 
 ### Git Senses — a research series has a history

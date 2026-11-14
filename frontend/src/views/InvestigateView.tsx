@@ -4,7 +4,7 @@ import Chart from '../Chart'
 import { annualHeight, annualTrends, climatology, correlationSteps, lagScan, seasonSplit, stackedHeight, stackedSeries, windowHeatmap } from '../charts'
 import type { Investigation } from '../api'
 import { fmt, fmtP, seriesColor, type Mode } from '../theme'
-import { Card, Status, Swatch, Verdict, type T } from './common'
+import { Card, EvidenceStatus, Swatch, Verdict, type T } from './common'
 
 type SeriesTab = 'raw' | 'cycle' | 'anomalies' | 'annual'
 
@@ -17,7 +17,7 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
   const [table, setTable] = useState(false)
   const [winVar, setWinVar] = useState(vars[0])
   const wv = vars.includes(winVar) ? winVar : vars[0]
-  const statusOf = (id: string) => inv.evidence.find((e: any) => e.id === id)?.status ?? 'OBSERVED'
+  const ev = (id: string) => inv.evidence.find((e: any) => e.id === id)
 
   const seriesOption = useMemo(() => {
     if (seriesTab === 'raw') return stackedSeries(inv.series.months, vars, inv.series.raw, infos, mode, { monthly: true })
@@ -53,7 +53,7 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
           const tr_ = inv.trends[v]
           const s = tr_.summary
           return (
-            <Card key={v} title={<><Swatch color={seriesColor(v, mode)} />{infos[v].label}</>} right={<Status code={statusOf(tr_.evidence_id)} />}>
+            <Card key={v} title={<><Swatch color={seriesColor(v, mode)} />{infos[v].label}</>} right={<EvidenceStatus ev={ev(tr_.evidence_id)} />}>
               <p className="definition">{infos[v].definition}</p>
               <div className="big">{fmt(s.primary_slope)} <small>{tr_.slope_units}</small></div>
               <dl className="facts">
@@ -108,7 +108,7 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
         const hyp = r.hypothesis_id ? inv.evidence.find((e: any) => e.id === r.hypothesis_id) : null
         return (
           <Card key={r.id} title={<>{infos[r.x].label} ↔ {infos[r.y].label}</>}
-                right={<><Verdict code={r.status} /> <Status code={statusOf(r.evidence_id)} /></>}>
+                right={<><Verdict code={r.status} /> <EvidenceStatus ev={ev(r.evidence_id)} /></>}>
             <p className="statement">{r.statement}</p>
             <div className="grid charts-3">
               <figure><figcaption>{t('stepsTitle')}</figcaption><Chart option={correlationSteps(r, mode)} height={170} /></figure>

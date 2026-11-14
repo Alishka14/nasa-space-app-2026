@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react'
 import type { Investigation } from '../api'
-import { Status, Verdict, type T } from './common'
+import { EvidenceStatus, Verdict, type T } from './common'
 
 /** View Evidence: the claim, the NASA data behind it, the method, the result,
  * what speaks against it, what else could explain it, and what it cannot show. */
@@ -24,7 +24,7 @@ export default function EvidenceDrawer({ inv, id, t, onClose, onOpen }: {
     <div className="drawer-backdrop" onClick={onClose}>
       <aside className="drawer" role="dialog" aria-modal="true" aria-label="Evidence record" onClick={e => e.stopPropagation()}>
         <header>
-          <div><code>{ev.id}</code> <Status code={ev.status} /> <Verdict code={ev.verdict} /></div>
+          <div><code>{ev.id}</code> <EvidenceStatus ev={ev} /> <Verdict code={ev.verdict} /></div>
           <button onClick={onClose} aria-label={t('close')}>✕</button>
         </header>
 
@@ -49,7 +49,7 @@ export default function EvidenceDrawer({ inv, id, t, onClose, onOpen }: {
               <thead><tr><th>Metric</th><th>Reported</th><th>Ours</th><th>|diff|</th><th></th></tr></thead>
               <tbody>{ev.independent_reports.map((m: any) => (
                 <tr key={m.metric}><td><code>{m.metric}</code></td><td>{m.reported}</td><td>{m.ours.toFixed(4)}</td><td>{m.abs_diff.toFixed(4)}</td>
-                  <td>{m.agrees ? '✔ agrees' : '✖ differs'}</td></tr>))}</tbody>
+                  <td>{m.agrees ? '✔ replicated' : '✖ differs'}</td></tr>))}</tbody>
             </table></div>
             <p className="muted small">{ev.independent_reports[0].source}. {ev.independent_reports[0].independence}.</p>
           </>
