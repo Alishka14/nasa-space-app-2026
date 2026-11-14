@@ -1,0 +1,32 @@
+1
+00:00:00,000 --> 00:00:02,000
+We are team ⟨NAME⟩.
+
+2
+00:00:02,000 --> 00:00:05,000
+Our challenge: Earth system trend detective.
+
+3
+00:00:05,000 --> 00:00:10,000
+EARTH SENSES doesn't just find trends.
+It questions them.
+
+4
+00:00:10,000 --> 00:00:16,000
+Raw NASA data: precipitation and humidity
+move in opposite directions. r = −0.28
+
+5
+00:00:16,000 --> 00:00:21,000
+Remove the seasons and it flips: r = +0.59.
+The first number was the calendar.
+
+6
+00:00:21,000 --> 00:00:25,000
+Every result keeps its evidence
+and its NASA file hash.
+
+7
+00:00:25,000 --> 00:00:30,000
+Next: more NASA data, more detectives.
+

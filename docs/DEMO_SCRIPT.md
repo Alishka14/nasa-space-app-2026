@@ -1,44 +1,129 @@
-# Demo Script
+# Demo Script and Recording Materials
 
-A walk-through of about four minutes, plus a 30-second cut. Every number below is what the tool shows for the bundled
-Pavlodar data; check the current Space Apps rules for the allowed length and format of the project demo.
+**Official limits (2026 Project Submission Guide):** the project demo is **either a video of 30 seconds or less or a
+deck of at most 7 slides including the title slide**. A longer demo makes the project ineligible for awards. The
+link must open without login. Content must be in English; a video in another language needs English subtitles.
+Images or video produced by an AI tool need a visible watermark — the materials below use **screen recordings and
+screenshots of the running application only**, so no watermark is needed.
 
-**Before you start:** `uvicorn earth_senses.api:app --app-dir backend --port 8000` with the frontend built
-(`cd frontend && npm run build`), browser at <http://localhost:8000>. For a demo without internet set
-`EARTH_SENSES_OFFLINE=1`; Pavlodar and Almaty work from bundled NASA files.
+Every number below is what the application shows for the bundled NASA files. Do not round differently on screen
+and in speech.
 
-## Four-minute version
+## The story in one sentence
+
+> In raw NASA data, precipitation and humidity in Pavlodar move in **opposite** directions (r = −0.28). Remove the
+> seasons, and they move **together** (r = +0.59). The first number was the calendar. EARTH SENSES shows which
+> number to believe, and keeps the evidence.
+
+What you may say about it, and what you may not:
+
+| Say | Do not say |
+|---|---|
+| "Months wetter than usual are also more humid than usual." | "Rain causes humidity" / "humidity causes rain" |
+| "The raw correlation was produced by the seasonal cycle." | "The raw data were wrong" |
+| "It holds from spring to autumn and is absent in winter." | "It always holds" |
+| "It survives holding temperature and specific humidity fixed: +0.44." | "We proved the link" |
+| "This is one MERRA-2 grid cell, a model reanalysis." | "This is what happens in the city of Pavlodar" |
+
+## Setup (once, 3 minutes)
+
+```bash
+source .venv/bin/activate
+(cd frontend && npm ci && npm run build)
+EARTH_SENSES_OFFLINE=1 uvicorn earth_senses.api:app --app-dir backend --port 8000
+```
+
+Open <http://localhost:8000> in Chrome. Window 1920 × 1080, browser zoom 110%, dark theme (default), language EN.
+`EARTH_SENSES_OFFLINE=1` serves the bundled, hash-verified NASA files, so the demo does not depend on the network.
+Pavlodar, 2001–2024, with temperature, humidity and precipitation ticked is the default state: press **Investigate**
+once before recording so the result is cached and appears instantly.
+
+## A. 30-second video
+
+Timing follows the structure recommended in the guide: introduce, name the challenge, title and tagline, the idea,
+what comes next. Record the screen once, silently, following the *Screen* column; add the voice-over afterwards.
+Total spoken text: about 65 words — roughly 26 seconds at a calm pace. **Check the exported file is 0:30 or shorter.**
+
+| Time | Screen | Voice-over | On-screen caption |
+|---|---|---|---|
+| 0:00–0:02 | Start screen: map with Pavlodar selected | "We are team ⟨NAME⟩." | Team ⟨NAME⟩ · ⟨city⟩ |
+| 0:02–0:05 | Same; cursor moves to **Investigate** | "Our challenge: Earth system trend detective." | Be An Earth System Trend Detective! |
+| 0:05–0:10 | Click **Investigate**; trend cards appear | "EARTH SENSES doesn't just find trends. It questions them." | EARTH SENSES — AI proposes. Evidence decides. |
+| 0:10–0:16 | Scroll to **Precipitation ↔ Relative humidity**; hold on the four bars | "Raw NASA data: precipitation and humidity move in opposite directions. Minus 0.28." | Raw: r = −0.28 |
+| 0:16–0:21 | Same card; cursor moves from the *Raw* bar to the *Deseasonalized* bar | "Remove the seasons and it flips: plus 0.59. The first number was the calendar." | Seasons removed: r = +0.59 |
+| 0:21–0:25 | Click **View evidence →**; drawer opens; scroll to *Source NASA data* | "Every result keeps its evidence and its NASA file hash." | Evidence · counterevidence · SHA-256 |
+| 0:25–0:30 | Tab **Relationship graph** | "Next: more NASA data, more detectives." | github.com/Alishka14/nasa-space-app-2026 |
+
+Subtitles for this cut: [`docs/demo/subtitles_en.srt`](demo/subtitles_en.srt) (English) and
+[`docs/demo/subtitles_ru.srt`](demo/subtitles_ru.srt) (Russian, for a version voiced in Russian — keep the English
+file as the burned-in subtitles).
+
+### Shot list for the editor
+
+1. **Start screen** — 2 s static, then cursor travels to the button (3 s).
+2. **Click → results** — keep the moment the three trend cards appear (the "no significant trend / fragile" badges
+   are visible; do not zoom).
+3. **Scroll to the precipitation–humidity card** — one smooth scroll; stop when the title *Precipitation
+   (bias-corrected) ↔ Relative humidity (2 m)* is at the top of the window.
+4. **Hold on the bar chart** *Correlation as seasonality and trend are removed* — 5 s; optional zoom-in to 160% on
+   the four bars.
+5. **View evidence** — click, wait for the drawer, scroll once to the SHA-256.
+6. **Relationship graph** — click the tab; end frame is the triangle with r = +0.59 on the bottom edge.
+
+Reference frames (captures of the real application): `docs/screenshots/01_investigate.png`,
+`08_precipitation_humidity.png`, `02_view_evidence.png`, `03_relationship_graph.png`.
+
+### Recording checklist
+
+- [ ] Exported duration ≤ 0:30 (check the file, not the timeline).
+- [ ] English captions readable at 720p; no caption covers the bar chart.
+- [ ] Nobody under 18 appears in the video; no NASA logo is added.
+- [ ] No AI-generated image, voice or footage. If an AI voice is used for narration, say so in the *Use of Super
+      Intelligence* field and add a visible watermark.
+- [ ] Uploaded where it opens without login (for example YouTube *Unlisted* or *Public*); link tested in a private
+      window.
+
+## B. Seven slides (alternative to the video)
+
+| # | Title | Content | Visual |
+|---|---|---|---|
+| 1 | **EARTH SENSES — Interconnected Earth Intelligence** | Team name and members · Challenge: *Be An Earth System Trend Detective!* · "AI proposes. Evidence decides." | `01_investigate.png` as background |
+| 2 | **The problem: a trend is easy, trusting it is hard** | Seasons fake correlations · one year can make a trend "significant" · some variables are computed from others · "not significant" is read as "no change" | Three short bullets, no chart |
+| 3 | **The flip: −0.28 becomes +0.59** | Pavlodar, NASA POWER / MERRA-2, 2001–2024. Raw: −0.28. Seasonal cycles alone: −0.78. Seasons removed: +0.59 (95% CI +0.51 to +0.66) | `08_precipitation_humidity.png`, cropped to the bar chart |
+| 4 | **Then it doubts its own answer** | Absent in winter (−0.06), strongest in summer (+0.70) · +0.37 with every month weighted equally · +0.44 with temperature and specific humidity held fixed · same in 1981–2000 (+0.58) | By-season chart and the "held fixed" table |
+| 5 | **Every claim keeps its evidence** | Claim · evidence · counterevidence · alternatives · limitations · NASA file SHA-256. Relative humidity flagged as computed from temperature (rebuilt at r = 0.98) | `02_view_evidence.png`, `09_derived_variable_check.png` |
+| 6 | **How it works, and how to check us** | NASA POWER API → validation → trend / relationship engines → evidence records → React interface. 146 automated tests. No AI in the calculations. One command reproduces every number | Architecture diagram from `NASA_SUBMISSION.md` §7 |
+| 7 | **Limits and next steps** | One reanalysis grid cell; one model; no human scientific review yet. Next: independent satellite and station data, more regions, classroom use | Repository URL |
+
+## C. Live walk-through (about four minutes, for judges or mentors)
 
 | Time | Do | Say |
 |---|---|---|
-| 0:00 | Show the start screen with the map. | "The challenge asks for a trend detective. Finding a trend is easy. Knowing whether to believe it is the hard part, so we built a tool that investigates and keeps the evidence." |
-| 0:20 | Click **Pavlodar**. Point at the rectangle on the map. | "This is real NASA data: MERRA-2 through the POWER service. A point is really a grid cell, about fifty kilometres across, and we show that instead of hiding it." |
-| 0:35 | Keep temperature, humidity and precipitation ticked, 2001–2024. Click **Investigate**. | "Three variables, twenty-four years." |
-| 0:45 | Trend cards. | "Temperature: minus 0.02 degrees per year, not significant. The tool does not say 'no warming'. It says a record this short could only detect trends above roughly one degree per decade." |
-| 1:10 | Humidity card, then the heatmap with RH2M selected. | "Humidity looks significant: p = 0.035. But after correcting for three tests it is 0.105, it flips if you remove any one of five years, and over 1981–2024 it is gone. Verdict: fragile." |
-| 1:40 | Scroll to *Air temperature ↔ Relative humidity*. Point at the four bars. | "Raw correlation minus 0.95. The two seasonal cycles alone give minus 0.98. Between anomalies it is minus 0.32. Most of that famous number was the calendar." |
-| 2:00 | *Precipitation ↔ Relative humidity*. | "Here the sign changes: minus 0.28 raw, plus 0.59 once the seasons are removed." |
-| 2:15 | *Air temperature ↔ Precipitation*, season chart. | "And here the all-year number hides opposite behaviour: plus 0.37 in winter, minus 0.32 in summer." |
-| 2:30 | Click **View evidence** on a relationship. Scroll the drawer. | "Every result has a record: the claim, the evidence, the counterevidence, alternatives we could not exclude, limitations, and the NASA file with its SHA-256." |
-| 2:50 | Tab **Relationship graph**. | "An edge exists only if it was computed from data. Hypotheses are dashed notes on an edge and can never create one." |
-| 3:05 | In **Try the MIZAN Guard** click **Check wording**. | "If anyone, human or AI, writes 'temperature causes humidity to fall, which proves the link', it is blocked." |
-| 3:20 | Tab **Evidence timeline**. | "This is how each interpretation was reached and revised: observation, hypothesis, test, counterexample, revision, conclusion." |
-| 3:35 | Tab **Compare regions**, Pavlodar vs Almaty, **Compare**. | "Same variable, two places, opposite signs, neither significant, and the tool says exactly that. It also warns that this 'Almaty' cell sits at 2,500 metres." |
-| 3:50 | Tab **Report**. | "One click gives the full report, ending with what cannot be concluded. AI proposes. Evidence decides." |
+| 0:00 | Start screen with the map. | "The challenge asks for a trend detective. Finding a trend is easy. Knowing whether to believe it is the hard part." |
+| 0:15 | Click **Pavlodar**; point at the rectangle on the map. | "Real NASA data: MERRA-2 through the POWER service. A point is really a grid cell about fifty kilometres across, and we show that." |
+| 0:30 | **Investigate**. Trend cards. | "Temperature: minus 0.02 degrees per year, not significant. The tool does not say 'no warming'. It says this record could only detect trends above about one degree per decade." |
+| 0:55 | Humidity card; heatmap with RH2M selected. | "Humidity looks significant, p = 0.035. After correcting for three tests it is 0.105, it flips if you remove any one of five years, and before 2001 the slope had the opposite sign. Verdict: fragile." |
+| 1:25 | **Precipitation ↔ Relative humidity**, the four bars. | "Our main result. Raw: minus 0.28. The two seasonal cycles alone: minus 0.78. Remove the seasons: plus 0.59. The raw number was the calendar." |
+| 1:50 | Same card: season chart, then the *held fixed* table. | "And the tool doubts its own answer. Nothing in winter, plus 0.70 in summer. It survives holding temperature fixed." |
+| 2:10 | **View evidence →** on that card; scroll the drawer. | "Claim, evidence, counterevidence, alternatives we could not exclude, limitations, and the NASA file with its SHA-256." |
+| 2:30 | **Air temperature ↔ Relative humidity**; point at the ⚙ box. | "Minus 0.95 raw, minus 0.32 between anomalies. And a warning: relative humidity is computed from temperature, so part of this is built into the definition." |
+| 2:45 | Tick **Specific humidity**, **Investigate**; scroll to *Derived-variable check*. | "With specific humidity added we can measure it: rebuilt from temperature and moisture with a textbook formula, humidity matches NASA's values at 0.98." |
+| 3:10 | Tab **Relationship graph**; **Check wording**. | "An edge exists only if it was computed from data. And if anyone, human or AI, writes 'temperature causes humidity to fall, which proves the link', it is blocked." |
+| 3:30 | Tab **Evidence timeline**. | "How each interpretation was reached and revised: observation, hypothesis, test, counterexample, revision, conclusion." |
+| 3:45 | Tab **Report**; scroll to the end. | "One click gives the full report, ending with what cannot be concluded. AI proposes. Evidence decides." |
 
-## Thirty-second version
-
-1. (0–8 s) Map → Pavlodar → Investigate. "Real NASA data, one click."
-2. (8–18 s) The four correlation bars for temperature–humidity. "−0.95 raw. −0.32 once the seasons are removed."
-3. (18–25 s) View evidence drawer. "Every number has evidence, counterevidence and a NASA file hash."
-4. (25–30 s) Guard blocks the causal sentence. "And it will not let you overclaim."
+Optional 20 seconds: tab **Compare regions**, Pavlodar and Almaty → "opposite signs, neither significant, and the
+tool says exactly that; it also warns that this 'Almaty' cell sits at 2,500 metres."
 
 ## Questions a judge may ask
 
 | Question | Answer |
 |---|---|
-| Is this NASA data from the Resources tab? | Not yet. It is MERRA-2, which the challenge names, obtained through NASA POWER. Retrieval through a listed tool is the first open item (`KNOWN_LIMITATIONS.md`). |
-| Did an AI make the conclusions? | No. All numbers come from deterministic code on hashed data. AI wrote the code and a first analysis; the tests and the evidence records are what the results rest on. |
-| How do you know the statistics are right? | Cross-checked against `pymannkendall` and `statsmodels`, against synthetic series with known answers, and against Gemini's independent numbers. |
+| Is this NASA data? | Yes. NASA POWER (Langley) serving MERRA-2 (GMAO). It is a model reanalysis for one grid cell, and the tool says so. |
+| Why does the correlation change sign? | Both variables follow the seasons in opposite phase. Subtracting each month's average removes that. What remains is whether wetter-than-usual months are more humid than usual. |
+| So rain makes the air humid? | We do not claim that. Both may follow the same air masses. The tool blocks causal wording and lists this under "cannot be concluded". |
+| Isn't humidity just temperature in disguise? | Partly, and the tool flags it. But the precipitation–humidity link stays at +0.59 with temperature held fixed and +0.44 with temperature and specific humidity held fixed. |
+| Did an AI produce the conclusions? | No. All numbers come from deterministic code on hashed NASA files. AI wrote the code and a first exploratory analysis, which the tool then checked. This is disclosed in the submission. |
+| How do you know the statistics are right? | 146 automated tests: cross-checks against `pymannkendall` and `statsmodels`, synthetic series with known answers, and sixteen outside numbers reproduced. No human scientist has reviewed it yet, and we say so. |
+| Did you check against satellite precipitation? | We tried. NASA POWER's IMERG parameter returned only missing values for this point. The response is stored, and the tool refuses to analyse it rather than show empty results. |
 | Why is "no significant trend" not "no change"? | The confidence interval for temperature runs from −0.67 to +0.46 °C per decade. |
-| What does "values replicated" mean? | Those numbers were also obtained by a second, independent assessor from separately retrieved NASA data. The finding as a whole stays OBSERVED. |

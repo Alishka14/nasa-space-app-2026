@@ -113,6 +113,39 @@ DJF, MAM, JJA and SON; a sign that differs between seasons is reported as counte
 | `INCONCLUSIVE` | only one of the two tests passes, or the sign differs between the halves |
 | `NOT_SUPPORTED` | neither test passes |
 
+**Equal weight for every calendar month.** Anomalies are also divided by the standard deviation of their own
+calendar month and correlated again. In a continental climate summer precipitation varies far more than winter
+precipitation, so a pooled coefficient is weighted towards summer. If the equal-weight value is below three quarters
+of the pooled one, a counterevidence line says so (Pavlodar precipitation–humidity: +0.59 pooled, +0.37 with equal
+weights, −0.06 in winter).
+
+**False discovery across pairs.** The adjusted p-values of all pairs in one investigation form a family;
+Benjamini–Hochberg q is reported per pair (`q_across_pairs`). The status is still decided per pair; if a detectable
+pair has q ≥ α a warning is raised.
+
+**Partial correlation** (`partial_correlation`). For each pair and each other selected variable (and all others
+together), both series are regressed on the control series and the residuals are correlated; each control costs one
+degree of freedom on top of the autocorrelation adjustment. This answers one question only: does the association
+remain when the other series is held fixed statistically? It assumes linear relations and is still a correlation.
+
+### 4a. Derived variables (`derived.py`, `catalog.DERIVED`)
+
+Some "variables" are computed from others. NASA POWER calculates relative humidity (`RH2M`) from MERRA-2 pressure,
+temperature and specific humidity, over water only (POWER methodology, *Relative Humidity*). A correlation between
+`RH2M` and `T2M` or `QV2M` is therefore partly built into the definition. The engine:
+
+1. flags every pair in which one variable is computed from the other (⚙ *built-in dependence*) in the pair card,
+   the graph edge, the evidence record's counterevidence, the episode timeline and the list of what cannot be
+   concluded;
+2. when `T2M`, `QV2M` and `RH2M` are all selected, rebuilds relative humidity from monthly temperature and specific
+   humidity with the Magnus formula over water (WMO-No. 8 coefficients) at a constant standard-atmosphere pressure for
+   the grid cell's elevation — nothing is fitted — and reports its agreement with the `RH2M` values in the file;
+3. reports how much of the variance of the `RH2M` anomalies a linear combination of the `T2M` and `QV2M` anomalies
+   reproduces, overall and by season.
+
+The reconstruction is approximate on purpose (monthly means, constant pressure, a different saturation formula from
+POWER's); its mismatch is reported and is not treated as evidence of independent information.
+
 ## 5. Lag analysis
 
 r(k) = corr(x[t], y[t+k]) for k = −6…+6 on detrended anomalies. **k > 0 pairs x with later y.** Each lag loses |k|
@@ -177,6 +210,12 @@ result, uncertainty, status, supporting_evidence, counterevidence, alternatives,
 | Fill value matched exactly | Independent review: values within about 0.01 of −999 were also treated as missing | None on these files |
 | Replication tracked per value, records stay `OBSERVED` | A record's claim contains more than the replicated numbers | Status labels only |
 | "Stability cannot be concluded…" sentence split by verdict | The sentence wrongly said the humidity interval included both signs | Wording only |
+| ⚙ built-in dependence flag and derived-variable check | Science review: `RH2M` is computed from temperature, yet the temperature–humidity edge was shown as an ordinary association | Numbers unchanged; interpretation restricted |
+| Partial correlations | Science review: no way to ask whether an association survives a third variable | New numbers only |
+| `q_across_pairs` | Science review: pair tests were not corrected across pairs | No status changed |
+| Equal-month-weight correlation | Science review: the all-year precipitation–humidity value is weighted towards high-variance months | New counterevidence line |
+| A variable that is entirely missing is stored as evidence and refused | Real NASA response: `IMERG_PRECTOT` came back as −999 in every month for Pavlodar | None |
+| Variables may be assembled from several verified files | `QV2M` was retrieved separately from the first three variables | Data hash of the default case unchanged |
 
 ## 10. What the method does not do
 
@@ -193,5 +232,7 @@ aggregation beyond one grid cell; no physical attribution. See `KNOWN_LIMITATION
 - Hirsch, R. M., Slack, J. R. (1984). A nonparametric trend test for seasonal data with serial dependence. *Water Resour. Res.* 20, 727–732.
 - Kendall, M. G. (1975). *Rank Correlation Methods.* Griffin, London.
 - Mann, H. B. (1945). Nonparametric tests against trend. *Econometrica* 13, 245–259.
+- NASA POWER Project. Methodology: Relative Humidity. <https://power.larc.nasa.gov/docs/methodology/meteorology/relative-humidity/>
 - Santer, B. D., et al. (2000). Statistical significance of trends and trend differences in layer-average atmospheric temperature time series. *J. Geophys. Res.* 105, 7337–7356.
+- World Meteorological Organization (2008). *Guide to Meteorological Instruments and Methods of Observation*, WMO-No. 8, Annex 4.B (saturation vapour pressure formulae).
 - Sen, P. K. (1968). Estimates of the regression coefficient based on Kendall's tau. *J. Am. Stat. Assoc.* 63, 1379–1389.

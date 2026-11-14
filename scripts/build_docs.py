@@ -28,6 +28,8 @@ def main() -> int:
         ("pavlodar_2001-2024", PAV, 2001, 2024, "Pavlodar 2001–2024 (the case Gemini analysed)"),
         ("pavlodar_1981-2024", PAV, 1981, 2024, "Pavlodar 1981–2024 (longer record: period-sensitivity check)"),
         ("almaty_2001-2024", ALM, 2001, 2024, "Almaty grid cell 2001–2024 (second region)"),
+        ("pavlodar_2001-2024_with_specific_humidity", PAV, 2001, 2024,
+         "Pavlodar 2001–2024 with specific humidity (science review: derived-variable check)", VARS + ["QV2M"]),
     ]
     (ROOT / "docs" / "reports").mkdir(parents=True, exist_ok=True)
     parts = ["# Evidence Ledger", "",
@@ -39,8 +41,9 @@ def main() -> int:
              "`TRANSFER_VALIDATED`. Every record here is `OBSERVED` or `HYPOTHESIS`. Where a value was also reported "
              "independently (here: by Gemini, for Pavlodar 2001–2024) and agrees with ours, that value is marked as "
              "replicated inside the record; the record as a whole is not promoted, and no interpretation is.", ""]
-    for slug, reg, start, end, title in cases:
-        inv = investigate(store, lat=reg["latitude"], lon=reg["longitude"], start=start, end=end, variables=VARS,
+    for slug, reg, start, end, title, *rest in cases:
+        variables = rest[0] if rest else VARS
+        inv = investigate(store, lat=reg["latitude"], lon=reg["longitude"], start=start, end=end, variables=variables,
                           region_name=reg["name"], independent_reports=reports)
         (ROOT / "docs" / "reports" / f"{slug}.md").write_text(render_report(inv), encoding="utf-8")
         counts: dict[str, int] = {}

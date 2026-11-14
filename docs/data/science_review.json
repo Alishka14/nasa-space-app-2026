@@ -1,0 +1,909 @@
+{
+  "generated_by": "scripts/science_review.py",
+  "engine_version": "earth-senses/0.1.0",
+  "independence": "self-audit by the same AI system that wrote the code; not an independent validation",
+  "data_hash_three_variables": "d9bebf2c77a09f4947ab24c7dd750d64e9dd9059a8324fde9dffdf85efcba0ea",
+  "data_hash_four_variables": "8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711",
+  "seasonality": [
+    {
+      "pair": "T2M-PRECTOTCORR",
+      "raw": 0.43932642441146846,
+      "seasonal_cycles_only": 0.8599002164374218,
+      "deseasonalized": -0.12500027681337691,
+      "detrended": -0.1208047206946887,
+      "spearman_deseasonalized": -0.15803761740732786,
+      "month_standardized": -0.18457301197162365,
+      "deseasonalized_with_baseline": {
+        "2001-2012": -0.1210310863744797,
+        "2013-2024": -0.12103108637447958
+      },
+      "by_season": {
+        "DJF": 0.36686008244981566,
+        "MAM": -0.3354752254174962,
+        "JJA": -0.3208138565193051,
+        "SON": -0.35246326220643914
+      },
+      "sign_differs_between_seasons": true
+    },
+    {
+      "pair": "T2M-RH2M",
+      "raw": -0.9450569128605311,
+      "seasonal_cycles_only": -0.9764716680860329,
+      "deseasonalized": -0.31583631967229486,
+      "detrended": -0.31561090082260523,
+      "spearman_deseasonalized": -0.3533284990106579,
+      "month_standardized": -0.4151306068155113,
+      "deseasonalized_with_baseline": {
+        "2001-2012": -0.31962986280426986,
+        "2013-2024": -0.3196298628042698
+      },
+      "by_season": {
+        "DJF": -0.1624150619243826,
+        "MAM": -0.5775251514682557,
+        "JJA": -0.477276263871857,
+        "SON": -0.34973797700545534
+      },
+      "sign_differs_between_seasons": false
+    },
+    {
+      "pair": "T2M-QV2M",
+      "raw": 0.9503045755142053,
+      "seasonal_cycles_only": 0.9674203488921957,
+      "deseasonalized": 0.5312880473886928,
+      "detrended": 0.5489947852155004,
+      "spearman_deseasonalized": 0.6583517802059007,
+      "month_standardized": 0.6737682834488654,
+      "deseasonalized_with_baseline": {
+        "2001-2012": 0.5212319860707598,
+        "2013-2024": 0.5212319860707594
+      },
+      "by_season": {
+        "DJF": 0.917365982175378,
+        "MAM": 0.7502360195353042,
+        "JJA": 0.34636301964046945,
+        "SON": 0.7110588650108332
+      },
+      "sign_differs_between_seasons": false
+    },
+    {
+      "pair": "PRECTOTCORR-RH2M",
+      "raw": -0.2849502290436374,
+      "seasonal_cycles_only": -0.7751634280273179,
+      "deseasonalized": 0.5934640857867882,
+      "detrended": 0.5898926309663908,
+      "spearman_deseasonalized": 0.5343265823470411,
+      "month_standardized": 0.3671983337461715,
+      "deseasonalized_with_baseline": {
+        "2001-2012": 0.5880843124488703,
+        "2013-2024": 0.588084312448869
+      },
+      "by_season": {
+        "DJF": -0.06092204718769122,
+        "MAM": 0.542419591339255,
+        "JJA": 0.7043557108313798,
+        "SON": 0.6442063072825986
+      },
+      "sign_differs_between_seasons": true
+    },
+    {
+      "pair": "PRECTOTCORR-QV2M",
+      "raw": 0.550570636185101,
+      "seasonal_cycles_only": 0.9360927562676012,
+      "deseasonalized": 0.308309809532438,
+      "detrended": 0.29545309642617357,
+      "spearman_deseasonalized": 0.2554700881116481,
+      "month_standardized": 0.22402740578374755,
+      "deseasonalized_with_baseline": {
+        "2001-2012": 0.3110670895298628,
+        "2013-2024": 0.311067089529863
+      },
+      "by_season": {
+        "DJF": 0.4386246669432863,
+        "MAM": 0.06927680397610445,
+        "JJA": 0.45209771742506166,
+        "SON": 0.08442778728780853
+      },
+      "sign_differs_between_seasons": false
+    },
+    {
+      "pair": "RH2M-QV2M",
+      "raw": -0.8444940151832904,
+      "seasonal_cycles_only": -0.9123963282482769,
+      "deseasonalized": 0.38815846991926967,
+      "detrended": 0.35828810055979127,
+      "spearman_deseasonalized": 0.2655341092193375,
+      "month_standardized": 0.1739751909826824,
+      "deseasonalized_with_baseline": {
+        "2001-2012": 0.3919142178911127,
+        "2013-2024": 0.39191421789111236
+      },
+      "by_season": {
+        "DJF": 0.013549798062750903,
+        "MAM": 0.05104538286568009,
+        "JJA": 0.6484820257837942,
+        "SON": 0.28340326215371603
+      },
+      "sign_differs_between_seasons": false
+    }
+  ],
+  "trend_tests": [
+    {
+      "variable": "T2M",
+      "slope": -0.02116737129709518,
+      "units": "\u00b0C/year",
+      "ci95": [
+        -0.0665975658621859,
+        0.046448087431694006
+      ],
+      "mann_kendall_p": 0.4130458869045295,
+      "primary_p": 0.5780412006674245,
+      "q": 0.5780412006674245,
+      "verdict": "NO_SIGNIFICANT_TREND_DETECTED",
+      "lag1_autocorr_annual": 0.08906625141927173,
+      "flip_years": []
+    },
+    {
+      "variable": "RH2M",
+      "slope": 0.16448458904109842,
+      "units": "percentage points/year",
+      "ci95": [
+        0.007230191256830665,
+        0.2934493150684929
+      ],
+      "mann_kendall_p": 0.03499862949542659,
+      "primary_p": 0.03499862949542659,
+      "q": 0.10499588848627978,
+      "verdict": "FRAGILE_TREND",
+      "lag1_autocorr_annual": 0.07351774714303182,
+      "flip_years": [
+        2002,
+        2008,
+        2017,
+        2018,
+        2024
+      ]
+    },
+    {
+      "variable": "PRECTOTCORR",
+      "slope": 0.0047945127504553636,
+      "units": "mm/day per year",
+      "ci95": [
+        -0.004062622309197651,
+        0.015226389200788478
+      ],
+      "mann_kendall_p": 0.2643373325084948,
+      "primary_p": 0.2643373325084948,
+      "q": 0.3965059987627422,
+      "verdict": "NO_SIGNIFICANT_TREND_DETECTED",
+      "lag1_autocorr_annual": 0.08332678366810624,
+      "flip_years": []
+    }
+  ],
+  "pair_tests": [
+    {
+      "pair": "T2M-PRECTOTCORR",
+      "r": -0.1208047206946887,
+      "ci95": [
+        -0.2341179107164184,
+        -0.004253385452496318
+      ],
+      "n": 288,
+      "n_eff": 282.9334407635296,
+      "p_naive": 0.04048979157605794,
+      "p_adjusted": 0.04231008479326851,
+      "p_permutation": 0.010994502748625687,
+      "q_across_pairs": 0.04231008479326851,
+      "status": "WEAK",
+      "lag1_x": 0.17906210457822835,
+      "lag1_y": 0.04955916251462552
+    },
+    {
+      "pair": "T2M-RH2M",
+      "r": -0.31561090082260523,
+      "ci95": [
+        -0.4226206687779432,
+        -0.1999222112152365
+      ],
+      "n": 288,
+      "n_eff": 252.37853168706025,
+      "p_naive": 4.4166179327762225e-08,
+      "p_adjusted": 3.047058777108608e-07,
+      "p_permutation": 0.0004997501249375312,
+      "q_across_pairs": 4.570588165662912e-07,
+      "status": "SUPPORTED",
+      "lag1_x": 0.17906210457822835,
+      "lag1_y": 0.368137488834474
+    },
+    {
+      "pair": "PRECTOTCORR-RH2M",
+      "r": 0.5898926309663908,
+      "ci95": [
+        0.5074149267648459,
+        0.6616600402463588
+      ],
+      "n": 288,
+      "n_eff": 277.6794134974296,
+      "p_naive": 2.1866076906060023e-28,
+      "p_adjusted": 2.023396193332887e-27,
+      "p_permutation": 0.0004997501249375312,
+      "q_across_pairs": 6.070188579998661e-27,
+      "status": "SUPPORTED",
+      "lag1_x": 0.04955916251462552,
+      "lag1_y": 0.368137488834474
+    }
+  ],
+  "pair_tests_four_variables": [
+    {
+      "pair": "T2M-PRECTOTCORR",
+      "r": -0.1208047206946887,
+      "p_adjusted": 0.04231008479326851,
+      "q_across_pairs": 0.04231008479326851,
+      "status": "WEAK"
+    },
+    {
+      "pair": "T2M-RH2M",
+      "r": -0.31561090082260523,
+      "p_adjusted": 3.047058777108608e-07,
+      "q_across_pairs": 4.570588165662912e-07,
+      "status": "SUPPORTED"
+    },
+    {
+      "pair": "T2M-QV2M",
+      "r": 0.5489947852155004,
+      "p_adjusted": 3.148789265453844e-22,
+      "q_across_pairs": 9.446367796361533e-22,
+      "status": "SUPPORTED"
+    },
+    {
+      "pair": "PRECTOTCORR-RH2M",
+      "r": 0.5898926309663908,
+      "p_adjusted": 2.023396193332887e-27,
+      "q_across_pairs": 1.2140377159997322e-26,
+      "status": "SUPPORTED"
+    },
+    {
+      "pair": "PRECTOTCORR-QV2M",
+      "r": 0.29545309642617357,
+      "p_adjusted": 4.4983140138545817e-07,
+      "q_across_pairs": 5.397976816625498e-07,
+      "status": "SUPPORTED"
+    },
+    {
+      "pair": "RH2M-QV2M",
+      "r": 0.35828810055979127,
+      "p_adjusted": 9.794414968457118e-09,
+      "q_across_pairs": 1.9588829936914236e-08,
+      "status": "SUPPORTED"
+    }
+  ],
+  "lag_tests": [
+    {
+      "pair": "T2M-PRECTOTCORR",
+      "n_tests": 13,
+      "naive_significant_nonzero": [
+        -6,
+        6
+      ],
+      "significant_after_fdr": [],
+      "verdict": "INCONCLUSIVE"
+    },
+    {
+      "pair": "T2M-RH2M",
+      "n_tests": 13,
+      "naive_significant_nonzero": [
+        -6,
+        1
+      ],
+      "significant_after_fdr": [
+        1
+      ],
+      "verdict": "LAGGED_ASSOCIATION_DETECTED"
+    },
+    {
+      "pair": "PRECTOTCORR-RH2M",
+      "n_tests": 13,
+      "naive_significant_nonzero": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "significant_after_fdr": [
+        1,
+        2,
+        4
+      ],
+      "verdict": "LAGGED_ASSOCIATION_DETECTED"
+    }
+  ],
+  "number_of_tests": {
+    "trend_tests": 3,
+    "seasonal_trend_tests": 12,
+    "pair_tests": 3,
+    "lag_tests": 39
+  },
+  "false_positive_rates_synthetic": {
+    "seed": 20261114,
+    "n_sim": 2000,
+    "n_years": 24,
+    "rows": [
+      {
+        "phi": 0.0,
+        "classic_mann_kendall": 0.0395,
+        "primary_rule": 0.029
+      },
+      {
+        "phi": 0.3,
+        "classic_mann_kendall": 0.11,
+        "primary_rule": 0.0695
+      },
+      {
+        "phi": 0.6,
+        "classic_mann_kendall": 0.285,
+        "primary_rule": 0.1255
+      }
+    ]
+  },
+  "period_dependence": {
+    "relationships": [
+      {
+        "pair": "T2M-PRECTOTCORR",
+        "1981-2000": {
+          "detrended": -0.15754644785218808,
+          "ci95": [
+            -0.28114693750973724,
+            -0.02880439916708684
+          ],
+          "status": "WEAK"
+        },
+        "2001-2024": {
+          "detrended": -0.1208047206946887,
+          "ci95": [
+            -0.2341179107164184,
+            -0.004253385452496318
+          ],
+          "status": "WEAK"
+        },
+        "1981-2024": {
+          "detrended": -0.11728455313725338,
+          "ci95": [
+            -0.20167096421166922,
+            -0.031169772910091813
+          ],
+          "status": "WEAK"
+        },
+        "halves_2001_2024": [
+          -0.06472795443092788,
+          -0.18360638842684904
+        ],
+        "ten_year_windows": [
+          -0.20934193651659858,
+          -0.06074628797962344
+        ]
+      },
+      {
+        "pair": "T2M-RH2M",
+        "1981-2000": {
+          "detrended": -0.41373919539240595,
+          "ci95": [
+            -0.52517963212174,
+            -0.2883476918714659
+          ],
+          "status": "SUPPORTED"
+        },
+        "2001-2024": {
+          "detrended": -0.31561090082260523,
+          "ci95": [
+            -0.4226206687779432,
+            -0.1999222112152365
+          ],
+          "status": "SUPPORTED"
+        },
+        "1981-2024": {
+          "detrended": -0.35788915090280454,
+          "ci95": [
+            -0.43738853206360734,
+            -0.2728391390982878
+          ],
+          "status": "SUPPORTED"
+        },
+        "halves_2001_2024": [
+          -0.3140228753134635,
+          -0.3342386035588054
+        ],
+        "ten_year_windows": [
+          -0.39623781046783557,
+          -0.2740562653544392
+        ]
+      },
+      {
+        "pair": "PRECTOTCORR-RH2M",
+        "1981-2000": {
+          "detrended": 0.5786265584306941,
+          "ci95": [
+            0.48450526646791364,
+            0.6595044503596461
+          ],
+          "status": "SUPPORTED"
+        },
+        "2001-2024": {
+          "detrended": 0.5898926309663908,
+          "ci95": [
+            0.5074149267648459,
+            0.6616600402463588
+          ],
+          "status": "SUPPORTED"
+        },
+        "1981-2024": {
+          "detrended": 0.5644551903442382,
+          "ci95": [
+            0.5017318719725777,
+            0.6212739890994804
+          ],
+          "status": "SUPPORTED"
+        },
+        "halves_2001_2024": [
+          0.5229102332932172,
+          0.6370975597930841
+        ],
+        "ten_year_windows": [
+          0.49034650090805076,
+          0.6536996340076522
+        ]
+      }
+    ],
+    "trends": [
+      {
+        "variable": "T2M",
+        "1981-2000": {
+          "slope": 0.035797346783577974,
+          "p": 0.6954307006494993,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        },
+        "2001-2024": {
+          "slope": -0.02116737129709518,
+          "p": 0.5780412006674245,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        },
+        "1981-2024": {
+          "slope": 0.0057229696673190295,
+          "p": 0.6418689420524852,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        }
+      },
+      {
+        "variable": "RH2M",
+        "1981-2000": {
+          "slope": -0.19169741248097472,
+          "p": 0.13173205135164268,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        },
+        "2001-2024": {
+          "slope": 0.16448458904109842,
+          "p": 0.03499862949542659,
+          "verdict": "FRAGILE_TREND"
+        },
+        "1981-2024": {
+          "slope": 0.027266797664496186,
+          "p": 0.4360985999947923,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        }
+      },
+      {
+        "variable": "PRECTOTCORR",
+        "1981-2000": {
+          "slope": -0.004224534022007633,
+          "p": 0.5790494528004964,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        },
+        "2001-2024": {
+          "slope": 0.0047945127504553636,
+          "p": 0.2643373325084948,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        },
+        "1981-2024": {
+          "slope": 0.0022981008717310116,
+          "p": 0.19896310814724016,
+          "verdict": "NO_SIGNIFICANT_TREND_DETECTED"
+        }
+      }
+    ]
+  },
+  "partial_correlations": [
+    {
+      "pair": "T2M-PRECTOTCORR",
+      "detrended": -0.1208047206946887,
+      "partial": [
+        {
+          "controls": [
+            "RH2M"
+          ],
+          "r": 0.08531838859350097,
+          "ci95": [
+            -0.0307664374996169,
+            0.1991322204560417
+          ]
+        },
+        {
+          "controls": [
+            "QV2M"
+          ],
+          "r": -0.354417786218772,
+          "ci95": [
+            -0.45166471683248544,
+            -0.24884832279476035
+          ]
+        },
+        {
+          "controls": [
+            "RH2M",
+            "QV2M"
+          ],
+          "r": 0.0029446747725895093,
+          "ci95": [
+            -0.11307739605145525,
+            0.1188875217965075
+          ]
+        }
+      ],
+      "structural_dependence": false
+    },
+    {
+      "pair": "T2M-RH2M",
+      "detrended": -0.31561090082260523,
+      "partial": [
+        {
+          "controls": [
+            "PRECTOTCORR"
+          ],
+          "r": -0.30483889954464705,
+          "ci95": [
+            -0.41011057469555284,
+            -0.19155133337763253
+          ]
+        },
+        {
+          "controls": [
+            "QV2M"
+          ],
+          "r": -0.6565236884482318,
+          "ci95": [
+            -0.7229351211490338,
+            -0.5780917822663878
+          ]
+        },
+        {
+          "controls": [
+            "PRECTOTCORR",
+            "QV2M"
+          ],
+          "r": -0.5910088951808931,
+          "ci95": [
+            -0.6649324521703373,
+            -0.5056189349771322
+          ]
+        }
+      ],
+      "structural_dependence": true
+    },
+    {
+      "pair": "T2M-QV2M",
+      "detrended": 0.5489947852155004,
+      "partial": [
+        {
+          "controls": [
+            "PRECTOTCORR"
+          ],
+          "r": 0.61652390769572,
+          "ci95": [
+            0.5366969439148861,
+            0.6854124185775939
+          ]
+        },
+        {
+          "controls": [
+            "RH2M"
+          ],
+          "r": 0.7473525797524192,
+          "ci95": [
+            0.6897041223314874,
+            0.7955864746578842
+          ]
+        },
+        {
+          "controls": [
+            "PRECTOTCORR",
+            "RH2M"
+          ],
+          "r": 0.745186321211934,
+          "ci95": [
+            0.6871806518127717,
+            0.793750932118187
+          ]
+        }
+      ],
+      "structural_dependence": false
+    },
+    {
+      "pair": "PRECTOTCORR-RH2M",
+      "detrended": 0.5898926309663908,
+      "partial": [
+        {
+          "controls": [
+            "T2M"
+          ],
+          "r": 0.5857758953564729,
+          "ci95": [
+            0.5028953282824116,
+            0.6579827509510394
+          ]
+        },
+        {
+          "controls": [
+            "QV2M"
+          ],
+          "r": 0.5426817802131457,
+          "ci95": [
+            0.4555223381091098,
+            0.6195358916915605
+          ]
+        },
+        {
+          "controls": [
+            "T2M",
+            "QV2M"
+          ],
+          "r": 0.43950085066329275,
+          "ci95": [
+            0.34089443381370815,
+            0.5285419672549377
+          ]
+        }
+      ],
+      "structural_dependence": false
+    },
+    {
+      "pair": "PRECTOTCORR-QV2M",
+      "detrended": 0.29545309642617357,
+      "partial": [
+        {
+          "controls": [
+            "T2M"
+          ],
+          "r": 0.4360278731569787,
+          "ci95": [
+            0.3357439604411432,
+            0.5265382160774712
+          ]
+        },
+        {
+          "controls": [
+            "RH2M"
+          ],
+          "r": 0.11155922988252685,
+          "ci95": [
+            -0.004276920481449014,
+            0.22444115942647969
+          ]
+        },
+        {
+          "controls": [
+            "T2M",
+            "RH2M"
+          ],
+          "r": 0.07219932319539406,
+          "ci95": [
+            -0.044153869167666185,
+            0.18662003183381465
+          ]
+        }
+      ],
+      "structural_dependence": false
+    },
+    {
+      "pair": "RH2M-QV2M",
+      "detrended": 0.35828810055979127,
+      "partial": [
+        {
+          "controls": [
+            "T2M"
+          ],
+          "r": 0.6702219968230353,
+          "ci95": [
+            0.5916632177363924,
+            0.7361722581124263
+          ]
+        },
+        {
+          "controls": [
+            "PRECTOTCORR"
+          ],
+          "r": 0.23852023469601732,
+          "ci95": [
+            0.1216781577360249,
+            0.3488422003539068
+          ]
+        },
+        {
+          "controls": [
+            "T2M",
+            "PRECTOTCORR"
+          ],
+          "r": 0.5687188571463663,
+          "ci95": [
+            0.4805949113678169,
+            0.6454715209445117
+          ]
+        }
+      ],
+      "structural_dependence": true
+    }
+  ],
+  "derived_variable_check": {
+    "assumed_pressure_hpa": 999.9898261611555,
+    "reconstruction": {
+      "formula": "RH = 100 * e / es(T); e = q p / (0.622 + 0.378 q); es(T) = 6.112 exp(17.62 T / (243.12 + T)) hPa (Magnus, over water)",
+      "r_raw": 0.9817560935143065,
+      "mean_abs_error_pp": 2.6000969163083503,
+      "bias_pp": -0.5860394215451166,
+      "r_detrended_anomalies": 0.7673247607933712,
+      "by_season_mean_abs_error_pp": {
+        "DJF": 4.903377772701373,
+        "MAM": 1.583785503972642,
+        "JJA": 2.0087874467783697,
+        "SON": 1.9044369417810154
+      }
+    },
+    "linear_fit_of_anomalies": {
+      "model": "RH2M anomaly = a * T2M anomaly + b * QV2M anomaly (detrended monthly anomalies)",
+      "coefficient_units": [
+        "percentage points per deg C",
+        "percentage points per g/kg"
+      ],
+      "overall": {
+        "coefficients": [
+          -1.22747992246269,
+          6.100000430175845
+        ],
+        "r_squared": 0.5040630921457723,
+        "n": 288
+      },
+      "by_season": {
+        "DJF": {
+          "coefficients": [
+            -0.5219897727807457,
+            5.481473945354694
+          ],
+          "r_squared": 0.19313301377910708,
+          "n": 72
+        },
+        "MAM": {
+          "coefficients": [
+            -3.1492877728087922,
+            11.444671035774554
+          ],
+          "r_squared": 0.8701324273213994,
+          "n": 72
+        },
+        "JJA": {
+          "coefficients": [
+            -2.8970784623334556,
+            5.9614986855429635
+          ],
+          "r_squared": 0.9803315689470401,
+          "n": 72
+        },
+        "SON": {
+          "coefficients": [
+            -2.5045034699364574,
+            11.628997571960609
+          ],
+          "r_squared": 0.6949700890274488,
+          "n": 72
+        }
+      }
+    },
+    "verdict": "DERIVED_VARIABLE_CONFIRMED",
+    "evidence_id": "EV-ce4d336760f4"
+  },
+  "provenance": [
+    {
+      "file": "raw/power/power_monthly_point_lat43.24_lon76.95_2001-2024_PRECTOTCORR-RH2M-T2M_AG.json",
+      "sha256": "9c8fcb0467a87a63c20adcec96d9dff9240855aa2493ac0cb1426530ae4d6235",
+      "bytes": null,
+      "retrieved": "2026-11-14T05:05:38.289Z",
+      "status": "VALIDATED",
+      "parameters": [
+        "PRECTOTCORR",
+        "RH2M",
+        "T2M"
+      ],
+      "missing": {
+        "PRECTOTCORR": 0,
+        "RH2M": 0,
+        "T2M": 0
+      },
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2",
+        "POWER"
+      ]
+    },
+    {
+      "file": "raw/power/power_monthly_point_lat52.29_lon76.97_1981-2000_PRECTOTCORR-RH2M-T2M_AG.json",
+      "sha256": "db5aa2495699186440353f8b9eb77cd8ce04c149b612b900b17cb95d33ae0a87",
+      "bytes": null,
+      "retrieved": "2026-11-14T05:04:44.570Z",
+      "status": "VALIDATED",
+      "parameters": [
+        "PRECTOTCORR",
+        "RH2M",
+        "T2M"
+      ],
+      "missing": {
+        "PRECTOTCORR": 0,
+        "RH2M": 0,
+        "T2M": 0
+      },
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2",
+        "POWER"
+      ]
+    },
+    {
+      "file": "raw/power/power_monthly_point_lat52.29_lon76.97_2001-2024_IMERG_PRECTOT-QV2M_AG.json",
+      "sha256": "978b737e26d8e1c4b2b0de4e605b3952934da4fcacb2bc4ac3646055459c768c",
+      "bytes": null,
+      "retrieved": "2026-11-14T09:23:59.982Z",
+      "status": "VALIDATED_WITH_MISSING_DATA",
+      "parameters": [
+        "IMERG_PRECTOT",
+        "QV2M"
+      ],
+      "missing": {
+        "IMERG_PRECTOT": 288,
+        "QV2M": 0
+      },
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2"
+      ]
+    },
+    {
+      "file": "raw/power/power_monthly_point_lat52.29_lon76.97_2001-2024_PRECTOTCORR-RH2M-T2M_AG.json",
+      "sha256": "8a65f9e56b005f77eec3783a09903ad2842031590cc0c8084441d92b19f87de6",
+      "bytes": null,
+      "retrieved": "2026-11-14T04:58:11.069Z",
+      "status": "VALIDATED",
+      "parameters": [
+        "PRECTOTCORR",
+        "RH2M",
+        "T2M"
+      ],
+      "missing": {
+        "PRECTOTCORR": 0,
+        "RH2M": 0,
+        "T2M": 0
+      },
+      "api": {
+        "version": "v2.10.0",
+        "name": "POWER Monthly and Annual API"
+      },
+      "sources": [
+        "MERRA2",
+        "POWER"
+      ]
+    }
+  ]
+}

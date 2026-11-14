@@ -72,7 +72,7 @@ create them.
 | DECOMPOSE | Separate modules for ingestion, trends, relationships, guard, evidence |
 | EXECUTE | Small commits per module |
 | CHALLENGE | Synthetic negative controls; cross-checks against other libraries; a separate verification agent |
-| VERIFY | 129 tests; rendered interface inspected screen by screen |
+| VERIFY | 146 tests; rendered interface inspected screen by screen |
 | GOVERN | Guard on all published text; statuses that cannot be self-assigned |
 | EVOLVE | Method revisions recorded with their trigger (`SCIENCE_METHOD.md` §9) |
 
@@ -92,6 +92,12 @@ create them.
 Ghosts found by hunting, not on the list: the `times` block that changes the raw hash on every request; the grid-cell
 elevation that makes "Almaty" a mountain cell; a Hamed–Rao correction that made the test *more* liberal; interface
 panels that silently collapsed to zero height (found only by looking at the rendered page).
+
+Found in the FINAL DELIVERY audit (`SCIENCE_REVIEW.md`), none of which raised an error before: a derived variable
+(`RH2M`) presented as if it were independent of its input; a NASA parameter (`IMERG_PRECTOT`) that returns HTTP 200,
+valid units and nothing but fill values; a data-check sentence that counted gaps of variables nobody had requested;
+an all-year correlation carried by the high-variance months; a test module that failed at import, not at a test, when
+an optional package was absent; graph labels that covered each other once a fourth variable was selected.
 
 ### Skill Scrap — record reusable methods without overstating them
 
@@ -118,4 +124,5 @@ One principle carried over: pure domain logic → deterministic tests → thin s
 | Reproduction and engines | Claude | — (author) |
 | Library cross-checks | `pymannkendall`, `statsmodels` | Yes for the algorithms covered |
 | Separate recomputation and review | a second Claude agent that wrote its own code before seeing ours, then reviewed code and wording | **Partly**: separate context and code, but the same model family, so it does not count as independent under MIZAN rule 10. It found no numerical disagreement, one medium issue (a match tolerance wider than rounding, which hid that the tie-corrected test gives 0.274 where Gemini reported 0.275), four low ones and fifteen overstated or unclear sentences; all confirmed items were fixed (`SCIENCE_METHOD.md` §9, `GEMINI_REPRODUCTION.md`) |
+| FINAL DELIVERY science review (`SCIENCE_REVIEW.md`) | Claude (the engine's author) | **No.** A self-audit with stated, reproducible tests. It restricted interpretations and added checks; it raised no status |
 | Human scientific review | — | **Not done** |

@@ -21,7 +21,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 | `EV-5eb092cbce35` | HYPOTHESIS | UNTESTED | T2M, PRECTOTCORR | 2001–2024 | Hypothesis (untested here): in the warm season wet months are cloudier and evaporation cools the surface, while in winter mild air masses are also the moist ones, which would reverse the sign. A test: analyse seasons separately and add cloud amount or surface solar radiation. |
 | `EV-01be4b227209` | OBSERVED · 2 values replicated | SUPPORTED | T2M, RH2M | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.32 (95% CI -0.42 to -0.20, effective n = 252). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-85f154766dfc` | OBSERVED · 3 values replicated | LAGGED_ASSOCIATION_DETECTED | T2M, RH2M | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.32). Non-zero lags that stay significant after correction: +1 (r = -0.18). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
-| `EV-d6888d4dbe3b` | HYPOTHESIS | UNTESTED | T2M, RH2M | 2001–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason. |
+| `EV-d6888d4dbe3b` | HYPOTHESIS | UNTESTED | T2M, RH2M | 2001–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature. |
 | `EV-5f08da1044a1` | OBSERVED · 2 values replicated | SUPPORTED | PRECTOTCORR, RH2M | 2001–2024 | Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.59 (95% CI +0.51 to +0.66, effective n = 278). Raw r = -0.28; the two seasonal cycles alone give r = -0.78. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-7591f20da4ac` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | PRECTOTCORR, RH2M | 2001–2024 | Lag scan of detrended anomalies, Precipitation (bias-corrected) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.59). Non-zero lags that stay significant after correction: +1 (r = +0.33), +2 (r = +0.16), +4 (r = +0.19). Positive lags pair Precipitation (bias-corrected) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
 | `EV-9d3a30f880bb` | HYPOTHESIS | UNTESTED | PRECTOTCORR, RH2M | 2001–2024 | Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both raise near-surface humidity; humidity staying high in the following month would fit soil-moisture memory. A test: add surface soil wetness (GWETTOP) and check whether it carries the one-month lag. |
@@ -209,6 +209,8 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 2001-2024): r = -0.125, naive p = 0.034, autocorrelation-adjusted p = 0.036 (effective n = 282); Spearman rho = -0.158.
 - Detrended anomalies: r = -0.121, adjusted p = 0.042.
 - Year-shuffled control (2000 permutations): p = 0.011; 95% of shuffled |r| are below 0.097.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.185.
+- Partial correlation with Relative humidity (2 m) held fixed statistically: r = +0.085 (95% CI -0.03 to +0.20; r = -0.121 without).
 
 **Counterevidence**
 
@@ -302,9 +304,12 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 2001-2024): r = -0.316, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 248); Spearman rho = -0.353.
 - Detrended anomalies: r = -0.316, adjusted p = < 0.001.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.097.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.415.
+- Partial correlation with Precipitation (bias-corrected) held fixed statistically: r = -0.305 (95% CI -0.41 to -0.19; r = -0.316 without).
 
 **Counterevidence**
 
+- Relative humidity (2 m) is computed from Air temperature (2 m) (and from Specific humidity (2 m)), so part of this association is built into the definition and is not an independent finding.
 - Halves of the record: r = -0.31 (2001-2012) and r = -0.33 (2013-2024); 10-year windows range from -0.40 to -0.27.
 - By season: DJF -0.16, MAM -0.58, JJA -0.48, SON -0.35.
 
@@ -369,7 +374,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 ### EV-d6888d4dbe3b — HYPOTHESIS
 
-**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason.
+**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature.
 
 - **Type:** unverified_physical_explanation
 - **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
@@ -404,9 +409,12 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 2001-2024): r = +0.593, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 274); Spearman rho = +0.534.
 - Detrended anomalies: r = +0.590, adjusted p = < 0.001.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.152.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.367.
+- Partial correlation with Air temperature (2 m) held fixed statistically: r = +0.586 (95% CI +0.50 to +0.66; r = +0.590 without).
 
 **Counterevidence**
 
+- With every calendar month weighted equally the value is +0.37 instead of +0.59: the all-year figure is weighted towards the months with the largest variance.
 - Halves of the record: r = +0.52 (2001-2012) and r = +0.64 (2013-2024); 10-year windows range from +0.49 to +0.65.
 - The sign differs between seasons (DJF -0.06, MAM +0.54, JJA +0.70, SON +0.64), so a single all-year statement hides opposite behaviour.
 
@@ -495,7 +503,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 | `EV-83cecb73b5fb` | HYPOTHESIS | UNTESTED | T2M, PRECTOTCORR | 1981–2024 | Hypothesis (untested here): in the warm season wet months are cloudier and evaporation cools the surface, while in winter mild air masses are also the moist ones, which would reverse the sign. A test: analyse seasons separately and add cloud amount or surface solar radiation. |
 | `EV-313d8728f82f` | OBSERVED | SUPPORTED | T2M, RH2M | 1981–2024 | Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 1981-2024: detrended r = -0.36 (95% CI -0.44 to -0.27, effective n = 433). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-c13755da225b` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | T2M, RH2M | 1981–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.36). Non-zero lags that stay significant after correction: -6 (r = -0.13), -1 (r = -0.13), +1 (r = -0.23). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
-| `EV-ea5f0b1128e2` | HYPOTHESIS | UNTESTED | T2M, RH2M | 1981–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason. |
+| `EV-ea5f0b1128e2` | HYPOTHESIS | UNTESTED | T2M, RH2M | 1981–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature. |
 | `EV-8f0fc48de861` | OBSERVED | SUPPORTED | PRECTOTCORR, RH2M | 1981–2024 | Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 1981-2024: detrended r = +0.56 (95% CI +0.50 to +0.62, effective n = 502). Raw r = -0.26; the two seasonal cycles alone give r = -0.75. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-3fe0b1544874` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | PRECTOTCORR, RH2M | 1981–2024 | Lag scan of detrended anomalies, Precipitation (bias-corrected) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.56). Non-zero lags that stay significant after correction: +1 (r = +0.33), +2 (r = +0.16), +3 (r = +0.16), +4 (r = +0.11), +6 (r = +0.11). Positive lags pair Precipitation (bias-corrected) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
 | `EV-eae76b54f7be` | HYPOTHESIS | UNTESTED | PRECTOTCORR, RH2M | 1981–2024 | Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both raise near-surface humidity; humidity staying high in the following month would fit soil-moisture memory. A test: add surface soil wetness (GWETTOP) and check whether it carries the one-month lag. |
@@ -654,6 +662,8 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 1981-2024): r = -0.113, naive p = 0.009, autocorrelation-adjusted p = 0.010 (effective n = 513); Spearman rho = -0.149.
 - Detrended anomalies: r = -0.117, adjusted p = 0.008.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.072.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.152.
+- Partial correlation with Relative humidity (2 m) held fixed statistically: r = +0.110 (95% CI +0.02 to +0.19; r = -0.117 without).
 
 **Counterevidence**
 
@@ -739,9 +749,12 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 1981-2024): r = -0.352, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 431); Spearman rho = -0.395.
 - Detrended anomalies: r = -0.358, adjusted p = < 0.001.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.078.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.444.
+- Partial correlation with Precipitation (bias-corrected) held fixed statistically: r = -0.356 (95% CI -0.43 to -0.27; r = -0.358 without).
 
 **Counterevidence**
 
+- Relative humidity (2 m) is computed from Air temperature (2 m) (and from Specific humidity (2 m)), so part of this association is built into the definition and is not an independent finding.
 - Halves of the record: r = -0.41 (1981-2002) and r = -0.30 (2003-2024); 10-year windows range from -0.49 to -0.30.
 - By season: DJF -0.18, MAM -0.58, JJA -0.55, SON -0.39.
 
@@ -789,7 +802,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 ### EV-ea5f0b1128e2 — HYPOTHESIS
 
-**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason.
+**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature.
 
 - **Type:** unverified_physical_explanation
 - **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
@@ -824,9 +837,12 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 1981-2024): r = +0.568, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 498); Spearman rho = +0.525.
 - Detrended anomalies: r = +0.564, adjusted p = < 0.001.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.102.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.383.
+- Partial correlation with Air temperature (2 m) held fixed statistically: r = +0.563 (95% CI +0.50 to +0.62; r = +0.564 without).
 
 **Counterevidence**
 
+- With every calendar month weighted equally the value is +0.38 instead of +0.57: the all-year figure is weighted towards the months with the largest variance.
 - Halves of the record: r = +0.54 (1981-2002) and r = +0.60 (2003-2024); 10-year windows range from +0.44 to +0.67.
 - By season: DJF +0.05, MAM +0.51, JJA +0.67, SON +0.61.
 
@@ -907,7 +923,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 | `EV-e417bcaf3e70` | HYPOTHESIS | UNTESTED | T2M, PRECTOTCORR | 2001–2024 | Hypothesis (untested here): in the warm season wet months are cloudier and evaporation cools the surface, while in winter mild air masses are also the moist ones, which would reverse the sign. A test: analyse seasons separately and add cloud amount or surface solar radiation. |
 | `EV-bd6fcc8c60ec` | OBSERVED | SUPPORTED | T2M, RH2M | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.36 (95% CI -0.47 to -0.26, effective n = 263). Raw r = -0.82; the two seasonal cycles alone give r = -0.93. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-f4f6900f73c3` | OBSERVED | NO_LAGGED_ASSOCIATION_DETECTED | T2M, RH2M | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.36). No non-zero lag is significant, with or without correction. Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
-| `EV-ca4274b02bba` | HYPOTHESIS | UNTESTED | T2M, RH2M | 2001–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason. |
+| `EV-ca4274b02bba` | HYPOTHESIS | UNTESTED | T2M, RH2M | 2001–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature. |
 | `EV-53c44d3983c8` | OBSERVED | SUPPORTED | PRECTOTCORR, RH2M | 2001–2024 | Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.56 (95% CI +0.48 to +0.64, effective n = 288). Raw r = +0.24; the two seasonal cycles alone give r = +0.02. The association holds in both halves of the record and against a year-shuffled control. |
 | `EV-63864e7c2951` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | PRECTOTCORR, RH2M | 2001–2024 | Lag scan of detrended anomalies, Precipitation (bias-corrected) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.56). Non-zero lags that stay significant after correction: +1 (r = +0.30), +2 (r = +0.23), +3 (r = +0.17), +4 (r = +0.19), +5 (r = +0.25), +6 (r = +0.13). Positive lags pair Precipitation (bias-corrected) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
 | `EV-d0c006b3e3b8` | HYPOTHESIS | UNTESTED | PRECTOTCORR, RH2M | 2001–2024 | Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both raise near-surface humidity; humidity staying high in the following month would fit soil-moisture memory. A test: add surface soil wetness (GWETTOP) and check whether it carries the one-month lag. |
@@ -1066,6 +1082,8 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 2001-2024): r = -0.122, naive p = 0.038, autocorrelation-adjusted p = 0.038 (effective n = 288); Spearman rho = -0.161.
 - Detrended anomalies: r = -0.124, adjusted p = 0.035.
 - Year-shuffled control (2000 permutations): p = 0.028; 95% of shuffled |r| are below 0.105.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.136.
+- Partial correlation with Relative humidity (2 m) held fixed statistically: r = +0.105 (95% CI -0.01 to +0.22; r = -0.124 without).
 
 **Counterevidence**
 
@@ -1151,9 +1169,12 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 2001-2024): r = -0.361, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 263); Spearman rho = -0.351.
 - Detrended anomalies: r = -0.365, adjusted p = < 0.001.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.125.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.382.
+- Partial correlation with Precipitation (bias-corrected) held fixed statistically: r = -0.360 (95% CI -0.46 to -0.25; r = -0.365 without).
 
 **Counterevidence**
 
+- Relative humidity (2 m) is computed from Air temperature (2 m) (and from Specific humidity (2 m)), so part of this association is built into the definition and is not an independent finding.
 - Halves of the record: r = -0.46 (2001-2012) and r = -0.27 (2013-2024); 10-year windows range from -0.52 to -0.28.
 - By season: DJF -0.18, MAM -0.42, JJA -0.58, SON -0.40.
 
@@ -1201,7 +1222,7 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 ### EV-ca4274b02bba — HYPOTHESIS
 
-**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with specific humidity (QV2M), which should co-vary with temperature far less if this is the reason.
+**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature.
 
 - **Type:** unverified_physical_explanation
 - **Region:** Almaty, Kazakhstan (43.24, 76.95)
@@ -1236,6 +1257,8 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 - Deseasonalized anomalies (baseline 2001-2024): r = +0.563, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 288); Spearman rho = +0.603.
 - Detrended anomalies: r = +0.562, adjusted p = < 0.001.
 - Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.136.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.608.
+- Partial correlation with Air temperature (2 m) held fixed statistically: r = +0.559 (95% CI +0.47 to +0.63; r = +0.562 without).
 
 **Counterevidence**
 
@@ -1303,6 +1326,785 @@ Each entry can be recomputed from the raw NASA file identified by `data_hash` wi
 
 
 Records: 13 (HYPOTHESIS 3, OBSERVED 10); values replicated by an independent report: 0. Data hash `96b0e7bee5e9f1d69035fd08eafd32f4cef1c3d7441cd6a1e594ce82ca62dafa`.
+
+## Pavlodar 2001–2024 with specific humidity (science review: derived-variable check)
+
+Each entry can be recomputed from the raw NASA file identified by `data_hash` with the stated method and parameters. No LLM is involved in the computation.
+
+| id | status | verdict | variables | period | claim |
+|---|---|---|---|---|---|
+| `EV-ae0d4001b558` | OBSERVED | CHECKS_PASSED | T2M, RH2M, PRECTOTCORR, QV2M | 2001–2024 | Input data checks passed: 288 monthly values per variable for 2001-2024, 0 missing; annual-summary keys (YYYY13) kept apart from months; units taken from the response; values are cache-sourced from 2 raw file(s) whose SHA-256 matches the provenance record. |
+| `EV-d783cf42d80e` | OBSERVED · 2 values replicated | NO_SIGNIFICANT_TREND_DETECTED | T2M | 2001–2024 | Air temperature (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope -0.021 °C/year (95% CI -0.067 to +0.046), autocorrelation-adjusted p = 0.578, q = 0.578). A record of this length and variability would only be likely to show trends larger than about 0.095 °C/year (80% power), so smaller real changes cannot be ruled out. |
+| `EV-48a3e7a9a48e` | OBSERVED | FRAGILE_TREND | RH2M | 2001–2024 | Relative humidity (2 m) over 2001-2024: Theil-Sen slope +0.164 percentage points/year (95% CI +0.007 to +0.293), autocorrelation-adjusted p = 0.035, q = 0.112. Some tests indicate a trend, but the result is fragile: not significant after false-discovery correction (q = 0.112); significance depends on single years (2002, 2008, 2017, 2018, 2024). |
+| `EV-1519275febc4` | OBSERVED · 2 values replicated | NO_SIGNIFICANT_TREND_DETECTED | PRECTOTCORR | 2001–2024 | Precipitation (bias-corrected): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.005 mm/day per year (95% CI -0.004 to +0.015), autocorrelation-adjusted p = 0.264, q = 0.352). A record of this length and variability would only be likely to show trends larger than about 0.014 mm/day per year (80% power), so smaller real changes cannot be ruled out. |
+| `EV-7ea7a72be16c` | OBSERVED | NO_SIGNIFICANT_TREND_DETECTED | QV2M | 2001–2024 | Specific humidity (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.008 g/kg per year (95% CI -0.000 to +0.021), autocorrelation-adjusted p = 0.056, q = 0.112). A record of this length and variability would only be likely to show trends larger than about 0.021 g/kg per year (80% power), so smaller real changes cannot be ruled out. |
+| `EV-0d7dbf390eec` | OBSERVED · 2 values replicated | WEAK | T2M, PRECTOTCORR | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Precipitation (bias-corrected) vary in opposite directions over 2001-2024: detrended r = -0.12 (95% CI -0.23 to -0.004, effective n = 283). Raw r = +0.44; the two seasonal cycles alone give r = +0.86. The association is statistically detectable but small. |
+| `EV-6442a74c137c` | OBSERVED | INCONCLUSIVE | T2M, PRECTOTCORR | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Precipitation (bias-corrected), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag -6 (r = -0.14). Some non-zero lags pass an uncorrected test (-6, +6) but none stays significant after correcting for the number of lags tried. Positive lags pair Air temperature (2 m) with later Precipitation (bias-corrected). A lead or lag is a timing statistic only. |
+| `EV-5522e986bbfb` | HYPOTHESIS | UNTESTED | T2M, PRECTOTCORR | 2001–2024 | Hypothesis (untested here): in the warm season wet months are cloudier and evaporation cools the surface, while in winter mild air masses are also the moist ones, which would reverse the sign. A test: analyse seasons separately and add cloud amount or surface solar radiation. |
+| `EV-0b4b9d3a2904` | OBSERVED · 2 values replicated | SUPPORTED | T2M, RH2M | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.32 (95% CI -0.42 to -0.20, effective n = 252). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-ff59105da47f` | OBSERVED · 3 values replicated | LAGGED_ASSOCIATION_DETECTED | T2M, RH2M | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.32). Non-zero lags that stay significant after correction: +1 (r = -0.18). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
+| `EV-73905de10d27` | HYPOTHESIS | UNTESTED | T2M, RH2M | 2001–2024 | Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature. |
+| `EV-15e865232710` | OBSERVED | SUPPORTED | T2M, QV2M | 2001–2024 | Monthly anomalies of Air temperature (2 m) and Specific humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.55 (95% CI +0.46 to +0.63, effective n = 265). Raw r = +0.95; the two seasonal cycles alone give r = +0.97. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-d1ba081619e9` | OBSERVED | NO_LAGGED_ASSOCIATION_DETECTED | T2M, QV2M | 2001–2024 | Lag scan of detrended anomalies, Air temperature (2 m) against Specific humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.55). No non-zero lag is significant, with or without correction. Positive lags pair Air temperature (2 m) with later Specific humidity (2 m). A lead or lag is a timing statistic only. |
+| `EV-4a6e00ea5ffe` | OBSERVED · 2 values replicated | SUPPORTED | PRECTOTCORR, RH2M | 2001–2024 | Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.59 (95% CI +0.51 to +0.66, effective n = 278). Raw r = -0.28; the two seasonal cycles alone give r = -0.78. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-c1fffa61e31b` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | PRECTOTCORR, RH2M | 2001–2024 | Lag scan of detrended anomalies, Precipitation (bias-corrected) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.59). Non-zero lags that stay significant after correction: +1 (r = +0.33), +2 (r = +0.16), +4 (r = +0.19). Positive lags pair Precipitation (bias-corrected) with later Relative humidity (2 m). A lead or lag is a timing statistic only. |
+| `EV-3eb24d6b4573` | HYPOTHESIS | UNTESTED | PRECTOTCORR, RH2M | 2001–2024 | Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both raise near-surface humidity; humidity staying high in the following month would fit soil-moisture memory. A test: add surface soil wetness (GWETTOP) and check whether it carries the one-month lag. |
+| `EV-ea0465ee11ea` | OBSERVED | SUPPORTED | PRECTOTCORR, QV2M | 2001–2024 | Monthly anomalies of Precipitation (bias-corrected) and Specific humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.30 (95% CI +0.18 to +0.40, effective n = 281). Raw r = +0.55; the two seasonal cycles alone give r = +0.94. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-ad099bfaf654` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | PRECTOTCORR, QV2M | 2001–2024 | Lag scan of detrended anomalies, Precipitation (bias-corrected) against Specific humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.30). Non-zero lags that stay significant after correction: +1 (r = +0.20), +2 (r = +0.20). Positive lags pair Precipitation (bias-corrected) with later Specific humidity (2 m). A lead or lag is a timing statistic only. |
+| `EV-face3dbd4c54` | OBSERVED | SUPPORTED | RH2M, QV2M | 2001–2024 | Monthly anomalies of Relative humidity (2 m) and Specific humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.36 (95% CI +0.24 to +0.46, effective n = 242). Raw r = -0.84; the two seasonal cycles alone give r = -0.91. The association holds in both halves of the record and against a year-shuffled control. |
+| `EV-9c4725d1e4f4` | OBSERVED | LAGGED_ASSOCIATION_DETECTED | RH2M, QV2M | 2001–2024 | Lag scan of detrended anomalies, Relative humidity (2 m) against Specific humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.36). Non-zero lags that stay significant after correction: +1 (r = +0.23), +2 (r = +0.22). Positive lags pair Relative humidity (2 m) with later Specific humidity (2 m). A lead or lag is a timing statistic only. |
+| `EV-ce4d336760f4` | OBSERVED | DERIVED_VARIABLE_CONFIRMED | T2M, QV2M, RH2M | 2001–2024 | Relative humidity (2 m) is a derived quantity in these data. Rebuilt from monthly Air temperature (2 m) and Specific humidity (2 m) with a textbook formula and no fitting, it matches the RH2M values in the file at r = +0.982 (mean absolute difference 2.60 percentage points); for detrended anomalies r = +0.767. A linear combination of the temperature and specific-humidity anomalies reproduces 50% of the variance of the relative-humidity anomalies (R2 by season: DJF 0.19, MAM 0.87, JJA 0.98, SON 0.69). |
+
+### EV-ae0d4001b558 — OBSERVED
+
+**Claim.** Input data checks passed: 288 monthly values per variable for 2001-2024, 0 missing; annual-summary keys (YYYY13) kept apart from months; units taken from the response; values are cache-sourced from 2 raw file(s) whose SHA-256 matches the provenance record.
+
+- **Type:** computed_observation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, RH2M, PRECTOTCORR, QV2M
+- **Method:** Structural validation of the raw NASA POWER response
+- **Parameters:** `{"n_raw_files": 2}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** CHECKS_PASSED
+
+**Evidence**
+
+- calendar complete and identical for all variables: passed.
+- YYYY13 annual summaries separated from the 12 calendar months: passed.
+- fill value converted to NaN: passed.
+- units present in response metadata: passed.
+- response geometry matches the request: passed.
+- our day-weighted annual means agree with the API's own annual values: passed.
+
+**Limitations**
+
+- Validation covers structure and internal consistency, not the physical accuracy of MERRA-2.
+
+### EV-d783cf42d80e — OBSERVED
+
+**Claim.** Air temperature (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope -0.021 °C/year (95% CI -0.067 to +0.046), autocorrelation-adjusted p = 0.578, q = 0.578). A record of this length and variability would only be likely to show trends larger than about 0.095 °C/year (80% power), so smaller real changes cannot be ruled out.
+
+- **Type:** computed_observation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M
+- **Method:** Theil-Sen slope; larger p of Hamed-Rao modified Mann-Kendall and AR(1)-adjusted least squares, on day-weighted annual means; seasonal Kendall on monthly values; Benjamini-Hochberg across variables
+- **Parameters:** `{"aggregation": "day-weighted annual mean", "alpha": 0.05, "fdr_family": ["PRECTOTCORR", "QV2M", "RH2M", "T2M"], "window_min_years": 15}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** NO_SIGNIFICANT_TREND_DETECTED
+
+**Evidence**
+
+- Theil-Sen slope -0.021 °C/year (95% CI -0.067 to +0.046) on 24 annual means.
+- Classic Mann-Kendall p = 0.413; Hamed-Rao modified p = 0.413; least-squares slope -0.018 with AR(1)-adjusted p = 0.578. The reported p is the larger of the last two.
+- Seasonal Kendall test on 288 monthly values: slope -0.005 °C/year, p = 0.725 allowing for dependence between months (p = 0.688 if months are treated as independent).
+- Benjamini-Hochberg q = 0.578 across the 4 variables tested together.
+
+**Counterevidence**
+
+- Across 55 sub-periods of at least 15 years the slope is positive in 19 and negative in 36; 3 are individually significant.
+
+**Alternatives not excluded**
+
+- A step change in the observations assimilated by the reanalysis could appear as a trend.
+- Multi-decadal variability can produce a monotonic change inside a short window.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
+- Results hold for the stated period; other periods can and do give different answers.
+- Replication covers the listed numeric values only: two assessors, each with a separately retrieved copy of the same NASA product. The comparison was not blind (the reported values were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| trend.T2M.sen_slope_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.021 | -0.0210 | 0.0000 | yes |
+| trend.T2M.mk_p_api_annual_no_tie_correction | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.427 | 0.4273 | 0.0003 | yes |
+
+### EV-48a3e7a9a48e — OBSERVED
+
+**Claim.** Relative humidity (2 m) over 2001-2024: Theil-Sen slope +0.164 percentage points/year (95% CI +0.007 to +0.293), autocorrelation-adjusted p = 0.035, q = 0.112. Some tests indicate a trend, but the result is fragile: not significant after false-discovery correction (q = 0.112); significance depends on single years (2002, 2008, 2017, 2018, 2024).
+
+- **Type:** computed_observation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** RH2M
+- **Method:** Theil-Sen slope; larger p of Hamed-Rao modified Mann-Kendall and AR(1)-adjusted least squares, on day-weighted annual means; seasonal Kendall on monthly values; Benjamini-Hochberg across variables
+- **Parameters:** `{"aggregation": "day-weighted annual mean", "alpha": 0.05, "fdr_family": ["PRECTOTCORR", "QV2M", "RH2M", "T2M"], "window_min_years": 15}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** FRAGILE_TREND
+
+**Evidence**
+
+- Theil-Sen slope +0.164 percentage points/year (95% CI +0.007 to +0.293) on 24 annual means.
+- Classic Mann-Kendall p = 0.035; Hamed-Rao modified p = 0.035; least-squares slope +0.183 with AR(1)-adjusted p = 0.010. The reported p is the larger of the last two.
+- Seasonal Kendall test on 288 monthly values: slope +0.099 percentage points/year, p = 0.016 allowing for dependence between months (p = < 0.001 if months are treated as independent).
+- Benjamini-Hochberg q = 0.112 across the 4 variables tested together.
+
+**Counterevidence**
+
+- Across 55 sub-periods of at least 15 years the slope is positive in 55 and negative in 0; 12 are individually significant.
+- Leaving out any one of the years 2002, 2008, 2017, 2018, 2024 changes whether the classic test is significant (p between 0.051 and 0.102 for those years; 0.035 with all years).
+
+**Alternatives not excluded**
+
+- A step change in the observations assimilated by the reanalysis could appear as a trend.
+- Multi-decadal variability can produce a monotonic change inside a short window.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
+- Results hold for the stated period; other periods can and do give different answers.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| trend.RH2M.sen_slope_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.16 | 0.1638 | 0.0038 | yes |
+| trend.RH2M.mk_p_api_annual_no_tie_correction | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.035 | 0.0350 | 0.0000 | yes |
+| trend.RH2M.q | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.105 | 0.1123 | 0.0073 | NO |
+
+### EV-1519275febc4 — OBSERVED
+
+**Claim.** Precipitation (bias-corrected): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.005 mm/day per year (95% CI -0.004 to +0.015), autocorrelation-adjusted p = 0.264, q = 0.352). A record of this length and variability would only be likely to show trends larger than about 0.014 mm/day per year (80% power), so smaller real changes cannot be ruled out.
+
+- **Type:** computed_observation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** PRECTOTCORR
+- **Method:** Theil-Sen slope; larger p of Hamed-Rao modified Mann-Kendall and AR(1)-adjusted least squares, on day-weighted annual means; seasonal Kendall on monthly values; Benjamini-Hochberg across variables
+- **Parameters:** `{"aggregation": "day-weighted annual mean", "alpha": 0.05, "fdr_family": ["PRECTOTCORR", "QV2M", "RH2M", "T2M"], "window_min_years": 15}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** NO_SIGNIFICANT_TREND_DETECTED
+
+**Evidence**
+
+- Theil-Sen slope +0.005 mm/day per year (95% CI -0.004 to +0.015) on 24 annual means.
+- Classic Mann-Kendall p = 0.264; Hamed-Rao modified p = 0.264; least-squares slope +0.007 with AR(1)-adjusted p = 0.147. The reported p is the larger of the last two.
+- Seasonal Kendall test on 288 monthly values: slope +0.005 mm/day per year, p = 0.096 allowing for dependence between months (p = 0.069 if months are treated as independent).
+- Benjamini-Hochberg q = 0.352 across the 4 variables tested together.
+
+**Counterevidence**
+
+- Across 55 sub-periods of at least 15 years the slope is positive in 55 and negative in 0; 2 are individually significant.
+
+**Alternatives not excluded**
+
+- A step change in the observations assimilated by the reanalysis could appear as a trend.
+- Multi-decadal variability can produce a monotonic change inside a short window.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
+- Results hold for the stated period; other periods can and do give different answers.
+- Replication covers the listed numeric values only: two assessors, each with a separately retrieved copy of the same NASA product. The comparison was not blind (the reported values were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| trend.PRECTOTCORR.sen_slope_api_annual | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.005 | 0.0050 | 0.0000 | yes |
+| trend.PRECTOTCORR.mk_p_api_annual_no_tie_correction | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.275 | 0.2751 | 0.0001 | yes |
+
+### EV-7ea7a72be16c — OBSERVED
+
+**Claim.** Specific humidity (2 m): no statistically significant monotonic trend was detected over 2001-2024 (Theil-Sen slope +0.008 g/kg per year (95% CI -0.000 to +0.021), autocorrelation-adjusted p = 0.056, q = 0.112). A record of this length and variability would only be likely to show trends larger than about 0.021 g/kg per year (80% power), so smaller real changes cannot be ruled out.
+
+- **Type:** computed_observation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** QV2M
+- **Method:** Theil-Sen slope; larger p of Hamed-Rao modified Mann-Kendall and AR(1)-adjusted least squares, on day-weighted annual means; seasonal Kendall on monthly values; Benjamini-Hochberg across variables
+- **Parameters:** `{"aggregation": "day-weighted annual mean", "alpha": 0.05, "fdr_family": ["PRECTOTCORR", "QV2M", "RH2M", "T2M"], "window_min_years": 15}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** NO_SIGNIFICANT_TREND_DETECTED
+
+**Evidence**
+
+- Theil-Sen slope +0.008 g/kg per year (95% CI -0.000 to +0.021) on 24 annual means.
+- Classic Mann-Kendall p = 0.056; Hamed-Rao modified p = 0.056; least-squares slope +0.014 with AR(1)-adjusted p = 0.053. The reported p is the larger of the last two.
+- Seasonal Kendall test on 288 monthly values: slope +0.009 g/kg per year, p = 0.176 allowing for dependence between months (p = 0.068 if months are treated as independent).
+- Benjamini-Hochberg q = 0.112 across the 4 variables tested together.
+
+**Counterevidence**
+
+- Across 55 sub-periods of at least 15 years the slope is positive in 54 and negative in 1; 3 are individually significant.
+- Leaving out any one of the years 2001, 2005, 2007, 2011, 2012, 2014, 2021, 2022 changes whether the classic test is significant (p between 0.039 and 0.045 for those years; 0.056 with all years).
+
+**Alternatives not excluded**
+
+- A step change in the observations assimilated by the reanalysis could appear as a trend.
+- Multi-decadal variability can produce a monotonic change inside a short window.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Only monotonic (Theil-Sen / Mann-Kendall) and linear trends are tested.
+- Results hold for the stated period; other periods can and do give different answers.
+
+### EV-0d7dbf390eec — OBSERVED
+
+**Claim.** Monthly anomalies of Air temperature (2 m) and Precipitation (bias-corrected) vary in opposite directions over 2001-2024: detrended r = -0.12 (95% CI -0.23 to -0.004, effective n = 283). Raw r = +0.44; the two seasonal cycles alone give r = +0.86. The association is statistically detectable but small.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, PRECTOTCORR
+- **Method:** Pearson/Spearman correlation of raw, deseasonalized and linearly detrended monthly anomalies; effective sample size (Bretherton et al. 1999); year-block permutation control
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "n_perm": 2000, "seed": 20261114, "thresholds": {"alpha": 0.05, "min_abs_r": 0.2}}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** WEAK
+
+**Evidence**
+
+- Raw monthly series: r = +0.439 (n = 288).
+- Seasonal cycles alone (climatology repeated each year): r = +0.860.
+- Deseasonalized anomalies (baseline 2001-2024): r = -0.125, naive p = 0.034, autocorrelation-adjusted p = 0.036 (effective n = 282); Spearman rho = -0.158.
+- Detrended anomalies: r = -0.121, adjusted p = 0.042.
+- Year-shuffled control (2000 permutations): p = 0.011; 95% of shuffled |r| are below 0.097.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.185.
+- Partial correlation with Relative humidity (2 m) held fixed statistically: r = +0.085 (95% CI -0.03 to +0.20; r = -0.121 without).
+- Partial correlation with Specific humidity (2 m) held fixed statistically: r = -0.354 (95% CI -0.45 to -0.25; r = -0.121 without).
+- Partial correlation with Relative humidity (2 m) and Specific humidity (2 m) held fixed statistically: r = +0.003 (95% CI -0.11 to +0.12; r = -0.121 without).
+
+**Counterevidence**
+
+- Halves of the record: r = -0.06 (2001-2012) and r = -0.18 (2013-2024); 10-year windows range from -0.21 to -0.06.
+- The sign differs between seasons (DJF +0.37, MAM -0.34, JJA -0.32, SON -0.35), so a single all-year statement hides opposite behaviour.
+
+**Alternatives not excluded**
+
+- A third factor that varies from month to month (for example the passage of air masses) could move both variables together.
+- Both variables come from one model, which may link them more tightly than nature does.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Results hold for the stated period; other periods can and do give different answers.
+- Replication covers the listed numeric values only: two assessors, each with a separately retrieved copy of the same NASA product. The comparison was not blind (the reported values were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| corr.T2M-PRECTOTCORR.raw | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.439 | 0.4393 | 0.0003 | yes |
+| corr.T2M-PRECTOTCORR.deseasonalized | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.125 | -0.1250 | 0.0000 | yes |
+
+### EV-6442a74c137c — OBSERVED
+
+**Claim.** Lag scan of detrended anomalies, Air temperature (2 m) against Precipitation (bias-corrected), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag -6 (r = -0.14). Some non-zero lags pass an uncorrected test (-6, +6) but none stays significant after correcting for the number of lags tried. Positive lags pair Air temperature (2 m) with later Precipitation (bias-corrected). A lead or lag is a timing statistic only.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, PRECTOTCORR
+- **Method:** Lagged Pearson correlation of detrended monthly anomalies with effective sample size; Benjamini-Hochberg across all lags
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "definition": "r(k) = corr(x[t], y[t+k]); k>0: x paired with later y", "max_lag": 6}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** INCONCLUSIVE
+
+**Evidence**
+
+- Lag -2: r = +0.066, q = 0.585.
+- Lag -1: r = -0.102, q = 0.280.
+- Lag +0: r = -0.121, q = 0.183.
+- Lag +1: r = +0.019, q = 0.953.
+- Lag +2: r = +0.006, q = 0.953.
+
+**Alternatives not excluded**
+
+- Persistence of one variable alone can spread a same-month association onto neighbouring lags.
+
+**Limitations**
+
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Monthly means cannot resolve lead-lag behaviour shorter than a month.
+
+### EV-5522e986bbfb — HYPOTHESIS
+
+**Claim.** Hypothesis (untested here): in the warm season wet months are cloudier and evaporation cools the surface, while in winter mild air masses are also the moist ones, which would reverse the sign. A test: analyse seasons separately and add cloud amount or surface solar radiation.
+
+- **Type:** unverified_physical_explanation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, PRECTOTCORR
+- **Method:** none: proposed explanation, not tested by this analysis
+- **Parameters:** `{"attached_to": "EV-0d7dbf390eec"}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** UNTESTED
+
+**Limitations**
+
+- Not tested here. It must not be reported as a finding.
+
+### EV-0b4b9d3a2904 — OBSERVED
+
+**Claim.** Monthly anomalies of Air temperature (2 m) and Relative humidity (2 m) vary in opposite directions over 2001-2024: detrended r = -0.32 (95% CI -0.42 to -0.20, effective n = 252). Raw r = -0.95; the two seasonal cycles alone give r = -0.98. The association holds in both halves of the record and against a year-shuffled control.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, RH2M
+- **Method:** Pearson/Spearman correlation of raw, deseasonalized and linearly detrended monthly anomalies; effective sample size (Bretherton et al. 1999); year-block permutation control
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "n_perm": 2000, "seed": 20261114, "thresholds": {"alpha": 0.05, "min_abs_r": 0.2}}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** SUPPORTED
+
+**Evidence**
+
+- Raw monthly series: r = -0.945 (n = 288).
+- Seasonal cycles alone (climatology repeated each year): r = -0.976.
+- Deseasonalized anomalies (baseline 2001-2024): r = -0.316, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 248); Spearman rho = -0.353.
+- Detrended anomalies: r = -0.316, adjusted p = < 0.001.
+- Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.097.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = -0.415.
+- Partial correlation with Precipitation (bias-corrected) held fixed statistically: r = -0.305 (95% CI -0.41 to -0.19; r = -0.316 without).
+- Partial correlation with Specific humidity (2 m) held fixed statistically: r = -0.657 (95% CI -0.72 to -0.58; r = -0.316 without).
+- Partial correlation with Precipitation (bias-corrected) and Specific humidity (2 m) held fixed statistically: r = -0.591 (95% CI -0.66 to -0.51; r = -0.316 without).
+
+**Counterevidence**
+
+- Relative humidity (2 m) is computed from Air temperature (2 m) (and from Specific humidity (2 m)), so part of this association is built into the definition and is not an independent finding.
+- Halves of the record: r = -0.31 (2001-2012) and r = -0.33 (2013-2024); 10-year windows range from -0.40 to -0.27.
+- By season: DJF -0.16, MAM -0.58, JJA -0.48, SON -0.35.
+
+**Alternatives not excluded**
+
+- A third factor that varies from month to month (for example the passage of air masses) could move both variables together.
+- Both variables come from one model, which may link them more tightly than nature does.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Results hold for the stated period; other periods can and do give different answers.
+- Replication covers the listed numeric values only: two assessors, each with a separately retrieved copy of the same NASA product. The comparison was not blind (the reported values were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| corr.T2M-RH2M.raw | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.945 | -0.9451 | 0.0001 | yes |
+| corr.T2M-RH2M.deseasonalized | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.316 | -0.3158 | 0.0002 | yes |
+
+### EV-ff59105da47f — OBSERVED
+
+**Claim.** Lag scan of detrended anomalies, Air temperature (2 m) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = -0.32). Non-zero lags that stay significant after correction: +1 (r = -0.18). Positive lags pair Air temperature (2 m) with later Relative humidity (2 m). A lead or lag is a timing statistic only.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, RH2M
+- **Method:** Lagged Pearson correlation of detrended monthly anomalies with effective sample size; Benjamini-Hochberg across all lags
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "definition": "r(k) = corr(x[t], y[t+k]); k>0: x paired with later y", "max_lag": 6}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** LAGGED_ASSOCIATION_DETECTED
+
+**Evidence**
+
+- Lag -2: r = +0.061, q = 0.441.
+- Lag -1: r = -0.070, q = 0.432.
+- Lag +0: r = -0.316, q = < 0.001.
+- Lag +1: r = -0.178, q = 0.030.
+- Lag +2: r = -0.032, q = 0.669.
+
+**Alternatives not excluded**
+
+- Persistence of one variable alone can spread a same-month association onto neighbouring lags.
+
+**Limitations**
+
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Monthly means cannot resolve lead-lag behaviour shorter than a month.
+- Replication covers the listed numeric values only: two assessors, each with a separately retrieved copy of the same NASA product. The comparison was not blind (the reported values were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| lag.T2M-RH2M.deseasonalized.+0 | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.316 | -0.3158 | 0.0002 | yes |
+| lag.T2M-RH2M.deseasonalized.+1 | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.185 | -0.1851 | 0.0001 | yes |
+| lag.T2M-RH2M.deseasonalized.+2 | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.04 | -0.0447 | 0.0047 | yes |
+
+### EV-73905de10d27 — HYPOTHESIS
+
+**Claim.** Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific humidity (QV2M), the moisture content itself, and compare how it and relative humidity each co-vary with temperature.
+
+- **Type:** unverified_physical_explanation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, RH2M
+- **Method:** none: proposed explanation, not tested by this analysis
+- **Parameters:** `{"attached_to": "EV-0b4b9d3a2904"}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** UNTESTED
+
+**Limitations**
+
+- Not tested here. It must not be reported as a finding.
+
+### EV-15e865232710 — OBSERVED
+
+**Claim.** Monthly anomalies of Air temperature (2 m) and Specific humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.55 (95% CI +0.46 to +0.63, effective n = 265). Raw r = +0.95; the two seasonal cycles alone give r = +0.97. The association holds in both halves of the record and against a year-shuffled control.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, QV2M
+- **Method:** Pearson/Spearman correlation of raw, deseasonalized and linearly detrended monthly anomalies; effective sample size (Bretherton et al. 1999); year-block permutation control
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "n_perm": 2000, "seed": 20261114, "thresholds": {"alpha": 0.05, "min_abs_r": 0.2}}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** SUPPORTED
+
+**Evidence**
+
+- Raw monthly series: r = +0.950 (n = 288).
+- Seasonal cycles alone (climatology repeated each year): r = +0.967.
+- Deseasonalized anomalies (baseline 2001-2024): r = +0.531, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 262); Spearman rho = +0.658.
+- Detrended anomalies: r = +0.549, adjusted p = < 0.001.
+- Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.111.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.674.
+- Partial correlation with Precipitation (bias-corrected) held fixed statistically: r = +0.617 (95% CI +0.54 to +0.69; r = +0.549 without).
+- Partial correlation with Relative humidity (2 m) held fixed statistically: r = +0.747 (95% CI +0.69 to +0.80; r = +0.549 without).
+- Partial correlation with Precipitation (bias-corrected) and Relative humidity (2 m) held fixed statistically: r = +0.745 (95% CI +0.69 to +0.79; r = +0.549 without).
+
+**Counterevidence**
+
+- Halves of the record: r = +0.63 (2001-2012) and r = +0.48 (2013-2024); 10-year windows range from +0.48 to +0.64.
+- By season: DJF +0.92, MAM +0.75, JJA +0.35, SON +0.71.
+
+**Alternatives not excluded**
+
+- A third factor that varies from month to month (for example the passage of air masses) could move both variables together.
+- Both variables come from one model, which may link them more tightly than nature does.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Results hold for the stated period; other periods can and do give different answers.
+
+### EV-d1ba081619e9 — OBSERVED
+
+**Claim.** Lag scan of detrended anomalies, Air temperature (2 m) against Specific humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.55). No non-zero lag is significant, with or without correction. Positive lags pair Air temperature (2 m) with later Specific humidity (2 m). A lead or lag is a timing statistic only.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, QV2M
+- **Method:** Lagged Pearson correlation of detrended monthly anomalies with effective sample size; Benjamini-Hochberg across all lags
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "definition": "r(k) = corr(x[t], y[t+k]); k>0: x paired with later y", "max_lag": 6}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** NO_LAGGED_ASSOCIATION_DETECTED
+
+**Evidence**
+
+- Lag -2: r = +0.030, q = 0.874.
+- Lag -1: r = +0.068, q = 0.874.
+- Lag +0: r = +0.549, q = < 0.001.
+- Lag +1: r = +0.029, q = 0.874.
+- Lag +2: r = +0.014, q = 0.885.
+
+**Alternatives not excluded**
+
+- Persistence of one variable alone can spread a same-month association onto neighbouring lags.
+
+**Limitations**
+
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Monthly means cannot resolve lead-lag behaviour shorter than a month.
+
+### EV-4a6e00ea5ffe — OBSERVED
+
+**Claim.** Monthly anomalies of Precipitation (bias-corrected) and Relative humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.59 (95% CI +0.51 to +0.66, effective n = 278). Raw r = -0.28; the two seasonal cycles alone give r = -0.78. The association holds in both halves of the record and against a year-shuffled control.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** PRECTOTCORR, RH2M
+- **Method:** Pearson/Spearman correlation of raw, deseasonalized and linearly detrended monthly anomalies; effective sample size (Bretherton et al. 1999); year-block permutation control
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "n_perm": 2000, "seed": 20261114, "thresholds": {"alpha": 0.05, "min_abs_r": 0.2}}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** SUPPORTED
+
+**Evidence**
+
+- Raw monthly series: r = -0.285 (n = 288).
+- Seasonal cycles alone (climatology repeated each year): r = -0.775.
+- Deseasonalized anomalies (baseline 2001-2024): r = +0.593, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 274); Spearman rho = +0.534.
+- Detrended anomalies: r = +0.590, adjusted p = < 0.001.
+- Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.152.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.367.
+- Partial correlation with Air temperature (2 m) held fixed statistically: r = +0.586 (95% CI +0.50 to +0.66; r = +0.590 without).
+- Partial correlation with Specific humidity (2 m) held fixed statistically: r = +0.543 (95% CI +0.46 to +0.62; r = +0.590 without).
+- Partial correlation with Air temperature (2 m) and Specific humidity (2 m) held fixed statistically: r = +0.440 (95% CI +0.34 to +0.53; r = +0.590 without).
+
+**Counterevidence**
+
+- With every calendar month weighted equally the value is +0.37 instead of +0.59: the all-year figure is weighted towards the months with the largest variance.
+- Halves of the record: r = +0.52 (2001-2012) and r = +0.64 (2013-2024); 10-year windows range from +0.49 to +0.65.
+- The sign differs between seasons (DJF -0.06, MAM +0.54, JJA +0.70, SON +0.64), so a single all-year statement hides opposite behaviour.
+
+**Alternatives not excluded**
+
+- A third factor that varies from month to month (for example the passage of air masses) could move both variables together.
+- Both variables come from one model, which may link them more tightly than nature does.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Results hold for the stated period; other periods can and do give different answers.
+- Replication covers the listed numeric values only: two assessors, each with a separately retrieved copy of the same NASA product. The comparison was not blind (the reported values were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors are AI systems: human review remains required.
+
+**Independent reports** (values that agree are REPLICATED; the record stays OBSERVED)
+
+| metric | source | reported | ours | abs. diff | agrees |
+|---|---|---:|---:|---:|---|
+| corr.PRECTOTCORR-RH2M.raw | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | -0.285 | -0.2850 | 0.0000 | yes |
+| corr.PRECTOTCORR-RH2M.deseasonalized | Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14 | 0.593 | 0.5935 | 0.0005 | yes |
+
+### EV-c1fffa61e31b — OBSERVED
+
+**Claim.** Lag scan of detrended anomalies, Precipitation (bias-corrected) against Relative humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.59). Non-zero lags that stay significant after correction: +1 (r = +0.33), +2 (r = +0.16), +4 (r = +0.19). Positive lags pair Precipitation (bias-corrected) with later Relative humidity (2 m). A lead or lag is a timing statistic only.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** PRECTOTCORR, RH2M
+- **Method:** Lagged Pearson correlation of detrended monthly anomalies with effective sample size; Benjamini-Hochberg across all lags
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "definition": "r(k) = corr(x[t], y[t+k]); k>0: x paired with later y", "max_lag": 6}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** LAGGED_ASSOCIATION_DETECTED
+
+**Evidence**
+
+- Lag -2: r = +0.076, q = 0.305.
+- Lag -1: r = +0.075, q = 0.305.
+- Lag +0: r = +0.590, q = < 0.001.
+- Lag +1: r = +0.334, q = < 0.001.
+- Lag +2: r = +0.160, q = 0.025.
+
+**Alternatives not excluded**
+
+- Persistence of one variable alone can spread a same-month association onto neighbouring lags.
+
+**Limitations**
+
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Monthly means cannot resolve lead-lag behaviour shorter than a month.
+
+### EV-3eb24d6b4573 — HYPOTHESIS
+
+**Claim.** Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both raise near-surface humidity; humidity staying high in the following month would fit soil-moisture memory. A test: add surface soil wetness (GWETTOP) and check whether it carries the one-month lag.
+
+- **Type:** unverified_physical_explanation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** PRECTOTCORR, RH2M
+- **Method:** none: proposed explanation, not tested by this analysis
+- **Parameters:** `{"attached_to": "EV-4a6e00ea5ffe"}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** UNTESTED
+
+**Limitations**
+
+- Not tested here. It must not be reported as a finding.
+
+### EV-ea0465ee11ea — OBSERVED
+
+**Claim.** Monthly anomalies of Precipitation (bias-corrected) and Specific humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.30 (95% CI +0.18 to +0.40, effective n = 281). Raw r = +0.55; the two seasonal cycles alone give r = +0.94. The association holds in both halves of the record and against a year-shuffled control.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** PRECTOTCORR, QV2M
+- **Method:** Pearson/Spearman correlation of raw, deseasonalized and linearly detrended monthly anomalies; effective sample size (Bretherton et al. 1999); year-block permutation control
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "n_perm": 2000, "seed": 20261114, "thresholds": {"alpha": 0.05, "min_abs_r": 0.2}}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** SUPPORTED
+
+**Evidence**
+
+- Raw monthly series: r = +0.551 (n = 288).
+- Seasonal cycles alone (climatology repeated each year): r = +0.936.
+- Deseasonalized anomalies (baseline 2001-2024): r = +0.308, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 279); Spearman rho = +0.255.
+- Detrended anomalies: r = +0.295, adjusted p = < 0.001.
+- Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.133.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.224.
+- Partial correlation with Air temperature (2 m) held fixed statistically: r = +0.436 (95% CI +0.34 to +0.53; r = +0.295 without).
+- Partial correlation with Relative humidity (2 m) held fixed statistically: r = +0.112 (95% CI -0.004 to +0.22; r = +0.295 without).
+- Partial correlation with Air temperature (2 m) and Relative humidity (2 m) held fixed statistically: r = +0.072 (95% CI -0.04 to +0.19; r = +0.295 without).
+
+**Counterevidence**
+
+- With every calendar month weighted equally the value is +0.22 instead of +0.31: the all-year figure is weighted towards the months with the largest variance.
+- Halves of the record: r = +0.26 (2001-2012) and r = +0.32 (2013-2024); 10-year windows range from +0.20 to +0.32.
+- By season: DJF +0.44, MAM +0.07, JJA +0.45, SON +0.08.
+
+**Alternatives not excluded**
+
+- A third factor that varies from month to month (for example the passage of air masses) could move both variables together.
+- Both variables come from one model, which may link them more tightly than nature does.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Results hold for the stated period; other periods can and do give different answers.
+
+### EV-ad099bfaf654 — OBSERVED
+
+**Claim.** Lag scan of detrended anomalies, Precipitation (bias-corrected) against Specific humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.30). Non-zero lags that stay significant after correction: +1 (r = +0.20), +2 (r = +0.20). Positive lags pair Precipitation (bias-corrected) with later Specific humidity (2 m). A lead or lag is a timing statistic only.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** PRECTOTCORR, QV2M
+- **Method:** Lagged Pearson correlation of detrended monthly anomalies with effective sample size; Benjamini-Hochberg across all lags
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "definition": "r(k) = corr(x[t], y[t+k]); k>0: x paired with later y", "max_lag": 6}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** LAGGED_ASSOCIATION_DETECTED
+
+**Evidence**
+
+- Lag -2: r = +0.068, q = 0.481.
+- Lag -1: r = +0.077, q = 0.481.
+- Lag +0: r = +0.295, q = < 0.001.
+- Lag +1: r = +0.205, q = 0.004.
+- Lag +2: r = +0.195, q = 0.005.
+
+**Alternatives not excluded**
+
+- Persistence of one variable alone can spread a same-month association onto neighbouring lags.
+
+**Limitations**
+
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Monthly means cannot resolve lead-lag behaviour shorter than a month.
+
+### EV-face3dbd4c54 — OBSERVED
+
+**Claim.** Monthly anomalies of Relative humidity (2 m) and Specific humidity (2 m) vary in the same direction over 2001-2024: detrended r = +0.36 (95% CI +0.24 to +0.46, effective n = 242). Raw r = -0.84; the two seasonal cycles alone give r = -0.91. The association holds in both halves of the record and against a year-shuffled control.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** RH2M, QV2M
+- **Method:** Pearson/Spearman correlation of raw, deseasonalized and linearly detrended monthly anomalies; effective sample size (Bretherton et al. 1999); year-block permutation control
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "n_perm": 2000, "seed": 20261114, "thresholds": {"alpha": 0.05, "min_abs_r": 0.2}}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** SUPPORTED
+
+**Evidence**
+
+- Raw monthly series: r = -0.844 (n = 288).
+- Seasonal cycles alone (climatology repeated each year): r = -0.912.
+- Deseasonalized anomalies (baseline 2001-2024): r = +0.388, naive p = < 0.001, autocorrelation-adjusted p = < 0.001 (effective n = 231); Spearman rho = +0.266.
+- Detrended anomalies: r = +0.358, adjusted p = < 0.001.
+- Year-shuffled control (2000 permutations): p = < 0.001; 95% of shuffled |r| are below 0.145.
+- With every calendar month weighted equally (anomalies divided by that month's standard deviation): r = +0.174.
+- Partial correlation with Air temperature (2 m) held fixed statistically: r = +0.670 (95% CI +0.59 to +0.74; r = +0.358 without).
+- Partial correlation with Precipitation (bias-corrected) held fixed statistically: r = +0.239 (95% CI +0.12 to +0.35; r = +0.358 without).
+- Partial correlation with Air temperature (2 m) and Precipitation (bias-corrected) held fixed statistically: r = +0.569 (95% CI +0.48 to +0.65; r = +0.358 without).
+
+**Counterevidence**
+
+- Relative humidity (2 m) is computed from Specific humidity (2 m) (and from Air temperature (2 m)), so part of this association is built into the definition and is not an independent finding.
+- With every calendar month weighted equally the value is +0.17 instead of +0.39: the all-year figure is weighted towards the months with the largest variance.
+- Halves of the record: r = +0.23 (2001-2012) and r = +0.44 (2013-2024); 10-year windows range from +0.22 to +0.43.
+- By season: DJF +0.01, MAM +0.05, JJA +0.65, SON +0.28.
+
+**Alternatives not excluded**
+
+- A third factor that varies from month to month (for example the passage of air masses) could move both variables together.
+- Both variables come from one model, which may link them more tightly than nature does.
+
+**Limitations**
+
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+- MERRA-2 is a model reanalysis. Changes in the observations it assimilates can create steps that look like trends; no homogeneity test is applied here.
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Results hold for the stated period; other periods can and do give different answers.
+
+### EV-9c4725d1e4f4 — OBSERVED
+
+**Claim.** Lag scan of detrended anomalies, Relative humidity (2 m) against Specific humidity (2 m), lags -6 to +6 months (13 tests, Benjamini-Hochberg): the largest |r| is at lag +0 (r = +0.36). Non-zero lags that stay significant after correction: +1 (r = +0.23), +2 (r = +0.22). Positive lags pair Relative humidity (2 m) with later Specific humidity (2 m). A lead or lag is a timing statistic only.
+
+- **Type:** statistical_relationship
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** RH2M, QV2M
+- **Method:** Lagged Pearson correlation of detrended monthly anomalies with effective sample size; Benjamini-Hochberg across all lags
+- **Parameters:** `{"alpha": 0.05, "baseline": [2001, 2024], "definition": "r(k) = corr(x[t], y[t+k]); k>0: x paired with later y", "max_lag": 6}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** LAGGED_ASSOCIATION_DETECTED
+
+**Evidence**
+
+- Lag -2: r = +0.143, q = 0.086.
+- Lag -1: r = +0.131, q = 0.111.
+- Lag +0: r = +0.358, q = < 0.001.
+- Lag +1: r = +0.230, q = 0.002.
+- Lag +2: r = +0.215, q = 0.003.
+
+**Alternatives not excluded**
+
+- Persistence of one variable alone can spread a same-month association onto neighbouring lags.
+
+**Limitations**
+
+- Correlations describe co-variation of monthly anomalies. They do not identify causes, and a lead or lag is a timing statistic only.
+- Monthly means cannot resolve lead-lag behaviour shorter than a month.
+
+### EV-ce4d336760f4 — OBSERVED
+
+**Claim.** Relative humidity (2 m) is a derived quantity in these data. Rebuilt from monthly Air temperature (2 m) and Specific humidity (2 m) with a textbook formula and no fitting, it matches the RH2M values in the file at r = +0.982 (mean absolute difference 2.60 percentage points); for detrended anomalies r = +0.767. A linear combination of the temperature and specific-humidity anomalies reproduces 50% of the variance of the relative-humidity anomalies (R2 by season: DJF 0.19, MAM 0.87, JJA 0.98, SON 0.69).
+
+- **Type:** computed_observation
+- **Region:** Pavlodar, Kazakhstan (52.29, 76.97)
+- **Period:** 2001–2024
+- **Variables:** T2M, QV2M, RH2M
+- **Method:** Relative humidity rebuilt from monthly temperature and specific humidity (Magnus formula over water, standard-atmosphere pressure at the grid-cell elevation, nothing fitted); least-squares fit of detrended RH2M anomalies on T2M and QV2M anomalies, overall and by season
+- **Parameters:** `{"assumed_pressure_hpa": 999.99, "baseline": [2001, 2024]}`
+- **Data hash:** `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`
+- **Verdict:** DERIVED_VARIABLE_CONFIRMED
+
+**Evidence**
+
+- Reconstruction against the file: r = +0.982, mean difference -0.59 percentage points, mean absolute difference 2.60.
+- Fit of anomalies, all months: -1.23 percentage points per deg C and +6.10 per g/kg, R2 = 0.504.
+
+**Counterevidence**
+
+- The match is weakest in DJF (R2 = 0.19); the reconstruction uses monthly means and a constant pressure, so the mismatch there is not evidence of independent information in RH2M.
+
+**Alternatives not excluded**
+
+- The remaining mismatch may come from averaging (the mean of a ratio is not the ratio of the means) or from pressure changes; neither was tested.
+
+**Limitations**
+
+- This is a consistency check between variables of one reanalysis file; it says nothing about the accuracy of any of them.
+- One MERRA-2 grid cell (about 0.5 x 0.625 degrees) at the cell's mean elevation: it describes the cell, not a station or a city.
+
+
+Records: 21 (HYPOTHESIS 3, OBSERVED 18); values replicated by an independent report: 13. Data hash `8bc961f1c7629d528fd3d607e81bf3018939e29e7bba67bddc8db4340146a711`.
 
 ## Region comparison: Pavlodar vs Almaty grid cell, 2001–2024
 
