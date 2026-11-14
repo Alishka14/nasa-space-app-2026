@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api, type Catalog, type InvestigateBody, type Investigation, type Region } from './api'
-import { tr, type Lang } from './i18n'
+import { LANG_LABEL, tr, type Lang } from './i18n'
 import type { Mode } from './theme'
 import MapPanel from './MapPanel'
 import InvestigateView from './views/InvestigateView'
@@ -12,8 +12,18 @@ import EvidenceDrawer from './views/EvidenceDrawer'
 
 type Tab = 'investigate' | 'graph' | 'timeline' | 'compare' | 'report'
 
-export default function App() {
-  const [lang, setLang] = useState<Lang>('en')
+export interface AppProps {
+  /** Controlled language (set by the onboarding); without it the app keeps its own. */
+  lang?: Lang
+  onLang?: (l: Lang) => void
+  /** Re-opens the onboarding intro; the button is shown only when this is provided. */
+  onReplayIntro?: () => void
+}
+
+export default function App({ lang: langProp, onLang, onReplayIntro }: AppProps = {}) {
+  const [langState, setLangState] = useState<Lang>(langProp ?? 'en')
+  const lang = langProp ?? langState
+  const setLang = onLang ?? setLangState
   const [mode, setMode] = useState<Mode>('dark')
   const [tab, setTab] = useState<Tab>('investigate')
   const [catalog, setCatalog] = useState<Catalog | null>(null)
@@ -87,7 +97,12 @@ export default function App() {
           ))}
         </nav>
         <div className="toggles">
-          <button onClick={() => setLang(lang === 'en' ? 'ru' : 'en')} title="Language">{lang === 'en' ? 'RU' : 'EN'}</button>
+          <div className="lang-switch" role="radiogroup" aria-label={t('language')}>
+            {(Object.keys(LANG_LABEL) as Lang[]).map(l => (
+              <button key={l} role="radio" aria-checked={lang === l} className={lang === l ? 'on' : ''} onClick={() => setLang(l)}>{LANG_LABEL[l]}</button>
+            ))}
+          </div>
+          {onReplayIntro && <button className="intro-btn" onClick={onReplayIntro} title={t('intro')}>▶ {t('intro')}</button>}
           <button onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')} title="Theme">{mode === 'dark' ? '☀' : '☾'}</button>
         </div>
       </header>

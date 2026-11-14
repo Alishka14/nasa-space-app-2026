@@ -83,6 +83,25 @@ Reference frames (captures of the real application): `docs/screenshots/01_invest
 - [ ] Uploaded where it opens without login (for example YouTube *Unlisted* or *Public*); link tested in a private
       window.
 
+## A2. Ready-made option: the app's own Teaser intro (16.5 s)
+
+The onboarding contains a 16.5-second intro (*Short*) that tells the same story on the 3D globe with the engine's
+numbers. It can be exported frame by frame from the running app — no editing, no generated footage:
+
+```bash
+# app running on http://127.0.0.1:8000 (see Setup); needs Node, puppeteer-core and ffmpeg
+OUT_DIR=docs/video/renders node scripts/record_intro.mjs teaser en 24 1280 720   # → teaser_en.mp4
+```
+
+Recordings made this way in the build environment (720p, software-rendered WebGL, silent) are listed in
+[`video/VIDEO_MASTER_PLAN.md`](video/VIDEO_MASTER_PLAN.md). What it does **not** contain, compared with cut A: the team
+name and the "next steps" line the guide recommends. Either add a 3-second title card in an editor (total stays under
+30 s), or use cut A. The film is silent; its narration is on screen in English, so no extra subtitles are needed.
+It is a capture of the application, not AI-generated video; the code that draws it was written with an AI assistant,
+which the AI-use statement in `NASA_SUBMISSION.md` already declares.
+
+To show it live: open `http://localhost:8000/?intro`, pick a language, choose **Short**, press **Start**.
+
 ## B. Seven slides (alternative to the video)
 
 | # | Title | Content | Visual |

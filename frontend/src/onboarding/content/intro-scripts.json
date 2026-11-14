@@ -1,0 +1,722 @@
+{
+  "about": "Single source for the in-app intro, docs/video/*.md, the SRT subtitles and the external video prompts. Numbers are written as {fact_key} and filled from facts.json (computed by scripts/build_intro_assets.py). guard: 'statistical' lines must pass the MIZAN Guard as they stand; 'meta' lines talk about the method and may name causation only in a negated form. Text inside «» or “” is a rejected claim, shown struck through.",
+  "variants": [
+    {
+      "id": "hero",
+      "file": "HERO",
+      "target": [
+        45,
+        60
+      ],
+      "audience": {
+        "en": "Judges, presentations, the opening of a demo",
+        "ru": "Жюри, презентации, начало демонстрации",
+        "kk": "Қазылар алқасы, презентациялар, демонстрацияның басы"
+      },
+      "concept": {
+        "en": "From the whole living planet down to one grid cell, then a reversal: the same NASA data give a negative and a positive correlation. The film ends on the method — evidence, limits, no causal shortcuts — and hands the viewer the tool.",
+        "ru": "От всей живой планеты — к одной ячейке сетки, затем разворот: одни и те же данные NASA дают отрицательную и положительную корреляцию. Финал — о методе: доказательства, ограничения, никаких причинных упрощений — и зритель получает инструмент.",
+        "kk": "Тұтас тірі планетадан бір тор ұяшығына дейін, содан кейін бетбұрыс: NASA-ның бір ғана деректері теріс те, оң да корреляция береді. Соңы — әдіс туралы: дәлелдер, шектеулер, себеп-салдарды жеңілдетпеу — және көрерменге құрал беріледі."
+      },
+      "tone": {
+        "en": "Calm, confident, cinematic. A documentary narrator, not a trailer voice. Let the numbers land; pause after the flip.",
+        "ru": "Спокойно, уверенно, кинематографично. Голос документального фильма, не трейлера. Дайте числам прозвучать; пауза после разворота.",
+        "kk": "Сабырлы, сенімді, кинематографиялық. Деректі фильмнің дауысы, трейлердің емес. Сандарға уақыт беріңіз; бетбұрыстан кейін үзіліс."
+      },
+      "scenes": [
+        {
+          "id": "h1",
+          "dur": 6.0,
+          "visual": "earth",
+          "camera": {
+            "lat": 25,
+            "lon": 40,
+            "dist": 3.6,
+            "spin": 6
+          },
+          "overlays": {
+            "coast": 0,
+            "graticule": 0,
+            "marker": 0,
+            "tint": 0
+          },
+          "title": {
+            "en": "EARTH SENSES",
+            "ru": "EARTH SENSES",
+            "kk": "EARTH SENSES"
+          },
+          "vo": {
+            "en": "This is one planet — and one connected system.",
+            "ru": "Это одна планета — и одна взаимосвязанная система.",
+            "kk": "Бұл — бір планета және бір тұтас жүйе."
+          },
+          "guard": "statistical",
+          "prompt": "Slow push-in on a photoreal Earth from deep space, day side lit from the left, night side with city lights on the right, thin blue atmospheric rim. Stars sharp and sparse. No text."
+        },
+        {
+          "id": "h2",
+          "dur": 6.5,
+          "visual": "layers",
+          "camera": {
+            "lat": 42,
+            "lon": 66,
+            "dist": 3.0,
+            "spin": 2
+          },
+          "overlays": {
+            "coast": 1,
+            "graticule": 1,
+            "marker": 0.7,
+            "tint": 0.6
+          },
+          "title": {
+            "en": "Air, water and heat change together.",
+            "ru": "Воздух, вода и тепло меняются вместе.",
+            "kk": "Ауа, су және жылу бірге өзгереді."
+          },
+          "vo": {
+            "en": "Air, water and heat change together, month after month, all over the planet.",
+            "ru": "Воздух, вода и тепло меняются вместе — месяц за месяцем, по всей планете.",
+            "kk": "Ауа, су және жылу бірге өзгереді — ай сайын, бүкіл планетада."
+          },
+          "guard": "statistical",
+          "prompt": "The globe takes on a cool analytical tint; glowing cyan coastlines and a faint latitude-longitude grid fade in. Three labelled data layers (temperature orange, humidity green, precipitation blue) shimmer across Central Asia."
+        },
+        {
+          "id": "h3",
+          "dur": 6.5,
+          "visual": "focus",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.15,
+            "x": -0.06
+          },
+          "overlays": {
+            "coast": 1,
+            "graticule": 0.4,
+            "marker": 1,
+            "tint": 0.4
+          },
+          "title": {
+            "en": "Pavlodar, Kazakhstan · 2001–2024",
+            "ru": "Павлодар, Казахстан · 2001–2024",
+            "kk": "Павлодар, Қазақстан · 2001–2024"
+          },
+          "vo": {
+            "en": "We followed one place for twenty-four years: Pavlodar, in NASA POWER data.",
+            "ru": "Мы проследили одно место за двадцать четыре года: Павлодар, данные NASA POWER.",
+            "kk": "Біз бір аймақты жиырма төрт жыл бойы бақыладық: Павлодар, NASA POWER деректері."
+          },
+          "guard": "statistical",
+          "prompt": "Camera glides to northern Kazakhstan and settles on a single pulsing marker at 52.3°N 77.0°E with a short light beam rising from the surface. A thin label reads 'Pavlodar'."
+        },
+        {
+          "id": "h4",
+          "dur": 8.0,
+          "visual": "series-raw",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.6,
+            "x": -0.24
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.2,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "widget": {
+            "type": "series",
+            "mode": "raw",
+            "pair": "p_rh"
+          },
+          "title": {
+            "en": "At first glance, the data say one thing…",
+            "ru": "На первый взгляд данные говорят одно…",
+            "kk": "Бір қарағанда, деректер бір нәрсені айтады…"
+          },
+          "vo": {
+            "en": "At first glance, months with more precipitation have lower humidity: r = {p_rh_raw}.",
+            "ru": "На первый взгляд в месяцы с большими осадками влажность ниже: r = {p_rh_raw}.",
+            "kk": "Бір қарағанда, жауын-шашын көп айларда ылғалдылық төмен: r = {p_rh_raw}."
+          },
+          "guard": "statistical",
+          "prompt": "The globe slides left. On the right, two monthly time series (precipitation in blue, relative humidity in green) draw themselves across 24 years; they swing in opposite directions every year. A correlation value appears: r = −0.285."
+        },
+        {
+          "id": "h5",
+          "dur": 8.0,
+          "visual": "corr-flip",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.6,
+            "x": -0.24
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.2,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "widget": {
+            "type": "corr",
+            "pair": "p_rh",
+            "bars": [
+              "raw",
+              "deseason"
+            ],
+            "flip": true
+          },
+          "title": {
+            "en": "Remove the seasons: r = {p_rh_deseason}",
+            "ru": "Убираем сезонность: r = {p_rh_deseason}",
+            "kk": "Маусымдылықты алып тастаймыз: r = {p_rh_deseason}"
+          },
+          "vo": {
+            "en": "Remove the seasonal cycle and the sign flips: {p_rh_deseason}. Wetter-than-usual months are also more humid than usual.",
+            "ru": "Уберём сезонный цикл — и знак меняется: {p_rh_deseason}. Месяцы с осадками выше нормы и влажнее обычного.",
+            "kk": "Маусымдық циклді алып тастасақ, таңба өзгереді: {p_rh_deseason}. Жауын-шашыны нормадан көп айлар әдеттегіден ылғалдырақ."
+          },
+          "guard": "statistical",
+          "prompt": "A horizontal bar anchored at zero shows −0.285 in blue; it swings smoothly through zero and grows to +0.593 in red while the two curves re-draw as anomalies that now rise and fall together."
+        },
+        {
+          "id": "h6",
+          "dur": 5.5,
+          "visual": "title",
+          "camera": {
+            "lat": 40,
+            "lon": 70,
+            "dist": 3.1,
+            "spin": 3
+          },
+          "overlays": {
+            "coast": 0.6,
+            "graticule": 0,
+            "marker": 0.6,
+            "tint": 0.3
+          },
+          "title": {
+            "en": "Seasonality changed the interpretation.",
+            "ru": "Сезонность изменила интерпретацию.",
+            "kk": "Маусымдылық түсіндірмені өзгертті."
+          },
+          "vo": {
+            "en": "The first number described the calendar, not the weather.",
+            "ru": "Первое число описывало календарь, а не погоду.",
+            "kk": "Алғашқы сан ауа райын емес, күнтізбені сипаттады."
+          },
+          "guard": "statistical",
+          "prompt": "Wide shot, the globe turning slowly. One line of white text in the centre. Breathing room — no graphics."
+        },
+        {
+          "id": "h7",
+          "dur": 7.0,
+          "visual": "checks",
+          "camera": {
+            "lat": 45,
+            "lon": 76.97,
+            "dist": 2.9,
+            "x": -0.22,
+            "spin": 2
+          },
+          "overlays": {
+            "coast": 0.7,
+            "graticule": 0.3,
+            "marker": 1,
+            "tint": 0.6
+          },
+          "widget": {
+            "type": "checks"
+          },
+          "title": {
+            "en": "EARTH SENSES investigates relationships, evidence and uncertainty.",
+            "ru": "EARTH SENSES исследует связи, доказательства и неопределённость.",
+            "kk": "EARTH SENSES байланыстарды, дәлелдерді және белгісіздікті зерттейді."
+          },
+          "vo": {
+            "en": "EARTH SENSES tests every relationship, keeps the evidence, and does not mistake correlation for cause.",
+            "ru": "EARTH SENSES проверяет каждую связь, сохраняет доказательства и не путает корреляцию с причиной.",
+            "kk": "EARTH SENSES әр байланысты тексереді, дәлелдерді сақтайды және корреляцияны себеппен шатастырмайды."
+          },
+          "guard": "meta",
+          "prompt": "A clean checklist appears line by line beside the globe: seasonal cycle removed; autocorrelation and multiple tests accounted for; other periods checked; correlation is not causation. Each line gets a small cyan tick."
+        },
+        {
+          "id": "h8",
+          "dur": 7.5,
+          "visual": "claims",
+          "camera": {
+            "lat": 45,
+            "lon": 76.97,
+            "dist": 2.9,
+            "x": -0.22,
+            "spin": 2
+          },
+          "overlays": {
+            "coast": 0.7,
+            "graticule": 0.3,
+            "marker": 1,
+            "tint": 0.6
+          },
+          "widget": {
+            "type": "claims"
+          },
+          "title": {
+            "en": "It also shows what the data cannot support.",
+            "ru": "И показывает, чего данные не подтверждают.",
+            "kk": "Деректер нені растамайтынын да көрсетеді."
+          },
+          "vo": {
+            "en": "“No warming” is not a valid conclusion here, and “humidity is rising” is a fragile result.",
+            "ru": "«Потепления нет» — неверный вывод, а «влажность растёт» — хрупкий результат.",
+            "kk": "«Жылыну жоқ» деген қорытынды дұрыс емес, ал «ылғалдылық өсуде» — тұрақсыз нәтиже."
+          },
+          "guard": "statistical",
+          "prompt": "Two short claims appear in quotation marks and are struck through: 'No warming' (with its confidence interval −0.67 to +0.46 °C per decade) and 'Humidity is rising' (marked fragile). Restrained, factual typography."
+        },
+        {
+          "id": "h9",
+          "dur": 4.5,
+          "visual": "enter",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.35
+          },
+          "overlays": {
+            "coast": 1,
+            "graticule": 0.5,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "title": {
+            "en": "Investigate for yourself.",
+            "ru": "Исследуйте сами.",
+            "kk": "Өзіңіз зерттеңіз."
+          },
+          "vo": {
+            "en": "Now, investigate for yourself.",
+            "ru": "Теперь — исследуйте сами.",
+            "kk": "Енді — өзіңіз зерттеңіз."
+          },
+          "guard": "statistical",
+          "prompt": "The camera dives toward the marker; the frame dissolves into the dark interface of the EARTH SENSES app with its map and charts."
+        }
+      ]
+    },
+    {
+      "id": "explainer",
+      "file": "EXPLAINER",
+      "target": [
+        30,
+        45
+      ],
+      "audience": {
+        "en": "Science fairs, mentors, anyone who wants the finding itself",
+        "ru": "Научные ярмарки, менторы, все, кому нужна сама находка",
+        "kk": "Ғылыми көрмелер, менторлар, нәтиженің өзі керек барлық адам"
+      },
+      "concept": {
+        "en": "One place, one question, one finding — told with the numbers on screen: raw versus deseasonalized correlation, a second pair that shrinks, the limits, and the conclusions the data do not support.",
+        "ru": "Одно место, один вопрос, одна находка — с числами на экране: сырая и десезонализированная корреляция, вторая пара, которая ослабевает, ограничения и выводы, которые данные не подтверждают.",
+        "kk": "Бір орын, бір сұрақ, бір нәтиже — сандар экранда: бастапқы және маусымдылықсыз корреляция, әлсірейтін екінші жұп, шектеулер және деректер растамайтын қорытындылар."
+      },
+      "tone": {
+        "en": "Clear and matter-of-fact, like a good lecture slide narrated. Numbers read precisely; no drama.",
+        "ru": "Ясно и по делу, как хороший слайд лекции. Числа — точно; без драматизма.",
+        "kk": "Түсінікті және нақты, жақсы дәріс слайды сияқты. Сандар дәл оқылады; драмасыз."
+      },
+      "scenes": [
+        {
+          "id": "e1",
+          "dur": 6.5,
+          "visual": "focus",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.2,
+            "x": -0.06
+          },
+          "overlays": {
+            "coast": 1,
+            "graticule": 0.4,
+            "marker": 1,
+            "tint": 0.4
+          },
+          "title": {
+            "en": "One place. One question.",
+            "ru": "Одно место. Один вопрос.",
+            "kk": "Бір орын. Бір сұрақ."
+          },
+          "vo": {
+            "en": "Pavlodar, Kazakhstan: 288 months of NASA POWER data. Do precipitation and humidity vary together?",
+            "ru": "Павлодар, Казахстан: 288 месяцев данных NASA POWER. Меняются ли осадки и влажность вместе?",
+            "kk": "Павлодар, Қазақстан: NASA POWER-дың 288 айлық деректері. Жауын-шашын мен ылғалдылық бірге өзгере ме?"
+          },
+          "guard": "statistical",
+          "prompt": "Globe already close on northern Kazakhstan, marker pulsing at Pavlodar, label and a small caption '288 months · NASA POWER'."
+        },
+        {
+          "id": "e2",
+          "dur": 6.5,
+          "visual": "corr",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.6,
+            "x": -0.24
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.2,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "widget": {
+            "type": "corr",
+            "pair": "p_rh",
+            "bars": [
+              "raw",
+              "cycles"
+            ]
+          },
+          "title": {
+            "en": "Raw: r = {p_rh_raw}",
+            "ru": "Сырые данные: r = {p_rh_raw}",
+            "kk": "Бастапқы деректер: r = {p_rh_raw}"
+          },
+          "vo": {
+            "en": "Raw correlation: {p_rh_raw}. But the two seasonal cycles alone give {p_rh_cycles}.",
+            "ru": "Сырая корреляция: {p_rh_raw}. Но одни только сезонные циклы дают {p_rh_cycles}.",
+            "kk": "Бастапқы корреляция: {p_rh_raw}. Бірақ маусымдық циклдердің өзі {p_rh_cycles} береді."
+          },
+          "guard": "statistical",
+          "prompt": "Bar chart beside the globe: a blue bar at −0.285 labelled 'raw monthly values', then a longer blue bar at −0.775 labelled 'seasonal cycles alone'."
+        },
+        {
+          "id": "e3",
+          "dur": 6.5,
+          "visual": "corr-flip",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.6,
+            "x": -0.24
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.2,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "widget": {
+            "type": "corr",
+            "pair": "p_rh",
+            "bars": [
+              "raw",
+              "cycles",
+              "deseason"
+            ],
+            "flip": true
+          },
+          "title": {
+            "en": "Seasons removed: r = {p_rh_deseason}",
+            "ru": "Без сезонности: r = {p_rh_deseason}",
+            "kk": "Маусымдылықсыз: r = {p_rh_deseason}"
+          },
+          "vo": {
+            "en": "Subtract each month's usual value, and the anomalies correlate at {p_rh_deseason}.",
+            "ru": "Вычтем обычное для каждого месяца значение — аномалии коррелируют на {p_rh_deseason}.",
+            "kk": "Әр айдың әдеттегі мәнін шегерсек, аномалиялар корреляциясы {p_rh_deseason} болады."
+          },
+          "guard": "statistical",
+          "prompt": "A third bar grows to the right of zero in red: +0.593, 'seasonal cycle removed'. The contrast with the blue bars is the point of the shot."
+        },
+        {
+          "id": "e4",
+          "dur": 8.5,
+          "visual": "corr",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.6,
+            "x": -0.24
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.2,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "widget": {
+            "type": "corr",
+            "pair": "t_rh",
+            "bars": [
+              "raw",
+              "deseason"
+            ]
+          },
+          "title": {
+            "en": "Temperature ↔ humidity: {t_rh_raw} → {t_rh_deseason}",
+            "ru": "Температура ↔ влажность: {t_rh_raw} → {t_rh_deseason}",
+            "kk": "Температура ↔ ылғалдылық: {t_rh_raw} → {t_rh_deseason}"
+          },
+          "vo": {
+            "en": "Temperature and humidity: {t_rh_raw} raw, {t_rh_deseason} without seasons. And relative humidity is partly computed from temperature.",
+            "ru": "Температура и влажность: {t_rh_raw} в сырых данных, {t_rh_deseason} без сезонности. А относительная влажность частично вычисляется из температуры.",
+            "kk": "Температура мен ылғалдылық: бастапқы деректе {t_rh_raw}, маусымдылықсыз {t_rh_deseason}. Салыстырмалы ылғалдылық ішінара температурадан есептеледі."
+          },
+          "guard": "statistical",
+          "prompt": "Second pair: a very long blue bar at −0.945 shrinks to −0.316. A small gear icon notes that relative humidity is computed from temperature."
+        },
+        {
+          "id": "e5",
+          "dur": 7.0,
+          "visual": "checks",
+          "camera": {
+            "lat": 45,
+            "lon": 76.97,
+            "dist": 2.9,
+            "x": -0.22,
+            "spin": 2
+          },
+          "overlays": {
+            "coast": 0.7,
+            "graticule": 0.3,
+            "marker": 1,
+            "tint": 0.6
+          },
+          "widget": {
+            "type": "checks"
+          },
+          "title": {
+            "en": "Correlation ≠ causation",
+            "ru": "Корреляция ≠ причинность",
+            "kk": "Корреляция ≠ себептілік"
+          },
+          "vo": {
+            "en": "In winter the link is not detected. And it is a correlation inside one model, not a demonstrated cause.",
+            "ru": "Зимой связь не обнаруживается. И это корреляция внутри одной модели, а не установленная причина.",
+            "kk": "Қыста байланыс байқалмайды. Және бұл — бір модель ішіндегі корреляция, анықталған себеп емес."
+          },
+          "guard": "meta",
+          "prompt": "Checklist beside the globe with a winter note (December–February r = −0.06) and the line 'correlation ≠ causation'."
+        },
+        {
+          "id": "e6",
+          "dur": 5.5,
+          "visual": "claims",
+          "camera": {
+            "lat": 45,
+            "lon": 76.97,
+            "dist": 2.9,
+            "x": -0.22,
+            "spin": 2
+          },
+          "overlays": {
+            "coast": 0.7,
+            "graticule": 0.3,
+            "marker": 1,
+            "tint": 0.6
+          },
+          "widget": {
+            "type": "claims"
+          },
+          "title": {
+            "en": "What the data do not support",
+            "ru": "Чего данные не подтверждают",
+            "kk": "Деректер нені растамайды"
+          },
+          "vo": {
+            "en": "“No warming” is not supported. “Humidity is rising” is fragile.",
+            "ru": "«Потепления нет» — не подтверждается. «Влажность растёт» — хрупкий результат.",
+            "kk": "«Жылыну жоқ» — расталмайды. «Ылғалдылық өсуде» — тұрақсыз нәтиже."
+          },
+          "guard": "statistical",
+          "prompt": "The two rejected claims, struck through, each with its number: CI −0.67 to +0.46 °C per decade; q = 0.105."
+        },
+        {
+          "id": "e7",
+          "dur": 4.5,
+          "visual": "enter",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.35
+          },
+          "overlays": {
+            "coast": 1,
+            "graticule": 0.5,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "title": {
+            "en": "Evidence first.",
+            "ru": "Сначала доказательства.",
+            "kk": "Алдымен — дәлел."
+          },
+          "vo": {
+            "en": "Every claim comes with its evidence. Open the data.",
+            "ru": "Каждый вывод — с доказательствами. Откройте данные.",
+            "kk": "Әр қорытынды — дәлелімен. Деректерді ашыңыз."
+          },
+          "guard": "statistical",
+          "prompt": "Dive into the marker and cut to the app's investigation screen."
+        }
+      ]
+    },
+    {
+      "id": "teaser",
+      "file": "TEASER",
+      "target": [
+        10,
+        20
+      ],
+      "audience": {
+        "en": "Quick entry before the app opens, social media, the 30-second submission demo",
+        "ru": "Быстрый вход перед открытием приложения, соцсети, 30-секундное демо для подачи",
+        "kk": "Қосымша ашылар алдындағы жылдам кіріс, әлеуметтік желілер, өтінімге арналған 30 секундтық демо"
+      },
+      "concept": {
+        "en": "Same data, two opposite correlations, one word of explanation: seasons. Then the name.",
+        "ru": "Одни данные, две противоположные корреляции, одно слово объяснения: сезоны. Затем название.",
+        "kk": "Бір деректер, екі қарама-қарсы корреляция, бір сөзбен түсіндіру: маусымдар. Содан кейін атау."
+      },
+      "tone": {
+        "en": "Crisp and quiet. Four short lines, generous pauses.",
+        "ru": "Чётко и спокойно. Четыре короткие фразы, свободные паузы.",
+        "kk": "Нақты және сабырлы. Төрт қысқа сөйлем, кең үзілістер."
+      },
+      "scenes": [
+        {
+          "id": "t1",
+          "dur": 4.0,
+          "visual": "earth",
+          "camera": {
+            "lat": 40,
+            "lon": 70,
+            "dist": 3.0,
+            "spin": 6
+          },
+          "overlays": {
+            "coast": 0.6,
+            "graticule": 0,
+            "marker": 1,
+            "tint": 0.3
+          },
+          "title": {
+            "en": "Same NASA data.",
+            "ru": "Одни и те же данные NASA.",
+            "kk": "NASA-ның бір ғана деректері."
+          },
+          "vo": {
+            "en": "Same NASA data.",
+            "ru": "Одни и те же данные NASA.",
+            "kk": "NASA-ның бір ғана деректері."
+          },
+          "guard": "statistical",
+          "prompt": "Earth rotating toward Central Asia, coastlines glowing faintly, a single marker pulsing."
+        },
+        {
+          "id": "t2",
+          "dur": 5.0,
+          "visual": "corr-flip",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.6,
+            "x": -0.24
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.2,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "widget": {
+            "type": "corr",
+            "pair": "p_rh",
+            "bars": [
+              "raw",
+              "deseason"
+            ],
+            "flip": true
+          },
+          "title": {
+            "en": "{p_rh_raw} → {p_rh_deseason}",
+            "ru": "{p_rh_raw} → {p_rh_deseason}",
+            "kk": "{p_rh_raw} → {p_rh_deseason}"
+          },
+          "vo": {
+            "en": "Two opposite correlations: {p_rh_raw} and {p_rh_deseason}.",
+            "ru": "Две противоположные корреляции: {p_rh_raw} и {p_rh_deseason}.",
+            "kk": "Екі қарама-қарсы корреляция: {p_rh_raw} және {p_rh_deseason}."
+          },
+          "guard": "statistical",
+          "prompt": "A bar at −0.285 swings through zero to +0.593 beside the globe."
+        },
+        {
+          "id": "t3",
+          "dur": 3.5,
+          "visual": "title",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.4,
+            "spin": 3
+          },
+          "overlays": {
+            "coast": 0.8,
+            "graticule": 0.3,
+            "marker": 1,
+            "tint": 0.4
+          },
+          "title": {
+            "en": "The difference: seasonality.",
+            "ru": "Разница — в сезонности.",
+            "kk": "Айырма — маусымдылықта."
+          },
+          "vo": {
+            "en": "The difference is the seasons.",
+            "ru": "Разница — в сезонности.",
+            "kk": "Айырма — маусымдылықта."
+          },
+          "guard": "statistical",
+          "prompt": "One line of text over the slowly turning globe."
+        },
+        {
+          "id": "t4",
+          "dur": 4.0,
+          "visual": "enter",
+          "camera": {
+            "lat": 52.29,
+            "lon": 76.97,
+            "dist": 2.35
+          },
+          "overlays": {
+            "coast": 1,
+            "graticule": 0.5,
+            "marker": 1,
+            "tint": 0.5
+          },
+          "title": {
+            "en": "EARTH SENSES · Evidence before conclusions.",
+            "ru": "EARTH SENSES · Сначала доказательства, потом выводы.",
+            "kk": "EARTH SENSES · Алдымен дәлел, сосын қорытынды."
+          },
+          "vo": {
+            "en": "EARTH SENSES. Evidence before conclusions.",
+            "ru": "EARTH SENSES. Сначала доказательства, потом выводы.",
+            "kk": "EARTH SENSES. Алдымен дәлел, сосын қорытынды."
+          },
+          "guard": "statistical",
+          "prompt": "Title card over the globe, then a dive into the app."
+        }
+      ]
+    }
+  ]
+}

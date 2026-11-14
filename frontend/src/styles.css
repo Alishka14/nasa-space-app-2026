@@ -37,6 +37,12 @@ button { cursor: pointer; }
 .tabs button.on { background: var(--surface-2); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
 .toggles { display: flex; gap: 6px; }
 .toggles button { min-width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--surface); }
+.lang-switch { display: flex; border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; }
+.toggles .lang-switch button { border: 0; border-radius: 0; min-width: 34px; font-size: 12px; font-weight: 700; color: var(--ink-2); }
+.toggles .lang-switch button.on { background: var(--accent); color: var(--accent-ink); }
+.toggles .intro-btn { padding: 0 10px; font-size: 12.5px; font-weight: 600; }
+.app-host { height: 100%; }
+.boot-screen { position: fixed; inset: 0; background: #03050b; }
 
 main { flex: 1; padding: 16px 20px 40px; max-width: 1560px; width: 100%; margin: 0 auto; }
 .split { display: grid; grid-template-columns: 372px minmax(0, 1fr); gap: 16px; align-items: start; }
