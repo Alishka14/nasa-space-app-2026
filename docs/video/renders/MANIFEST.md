@@ -4,7 +4,7 @@ Screen recordings of the running app, made frame by frame with `scripts/record_i
 
 | File | Length | Picture | Size | Decodes cleanly | SHA-256 |
 |---|---|---|---|---|---|
-| [`demo_en.mp4`](demo_en.mp4) | 29.3 s | 1920×1080, 24 fps H264 | 11.2 MB | yes | `43cabac82faa19eb…` |
+| [`demo_en.mp4`](demo_en.mp4) | 29.3 s | 1920×1080, 24 fps H264 | 11.2 MB | yes | `2978654d17223f28…` |
 | [`explainer_en.mp4`](explainer_en.mp4) | 45.0 s | 1920×1080, 24 fps H264 | 7.6 MB | yes | `ef3810dcfcb7abbd…` |
 | [`explainer_kk.mp4`](explainer_kk.mp4) | 45.0 s | 1920×1080, 24 fps H264 | 7.8 MB | yes | `b58bf5f8d47fb280…` |
 | [`explainer_ru.mp4`](explainer_ru.mp4) | 45.0 s | 1920×1080, 24 fps H264 | 7.8 MB | yes | `26d9cd61c813f7e8…` |
