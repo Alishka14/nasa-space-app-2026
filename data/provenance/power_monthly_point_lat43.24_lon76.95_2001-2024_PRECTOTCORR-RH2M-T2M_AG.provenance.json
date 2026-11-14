@@ -1,0 +1,123 @@
+{
+  "record_type": "DataProvenanceRecord",
+  "original_source": "NASA POWER (Prediction Of Worldwide Energy Resources) Monthly & Annual API, NASA Langley Research Center; meteorological parameters from MERRA-2 (NASA GMAO)",
+  "original_api_request": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M,PRECTOTCORR,RH2M&community=AG&longitude=76.95&latitude=43.24&start=2001&end=2024&format=JSON",
+  "retrieval_timestamp": "2026-11-14T05:05:38.289Z",
+  "retrieval_method": "HTTPS GET issued from a Chrome browser on the team's computer (the build sandbox had no route to power.larc.nasa.gov); SHA-256 computed in the browser on the response body and matched after the body was stored in the repository (byte-identical)",
+  "request": {
+    "latitude": 43.24,
+    "longitude": 76.95,
+    "start": 2001,
+    "end": 2024,
+    "parameters": [
+      "PRECTOTCORR",
+      "RH2M",
+      "T2M"
+    ],
+    "community": "AG"
+  },
+  "variables": {
+    "PRECTOTCORR": {
+      "units": "mm/day",
+      "longname": "Precipitation Corrected",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    },
+    "RH2M": {
+      "units": "%",
+      "longname": "Relative Humidity at 2 Meters",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    },
+    "T2M": {
+      "units": "C",
+      "longname": "Temperature at 2 Meters",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    }
+  },
+  "spatial_resolution": "MERRA-2 native grid, 0.5 deg latitude x 0.625 deg longitude; a point query returns the enclosing grid cell, at the grid cell's mean elevation (per POWER documentation)",
+  "grid_cell_elevation_m": 2478.24,
+  "temporal_resolution": "monthly means (keys YYYY01..YYYY12) plus the API's annual mean (YYYY13)",
+  "coverage": {
+    "start": "2001-01",
+    "end": "2024-12",
+    "n_months": 288
+  },
+  "missing_values": {
+    "fill_value": -999.0,
+    "counts": {
+      "PRECTOTCORR": 0,
+      "RH2M": 0,
+      "T2M": 0
+    }
+  },
+  "source_product_version": {
+    "api": {
+      "version": "v2.10.0",
+      "name": "POWER Monthly and Annual API"
+    },
+    "sources": [
+      "MERRA2",
+      "POWER"
+    ],
+    "time_standard": "LST"
+  },
+  "sha256": "9c8fcb0467a87a63c20adcec96d9dff9240855aa2493ac0cb1426530ae4d6235",
+  "bytes": 14226,
+  "sha256_canonical_data": "cea3b4ed760ecef64998b1d4fba08120ad260cd4cd497c564a298ec68ebae2fb",
+  "raw_path": "raw/power/power_monthly_point_lat43.24_lon76.95_2001-2024_PRECTOTCORR-RH2M-T2M_AG.json",
+  "validation_status": "VALIDATED",
+  "validation_checks": [
+    {
+      "check": "calendar complete and identical for all variables",
+      "passed": true
+    },
+    {
+      "check": "YYYY13 annual summaries separated from the 12 calendar months",
+      "passed": true,
+      "detail": "24 annual keys per variable"
+    },
+    {
+      "check": "fill value converted to NaN",
+      "passed": true,
+      "detail": {
+        "fill_value": -999.0,
+        "missing_counts": {
+          "PRECTOTCORR": 0,
+          "RH2M": 0,
+          "T2M": 0
+        }
+      }
+    },
+    {
+      "check": "units present in response metadata",
+      "passed": true,
+      "detail": {
+        "PRECTOTCORR": "mm/day",
+        "RH2M": "%",
+        "T2M": "C"
+      }
+    },
+    {
+      "check": "response geometry matches the request",
+      "passed": true
+    },
+    {
+      "check": "our day-weighted annual means agree with the API's own annual values",
+      "passed": true,
+      "detail": {
+        "PRECTOTCORR": {
+          "max_abs_diff_day_weighted": 0.003961748633879658,
+          "max_abs_diff_simple_mean": 0.009166666666666545
+        },
+        "RH2M": {
+          "max_abs_diff_day_weighted": 0.004931506849317202,
+          "max_abs_diff_simple_mean": 0.15916666666667112
+        },
+        "T2M": {
+          "max_abs_diff_day_weighted": 0.004986301369863444,
+          "max_abs_diff_simple_mean": 0.09999999999999998
+        }
+      }
+    }
+  ],
+  "warnings": []
+}

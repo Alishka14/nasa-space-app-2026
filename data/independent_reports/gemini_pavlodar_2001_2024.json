@@ -1,0 +1,25 @@
+{
+  "source": "Gemini preliminary analysis of NASA POWER for Pavlodar 2001-2024, as relayed in the team brief of 2026-11-14",
+  "assessor": "Gemini (a different model family from the author of this engine)",
+  "independence": "separate AI system; data retrieved separately; no code shared; method not stated by the reporter",
+  "method_note": "Gemini did not state how its trend numbers were computed. They are compared here with the variant that reproduces them: Theil-Sen slope and classic Mann-Kendall on the API's own annual means (keys YYYY13). See docs/GEMINI_REPRODUCTION.md.",
+  "scope": {"latitude": 52.29, "longitude": 76.97, "period": [2001, 2024]},
+  "reports": [
+    {"metric": "corr.T2M-RH2M.raw", "reported": -0.945, "tolerance": 0.0006},
+    {"metric": "corr.T2M-RH2M.deseasonalized", "reported": -0.316, "tolerance": 0.0006},
+    {"metric": "corr.T2M-PRECTOTCORR.raw", "reported": 0.439, "tolerance": 0.0006},
+    {"metric": "corr.T2M-PRECTOTCORR.deseasonalized", "reported": -0.125, "tolerance": 0.0006},
+    {"metric": "corr.PRECTOTCORR-RH2M.raw", "reported": -0.285, "tolerance": 0.0006},
+    {"metric": "corr.PRECTOTCORR-RH2M.deseasonalized", "reported": 0.593, "tolerance": 0.0006},
+    {"metric": "trend.T2M.sen_slope_api_annual", "reported": -0.021, "tolerance": 0.0006},
+    {"metric": "trend.T2M.mk_p_api_annual", "reported": 0.427, "tolerance": 0.0015},
+    {"metric": "trend.PRECTOTCORR.sen_slope_api_annual", "reported": 0.005, "tolerance": 0.0006},
+    {"metric": "trend.PRECTOTCORR.mk_p_api_annual", "reported": 0.275, "tolerance": 0.0015},
+    {"metric": "trend.RH2M.sen_slope_api_annual", "reported": 0.16, "tolerance": 0.006},
+    {"metric": "trend.RH2M.mk_p_api_annual", "reported": 0.035, "tolerance": 0.0015},
+    {"metric": "trend.RH2M.q", "reported": 0.105, "tolerance": 0.0015},
+    {"metric": "lag.T2M-RH2M.deseasonalized.+0", "reported": -0.316, "tolerance": 0.0006},
+    {"metric": "lag.T2M-RH2M.deseasonalized.+1", "reported": -0.185, "tolerance": 0.0006},
+    {"metric": "lag.T2M-RH2M.deseasonalized.+2", "reported": -0.04, "tolerance": 0.006, "note": "reported as approximate ('about -0.04' for lags of two months and more)"}
+  ]
+}
