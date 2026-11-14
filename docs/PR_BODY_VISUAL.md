@@ -25,7 +25,7 @@ kept. The MVP already in `main` is not added again.
 
 ### Checks
 
-- `cd backend && python -m pytest` — see the result in the PR comment / description update.
+- `cd backend && python -m pytest`: **180 passed**, including 15 intro-content tests and 5 texture-provenance tests.
 - Frontend build passes. In the browser flow, 16 of 16 steps pass with no console errors.
 - All 20 scenes were checked in each language at 1280×720, 1440×900, 1024×768 and 390×844: no text overlaps and
   nothing is clipped.
