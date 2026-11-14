@@ -17,34 +17,40 @@ rewrite history, never force-push, never touch `main`, and never delete a file t
 
 | File | What it is |
 |---|---|
-| `earth-senses-mvp.bundle` | Git bundle with the complete branch `feat/earth-senses-mvp` (all commits) |
-| `earth-senses-final-delivery.mbox` | Only the FINAL DELIVERY commits, as patches — for the case where the first 11 commits are already on GitHub |
-| `earth-senses-mvp.zip` | The working tree without history (fallback) |
+| `earth-senses-mvp.bundle` | Git bundle with the complete branch `feat/earth-senses-mvp` (all commits, including the earlier eleven) |
+| `earth-senses-mvp.zip` | The same working tree without history (fallback only) |
 
-## Route A — the branch is not on GitHub yet
+Both routes below were rehearsed against a stand-in repository with its own unrelated `main`, a `README.md` and a
+`.gitignore`: the team's files stayed intact and `main` was not touched.
+
+## Step 0 — look before changing anything (both routes)
 
 ```bash
-# 0. look before changing anything
 cd ~/path/to/nasa-space-app-2026          # your clone of the team repository
 git status --short && git remote -v && git branch -a && git log --oneline -5
 gh auth status                            # must show an account with write access (Alishka14 or RakamakadoN)
-
-# 1. import the branch from the bundle under a temporary name
 git fetch origin
 git fetch ~/Downloads/earth-senses-mvp.bundle feat/earth-senses-mvp:earth-senses-import
 git log --oneline earth-senses-import | head -20
 
-# 2. start the public branch from the team's current main and merge ours into it
-git switch -c feat/earth-senses-mvp origin/main
-git merge --allow-unrelated-histories --no-ff --no-commit earth-senses-import
-git status                                # conflicts can only be paths that exist on both sides
+# paths that exist both on main and in our branch: the only places where a decision is needed
+comm -12 <(git ls-tree -r --name-only origin/main | sort) <(git ls-tree -r --name-only earth-senses-import | sort)
 ```
 
-If `git status` lists conflicts (most likely `README.md` or `.gitignore`), keep the team's file and add ours beside
-it. Do this for each conflicted path:
+Rule for every path that list shows: **the team's version stays**, ours is added beside it under another name.
+
+## Route A — the branch is not on GitHub yet
 
 ```bash
-# example for README.md
+git switch -c feat/earth-senses-mvp origin/main
+git merge --allow-unrelated-histories --no-ff --no-commit earth-senses-import
+git status                                # conflicts can only be the paths listed in step 0
+```
+
+If `git status` lists conflicts (most likely `README.md` and `.gitignore`):
+
+```bash
+# README.md: keep the team's, add ours beside it
 git show earth-senses-import:README.md > EARTH_SENSES_README.md
 git checkout --ours -- README.md
 git add README.md EARTH_SENSES_README.md
@@ -59,8 +65,8 @@ Then:
 
 ```bash
 git commit -m "Merge EARTH SENSES MVP on top of main (no files on main changed or removed)"
-git diff --stat origin/main...HEAD | tail -3      # review: additions only
-git push -u origin feat/earth-senses-mvp          # an ordinary push; never --force
+git diff --name-status origin/main HEAD | grep -v '^A'     # expected: nothing, or only .gitignore
+git push -u origin feat/earth-senses-mvp                   # an ordinary push; never --force
 
 gh pr create --draft --base main --head feat/earth-senses-mvp \
   --title "EARTH SENSES MVP: evidence-first trend and relationship investigation" \
@@ -70,26 +76,35 @@ gh pr create --draft --base main --head feat/earth-senses-mvp \
 If the repository is empty (no `main` yet): `git push origin earth-senses-import:feat/earth-senses-mvp` and open the
 PR after the team has created `main`.
 
-## Route B — the first 11 commits were already published with the import kit
+## Route B — an earlier version of the branch is already on GitHub (import kit)
 
 ```bash
-cd ~/path/to/nasa-space-app-2026
-git fetch origin && git switch feat/earth-senses-mvp && git pull --ff-only
-git status --short                                 # must be clean
-git am ~/Downloads/earth-senses-final-delivery.mbox
+git switch feat/earth-senses-mvp && git pull --ff-only
+git status --short                                         # must be clean
+git merge --allow-unrelated-histories --no-ff --no-commit earth-senses-import
+
+# EARTH SENSES directories: take the new version
+git checkout --theirs -- backend frontend data scripts docs 2>/dev/null
+git add backend frontend data scripts docs
+# anything else that still conflicts (README.md, .gitignore): keep what is on the branch
+for P in $(git diff --name-only --diff-filter=U); do git checkout --ours -- "$P"; git add "$P"; done
+git show earth-senses-import:README.md > EARTH_SENSES_README.md && git add EARTH_SENSES_README.md
+
+git commit -m "Merge EARTH SENSES final delivery"
+git diff --stat earth-senses-import HEAD -- backend frontend data scripts docs   # expected: no output
 git push origin feat/earth-senses-mvp
 gh pr create --draft --base main --head feat/earth-senses-mvp \
   --title "EARTH SENSES MVP: evidence-first trend and relationship investigation" \
-  --body-file docs/PR_BODY.md                      # skip if the PR already exists
+  --body-file docs/PR_BODY.md                              # skip if the PR already exists
 ```
 
-If `git am` stops, run `git am --abort` (the branch returns to its previous state) and use Route A into a new branch
-name such as `feat/earth-senses-final`, then open the PR from that branch.
+If step 0 showed team-owned files inside `backend`, `frontend`, `data`, `scripts` or `docs`, restore each of them
+after the `--theirs` line with `git checkout --ours -- <path>` before committing.
 
 ## After pushing
 
 1. `python scripts/build_provenance.py` — prints `OK` four times.
-2. `(cd backend && python -m pytest)` — `160 passed` with `requirements-dev.txt`.
+2. `(cd backend && python -m pytest)` — `160 passed` with `requirements-dev.txt` (`151 passed, 9 skipped` without `pymannkendall`).
 3. Start the backend **without** `EARTH_SENSES_OFFLINE` and investigate a place that is not bundled (for example
    Astana). This is the first live request the backend makes to NASA; watch it once and note the result in the PR.
 4. Make the repository public before submitting: the submission form requires a link that opens without login.

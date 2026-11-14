@@ -2,7 +2,7 @@
 
 **Draft.** Please do not merge until the team has reviewed it. This branch adds new files only; it does not modify
 or delete anything that is already on `main` (if a path existed on both sides, the version on `main` was kept and
-ours was added beside it — see the merge commit).
+ours was added beside it — see the merge commit and `docs/HANDOFF.md`).
 
 ## What this adds
 
