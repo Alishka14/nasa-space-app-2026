@@ -4,7 +4,6 @@ sensitivity (test 12) and unit separation."""
 from __future__ import annotations
 
 import numpy as np
-import pymannkendall as pmk
 import pytest
 from statsmodels.stats.multitest import multipletests
 
@@ -14,11 +13,19 @@ from earth_senses.trends import (benjamini_hochberg, hamed_rao_mk, leave_one_out
                                  minimum_detectable_trend, ols_trend, seasonal_mann_kendall, summarize_trend,
                                  theil_sen, window_sensitivity)
 
+try:                                   # reference implementation: a development-only dependency
+    import pymannkendall as pmk
+except ModuleNotFoundError:
+    pmk = None
+needs_pmk = pytest.mark.skipif(pmk is None, reason="pymannkendall is not installed "
+                                                   "(pip install -r backend/requirements-dev.txt)")
+
 YEARS = np.arange(2001, 2025, dtype=float)
 
 
 # ---- agreement with an independent implementation (pymannkendall) ---------------------------
 
+@needs_pmk
 @pytest.mark.parametrize("name", PARAMS)
 def test_mann_kendall_and_sen_match_pymannkendall_on_real_data(pavlodar, name):
     x = annual_mean(pavlodar.monthly[name]).to_numpy()
@@ -30,12 +37,14 @@ def test_mann_kendall_and_sen_match_pymannkendall_on_real_data(pavlodar, name):
     assert theil_sen(YEARS, x)["slope"] == pytest.approx(ref.slope)
 
 
+@needs_pmk
 def test_mann_kendall_tie_correction_matches_reference():
     x = np.array([1, 2, 2, 3, 3, 3, 4, 2, 5, 5, 6, 1, 7.0])
     ours, ref = mann_kendall(x), pmk.original_test(x)
     assert ours["var_s"] == pytest.approx(ref.var_s) and ours["p"] == pytest.approx(ref.p)
 
 
+@needs_pmk
 def test_hamed_rao_matches_reference_when_not_clipped():
     rng = np.random.default_rng(7)
     for phi in (0.0, 0.5, 0.8):
@@ -52,6 +61,7 @@ def test_conservative_hamed_rao_is_never_more_liberal_than_classic():
         assert hamed_rao_mk(x)["p"] >= mann_kendall(x)["p"] - 1e-12
 
 
+@needs_pmk
 @pytest.mark.parametrize("name", PARAMS)
 def test_seasonal_kendall_matches_reference_under_independence(pavlodar, name):
     x = pavlodar.monthly[name].to_numpy()
@@ -62,6 +72,7 @@ def test_seasonal_kendall_matches_reference_under_independence(pavlodar, name):
     assert ours["slope"] == pytest.approx(ref.slope)
 
 
+@needs_pmk
 def test_seasonal_kendall_covariance_term_matches_reference(pavlodar):
     x = pavlodar.monthly["RH2M"].to_numpy()
     ours, ref = seasonal_mann_kendall(x.reshape(-1, 12)), pmk.correlated_seasonal_test(x, period=12)

@@ -18,7 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import ENGINE_VERSION
-from .catalog import DEFAULT_VARIABLES, REGIONS, VARIABLES
+from .catalog import DEFAULT_VARIABLES, DERIVED, REGIONS, VARIABLES
 from .evidence import load_independent_reports
 from .guard import CLAIM_TYPES, STATUS_ORDER, check_claim
 from .investigate import compare_regions, investigate
@@ -121,8 +121,8 @@ def catalog() -> dict[str, Any]:
     for reg in REGIONS:
         spans = [(c["start"], c["end"]) for c in cached
                  if abs(c["latitude"] - reg["latitude"]) < 1e-9 and abs(c["longitude"] - reg["longitude"]) < 1e-9]
-        regions.append({**reg, "cached_periods": sorted(spans)})
-    return {"variables": VARIABLES, "default_variables": DEFAULT_VARIABLES, "regions": regions,
+        regions.append({**reg, "cached_periods": sorted(set(spans))})
+    return {"variables": VARIABLES, "default_variables": DEFAULT_VARIABLES, "regions": regions, "derived": DERIVED,
             "first_year": POWER_FIRST_YEAR, "last_complete_year": datetime.now(timezone.utc).year - 1,
             "network_allowed": store.allow_network, "cached_datasets": cached,
             "claim_types": list(CLAIM_TYPES), "statuses": STATUS_ORDER}

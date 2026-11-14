@@ -30,8 +30,8 @@ VARIABLES: dict[str, dict] = {
                       "number of days in the month to get the monthly total in millimetres.",
     },
     "QV2M": {
-        "label": "Specific humidity (2 m)", "expected_units": None, "display_units": None,
-        "slope_units": None, "aggregation": "mean", "verified": False,
+        "label": "Specific humidity (2 m)", "expected_units": "g/kg", "display_units": "g/kg",
+        "slope_units": "g/kg per year", "aggregation": "mean", "verified": True,
         "definition": "Mass of water vapour per mass of moist air; unlike relative humidity it does not "
                       "change just because the air warms or cools.",
     },
@@ -62,7 +62,27 @@ VARIABLES: dict[str, dict] = {
     },
 }
 
+VARIABLES["IMERG_PRECTOT"] = {
+    "label": "Precipitation, GPM IMERG (via POWER)", "expected_units": None, "display_units": None,
+    "slope_units": None, "aggregation": "rate", "verified": False,
+    "definition": "Satellite-based precipitation. Checked on 2026-11-14: for Pavlodar the POWER monthly service "
+                  "returned only its missing-value code for 2001-2024, so this tool refuses to analyse it there.",
+}
+
 DEFAULT_VARIABLES = ["T2M", "RH2M", "PRECTOTCORR"]
+
+# Variables that are computed from other variables. A correlation between a derived
+# variable and one of its inputs is partly built into the definition.
+DERIVED: dict[str, dict] = {
+    "RH2M": {
+        "depends_on": ["T2M", "QV2M"],
+        "note": "Relative humidity is a derived quantity: the ratio of the water vapour present to the amount "
+                "the air could hold at its temperature. NASA POWER calculates it from MERRA-2 pressure, "
+                "temperature and specific humidity, so part of any association with temperature or moisture "
+                "content is built into the definition.",
+        "source": "https://power.larc.nasa.gov/docs/methodology/meteorology/relative-humidity/",
+    },
+}
 
 REGIONS: list[dict] = [
     {"id": "pavlodar", "name": "Pavlodar, Kazakhstan", "latitude": 52.29, "longitude": 76.97,

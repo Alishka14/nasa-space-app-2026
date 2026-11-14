@@ -24,6 +24,10 @@ def render_report(inv: dict[str, Any]) -> str:
         "## 1. Data provenance", "",
     ]
     for p in inv["provenance"]:
+        counts = p["missing_values"]["counts"]
+        unused = {k: n for k, n in counts.items() if k not in req["variables"] and n}
+        not_used = ("; also in this file but not used: "
+                    + ", ".join(f"{k} ({n} missing)" for k, n in unused.items())) if unused else ""
         out += [f"- **Source:** {p['original_source']}",
                 f"  - Request: `{p['original_api_request']}`",
                 f"  - Retrieved: {p['retrieval_timestamp']} — {p['retrieval_method']}",
@@ -31,7 +35,8 @@ def render_report(inv: dict[str, Any]) -> str:
                 f"sources {', '.join(p['source_product_version']['sources'])}",
                 f"  - Resolution: {p['spatial_resolution']}; {p['temporal_resolution']}",
                 f"  - Coverage: {p['coverage']['start']} to {p['coverage']['end']} ({p['coverage']['n_months']} months); "
-                f"missing values: {sum(p['missing_values']['counts'].values())} (fill {p['missing_values']['fill_value']})",
+                f"missing values: {sum(n for k, n in counts.items() if k not in unused)} "
+                f"(fill {p['missing_values']['fill_value']}){not_used}",
                 f"  - SHA-256: `{p['sha256']}` · validation: {p['validation_status']}"]
     out += ["", "Kind of data: model reanalysis (MERRA-2), not a direct satellite or station measurement.", ""]
     if inv["warnings"]:

@@ -59,6 +59,15 @@ def detrend_linear(series: pd.Series) -> pd.Series:
     return pd.Series(y - (slope * t + intercept), index=series.index, name=series.name)
 
 
+def standardize_by_month(anomaly: pd.Series) -> pd.Series:
+    """Divide each anomaly by the standard deviation of its own calendar month,
+    so that every month of the year carries the same weight in a pooled
+    correlation. Without this, months with large variance (summer rain in a
+    continental climate) dominate an all-year coefficient."""
+    sd = anomaly.groupby(anomaly.index.month).transform("std")
+    return anomaly / sd.where(sd > 0)
+
+
 def climatology_cycle(series: pd.Series, climatology: pd.Series) -> pd.Series:
     """The repeating seasonal cycle alone (used as an explanatory control)."""
     return pd.Series(series.index.month.map(climatology).to_numpy(dtype=float), index=series.index)
@@ -119,6 +128,37 @@ def correlate(x: Sequence[float], y: Sequence[float]) -> dict[str, Any]:
         "spearman_rho": float(rho), "spearman_p_naive": float(p_rho),
         "r_squared": r * r,
     }
+
+
+def partial_correlation(x: Sequence[float], y: Sequence[float],
+                        controls: Sequence[Sequence[float]]) -> dict[str, Any]:
+    """Correlation of x and y after the part of each that is linearly related
+    to the control series has been removed by least squares.
+
+    A partial correlation is still only a correlation. It answers "does the
+    association survive when this other series is held fixed statistically",
+    not "what causes what". Each control costs one degree of freedom, on top
+    of the autocorrelation adjustment.
+    """
+    k = len(controls)
+    a = np.asarray(x, dtype=float)
+    b = np.asarray(y, dtype=float)
+    z = np.column_stack([np.ones(len(a))] + [np.asarray(c, dtype=float) for c in controls])
+    ok = np.isfinite(a) & np.isfinite(b) & np.isfinite(z).all(axis=1)
+    a, b, z = a[ok], b[ok], z[ok]
+    n = len(a)
+    if n < 8 + k:
+        return {"n": n, "n_controls": k, "pearson_r": None, "note": "too few points"}
+    ra = a - z @ np.linalg.lstsq(z, a, rcond=None)[0]
+    rb = b - z @ np.linalg.lstsq(z, b, rcond=None)[0]
+    if np.ptp(ra) < 1e-12 or np.ptp(rb) < 1e-12:
+        return {"n": n, "n_controls": k, "pearson_r": None, "note": "nothing left after removing the controls"}
+    r = float(np.corrcoef(ra, rb)[0, 1])
+    n_eff, _, _ = effective_n(ra, rb)
+    n_adj = max(n_eff - k, 0.0)
+    lo, hi = _fisher_ci(r, n_adj)
+    return {"n": n, "n_controls": k, "pearson_r": r, "n_eff": n_adj, "p_naive": _p_from_r(r, n - k),
+            "p_adjusted": _p_from_r(r, n_adj), "ci95_adjusted": [lo, hi]}
 
 
 # ---------------------------------------------------------------------------

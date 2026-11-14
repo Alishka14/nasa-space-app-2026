@@ -17,12 +17,14 @@ import numpy as np
 import pandas as pd
 
 from . import ENGINE_VERSION
-from .catalog import describe
+from .catalog import DERIVED, VARIABLES, describe
+from .derived import structural_check
 from .evidence import attach_independent_reports, make_record
 from .guard import enforce
 from .normalize import SEASONS, annual_mean, annual_total, rate_to_monthly_total, seasonal_mean
-from .power_client import POWER_FIRST_YEAR, DataUnavailable, PowerDataset, PowerStore
-from .relationships import analyze_pair, anomalies, correlate, detrend_linear, monthly_climatology
+from .power_client import MISSING_CHECK, POWER_FIRST_YEAR, DataUnavailable, PowerDataset, PowerStore
+from .relationships import (analyze_pair, anomalies, correlate, detrend_linear, monthly_climatology,
+                            partial_correlation, standardize_by_month)
 from .trends import (benjamini_hochberg, leave_one_out, mann_kendall, seasonal_mann_kendall,
                      summarize_trend, theil_sen, window_sensitivity)
 
@@ -45,8 +47,9 @@ GENERAL_LIMITATIONS = [
 HYPOTHESES = {
     frozenset(("T2M", "RH2M")):
         "Hypothesis (untested here): for a fixed amount of water vapour, warmer air is further from "
-        "saturation, so relative humidity is lower in warmer-than-usual months. A test: repeat with "
-        "specific humidity (QV2M), which should co-vary with temperature far less if this is the reason.",
+        "saturation, so relative humidity is lower in warmer-than-usual months. A test: add specific "
+        "humidity (QV2M), the moisture content itself, and compare how it and relative humidity each "
+        "co-vary with temperature.",
     frozenset(("PRECTOTCORR", "RH2M")):
         "Hypothesis (untested here): wetter-than-usual months bring moister air and wetter soil, and both "
         "raise near-surface humidity; humidity staying high in the following month would fit soil-moisture "
@@ -103,6 +106,21 @@ def pair_order(variables: list[str]) -> list[str]:
     """Fixed ordering for pairs so that ids and lag signs do not depend on the
     order in which the user ticked the variables."""
     return sorted(variables, key=lambda v: (_PAIR_RANK.get(v, 99), v))
+
+
+def structural_dependence(a: str, b: str, infos: dict) -> dict[str, Any] | None:
+    """Is one variable of the pair computed from the other?"""
+    for derived, other in ((a, b), (b, a)):
+        spec = DERIVED.get(derived)
+        if spec and other in spec["depends_on"]:
+            return {"derived": derived, "input": other, "depends_on": list(spec["depends_on"]),
+                    "note": f"{infos[derived]['label']} is computed from {infos[other]['label']} (and from "
+                            + " and ".join(VARIABLES.get(v, {}).get("label", v)
+                                           for v in spec["depends_on"] if v != other)
+                            + "), so part of this association is built into the definition and is not an "
+                              "independent finding.",
+                    "evidence_id": None}
+    return None
 
 
 def _window_len(n: int) -> int:
@@ -199,8 +217,8 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
     base = list(baseline) if baseline else period
     if not (start <= base[0] <= base[1] <= end):
         raise ValueError(f"baseline {base} must lie inside the analysed period {period}")
-    infos = {v: describe(v, ds.norm.units[v], ds.norm.longnames[v]) for v in variables}
-    warnings = list(ds.norm.warnings) + list(ds.notes)
+    infos = {v: describe(v, ds.units[v], ds.longnames[v]) for v in variables}
+    warnings = list(ds.warnings) + list(ds.notes)
     for v in variables:
         if monthly[v].isna().any():
             raise ValueError(f"{v} has missing months in the requested period; gap handling is not "
@@ -355,7 +373,38 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
             f"p = {fp(res['negative_control_year_shuffle']['p_permutation'])}; 95% of shuffled |r| are below "
             f"{f(res['negative_control_year_shuffle']['null_abs_r_p95'], sign=False)}.",
         ]
+        # is the all-year value carried by a few high-variance months?
+        ms = correlate(standardize_by_month(anom[a]), standardize_by_month(anom[b]))
+        res["month_standardized"] = ms
+        uneven = ms.get("pearson_r") is not None and abs(ms["pearson_r"]) < 0.75 * abs(des["pearson_r"])
+        if ms.get("pearson_r") is not None:
+            support.append(f"With every calendar month weighted equally (anomalies divided by that month's "
+                           f"standard deviation): r = {f(ms['pearson_r'])}.")
+
+        # does the association survive when each other selected variable is held fixed?
+        others = [c for c in pair_order(variables) if c not in (a, b)]
+        partial = []
+        control_sets = [[c] for c in others] + ([others] if len(others) > 1 else [])
+        for controls in control_sets:
+            pc = partial_correlation(detr[a], detr[b], [detr[c] for c in controls])
+            if pc.get("pearson_r") is None:
+                continue
+            partial.append({"controls": controls, "labels": [infos[c]["label"] for c in controls], **pc})
+            support.append(
+                f"Partial correlation with {' and '.join(infos[c]['label'] for c in controls)} held fixed "
+                f"statistically: r = {f(pc['pearson_r'])} (95% CI {fr(pc['ci95_adjusted'][0])} to "
+                f"{fr(pc['ci95_adjusted'][1])}; r = {f(d['pearson_r'])} without).")
+        res["partial"] = partial
+        structural = structural_dependence(a, b, infos)
+        res["structural_dependence"] = structural
+
         counter = []
+        if structural:
+            counter.append(structural["note"])
+        if uneven:
+            counter.append(f"With every calendar month weighted equally the value is {f(ms['pearson_r'], 2)} "
+                           f"instead of {f(des['pearson_r'], 2)}: the all-year figure is weighted towards the "
+                           "months with the largest variance.")
         st = res["stability"]
         hv = st["halves"]
         counter.append(f"Halves of the record: r = {f(hv[0]['r'], 2)} ({hv[0]['start']}-{hv[0]['end']}) and "
@@ -457,7 +506,8 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
     n_annual = sum(int(p["coverage"]["n_months"]) // 12 for p in prov)   # YYYY13 keys in the raw files
     dv = make_record(
         claim=(f"Input data checks passed: {len(monthly)} monthly values per variable for {start}-{end}, "
-               f"{sum(sum(p['missing_values']['counts'].values()) for p in prov)} missing; annual-summary keys "
+               f"{sum(p['missing_values']['counts'].get(v, 0) for p in prov for v in variables)} missing; "
+               f"annual-summary keys "
                f"(YYYY13) kept apart from months; units taken from the response; values are {ds.source}-sourced "
                f"from {len(prov)} raw file(s) whose SHA-256 matches the provenance record."),
         claim_type="computed_observation", region=region, period=period, variables=variables,
@@ -467,9 +517,73 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
                 "raw_sha256": [p["sha256"] for p in prov], "units": {v: infos[v]["units"] for v in variables}},
         uncertainty={}, verdict="CHECKS_PASSED", engine_version=ENGINE_VERSION,
         supporting_evidence=[f"{c['check']}: {'passed' if c['passed'] else 'FAILED'}."
-                             for c in prov[0]["validation_checks"]],
+                             for c in prov[0]["validation_checks"] if c["check"] != MISSING_CHECK],
         limitations=["Validation covers structure and internal consistency, not the physical accuracy of MERRA-2."])
     evidence.insert(0, dv)
+
+    # ---- false-discovery control across the pairs tested together -----------------
+    # Reported next to each pair; the per-pair status is not changed by it, a warning is raised instead.
+    if relationships:
+        pair_q = benjamini_hochberg([r_["detrended"]["p_adjusted"] for r_ in relationships])
+        for r_, q_ in zip(relationships, pair_q):
+            r_["q_across_pairs"] = q_
+            if r_["status"] in ("SUPPORTED", "WEAK") and q_ is not None and q_ >= alpha:
+                warnings.append(
+                    f"{r_['id']}: detectable on its own (adjusted p = {fp(r_['detrended']['p_adjusted'])}) but not "
+                    f"after correcting for the {len(relationships)} pairs tested together (q = {fp(q_)}).")
+
+    # ---- derived variables: how far one variable is determined by the others ----
+    derived_checks: list[dict[str, Any]] = []
+    for name, spec in DERIVED.items():
+        if name not in variables or not all(v in variables for v in spec["depends_on"]):
+            continue
+        if (name, tuple(spec["depends_on"])) != ("RH2M", ("T2M", "QV2M")):
+            continue                               # only the humidity identity is implemented
+        chk = structural_check(monthly["T2M"], monthly["QV2M"], monthly["RH2M"],
+                               elevation_m=ds.norm.elevation_m, baseline=tuple(base))
+        rc, fit = chk["reconstruction"], chk["linear_fit_of_anomalies"]
+        seasons_r2 = ", ".join(f"{k} {fit['by_season'][k]['r_squared']:.2f}" for k in fit["by_season"])
+        claim = (f"{infos['RH2M']['label']} is a derived quantity in these data. Rebuilt from monthly "
+                 f"{infos['T2M']['label']} and {infos['QV2M']['label']} with a textbook formula and no fitting, "
+                 f"it matches the RH2M values in the file at r = {f(rc['r_raw'])} (mean absolute difference "
+                 f"{rc['mean_abs_error_pp']:.2f} percentage points); for detrended anomalies r = "
+                 f"{f(rc['r_detrended_anomalies'])}. A linear combination of the temperature and "
+                 f"specific-humidity anomalies reproduces {100 * fit['overall']['r_squared']:.0f}% of the "
+                 f"variance of the relative-humidity anomalies (R2 by season: {seasons_r2}).")
+        drec = make_record(
+            claim=claim, claim_type="computed_observation", region=region, period=period,
+            variables=["T2M", "QV2M", "RH2M"],
+            method="Relative humidity rebuilt from monthly temperature and specific humidity (Magnus formula "
+                   "over water, standard-atmosphere pressure at the grid-cell elevation, nothing fitted); "
+                   "least-squares fit of detrended RH2M anomalies on T2M and QV2M anomalies, overall and by season",
+            parameters={"baseline": base, "assumed_pressure_hpa": round(chk["assumed_pressure_hpa"], 2)},
+            data_hash=ds.data_hash,
+            result={"reconstruction": rc, "linear_fit_of_anomalies": fit},
+            uncertainty={"approximations": chk["approximations"]},
+            supporting_evidence=[
+                f"Reconstruction against the file: r = {f(rc['r_raw'])}, mean difference "
+                f"{rc['bias_pp']:+.2f} percentage points, mean absolute difference {rc['mean_abs_error_pp']:.2f}.",
+                f"Fit of anomalies, all months: {fit['overall']['coefficients'][0]:+.2f} percentage points per "
+                f"deg C and {fit['overall']['coefficients'][1]:+.2f} per g/kg, R2 = {fit['overall']['r_squared']:.3f}.",
+            ],
+            counterevidence=[
+                "The match is weakest in "
+                + min(fit["by_season"], key=lambda k: fit["by_season"][k]["r_squared"])
+                + f" (R2 = {min(v['r_squared'] for v in fit['by_season'].values()):.2f}); the reconstruction "
+                  "uses monthly means and a constant pressure, so the mismatch there is not evidence of "
+                  "independent information in RH2M.",
+            ],
+            verdict="DERIVED_VARIABLE_CONFIRMED" if rc["r_raw"] >= 0.9 else "DERIVED_VARIABLE_CHECK_INCONCLUSIVE",
+            alternatives=["The remaining mismatch may come from averaging (the mean of a ratio is not the ratio "
+                          "of the means) or from pressure changes; neither was tested."],
+            limitations=["This is a consistency check between variables of one reanalysis file; it says nothing "
+                         "about the accuracy of any of them.", GENERAL_LIMITATIONS[0]],
+            engine_version=ENGINE_VERSION)
+        evidence.append(drec)
+        derived_checks.append({**chk, "statement": claim, "verdict": drec.verdict, "evidence_id": drec.id})
+        for r_ in relationships:
+            if r_.get("structural_dependence") and r_["structural_dependence"]["derived"] == name:
+                r_["structural_dependence"]["evidence_id"] = drec.id
 
     # ---- what these data cannot tell us (prohibitions, not claims) ----------------
     cannot = []
@@ -486,6 +600,11 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
     for r in relationships:
         cannot.append(f"A cause-and-effect link between {infos[r['x']]['label']} and {infos[r['y']]['label']} "
                       "cannot be concluded from co-variation of anomalies, however strong.")
+        if r.get("structural_dependence"):
+            sd = r["structural_dependence"]
+            cannot.append(f"That {infos[sd['input']]['label']} and {infos[sd['derived']]['label']} are linked by "
+                          "a separate physical process cannot be concluded from their correlation: the second "
+                          "is computed from the first, so part of the association is built into the definition.")
     if relationships:
         cannot.append("Which variable influences which cannot be read from a lead or lag.")
         cannot.append("That the atmosphere has or lacks 'memory' cannot be concluded from monthly correlation "
@@ -519,7 +638,8 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
             "anomaly": {v: anom[v].tolist() for v in variables},
             "detrended_anomaly": {v: detr[v].tolist() for v in variables},
         },
-        "trends": trends, "relationships": relationships, "graph": graph, "evidence": ev,
+        "trends": trends, "relationships": relationships, "derived_checks": derived_checks,
+        "graph": graph, "evidence": ev,
         "episodes": episodes, "limitations": GENERAL_LIMITATIONS, "cannot_conclude": cannot,
     })
 
@@ -545,6 +665,8 @@ def build_graph(variables: list[str], infos: dict, trends: dict, relationships: 
             "lag_verdict": r["lag_verdict"], "sign_differs_between_seasons": r["by_season"]["sign_differs_between_seasons"],
             "evidence_id": r["evidence_id"], "lag_evidence_id": r["lag_evidence_id"],
             "hypothesis_id": r["hypothesis_id"],
+            "structural_dependence": r.get("structural_dependence"),
+            "q_across_pairs": r.get("q_across_pairs"),
         })
     return {"nodes": nodes, "edges": edges,
             "rule": "An edge is drawn only from a computed evidence record. Hypotheses annotate edges; "
@@ -567,6 +689,8 @@ def build_episodes(infos: dict, trends: dict, relationships: list[dict], data_ha
         else:
             weakest = min(ss.items(), key=lambda kv: abs(kv[1]["r"] or 0))
             counter = f"Weakest season: {weakest[0]} with r = {f(weakest[1]['r'], 2)}."
+        if r.get("structural_dependence"):
+            counter += " " + r["structural_dependence"]["note"]
         shrink = abs(des) < 0.5 * abs(raw) or raw * des < 0
         episodes.append({
             "id": f"EP-REL-{r['id']}", "kind": "relationship", "subject": [r["x"], r["y"]],
@@ -636,8 +760,8 @@ def compare_regions(store: PowerStore, region_a: dict, region_b: dict, *, start:
         raise ValueError("the two regions are not on the same calendar")
     out = []
     for v in variables:
-        ia = describe(v, da.norm.units[v], da.norm.longnames[v])
-        ib = describe(v, db.norm.units[v], db.norm.longnames[v])
+        ia = describe(v, da.units[v], da.longnames[v])
+        ib = describe(v, db.units[v], db.longnames[v])
         if ia["units"] != ib["units"]:
             raise ValueError(f"unit mismatch between regions for {v}")
         aa, ab = annual_mean(da.monthly[v]), annual_mean(db.monthly[v])
