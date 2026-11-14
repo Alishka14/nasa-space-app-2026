@@ -89,7 +89,7 @@ name such as `feat/earth-senses-final`, then open the PR from that branch.
 ## After pushing
 
 1. `python scripts/build_provenance.py` — prints `OK` four times.
-2. `(cd backend && python -m pytest)` — `146 passed` with `requirements-dev.txt`.
+2. `(cd backend && python -m pytest)` — `160 passed` with `requirements-dev.txt`.
 3. Start the backend **without** `EARTH_SENSES_OFFLINE` and investigate a place that is not bundled (for example
    Astana). This is the first live request the backend makes to NASA; watch it once and note the result in the PR.
 4. Make the repository public before submitting: the submission form requires a link that opens without login.

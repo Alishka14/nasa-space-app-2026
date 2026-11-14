@@ -12,7 +12,7 @@ investigate trends and relationships in NASA data for a chosen point and keep an
 - `backend/earth_senses/` — data validation and provenance (`normalize`, `power_client`), Trend Engine (`trends`),
   Relationship Engine (`relationships`, `derived`), MIZAN Guard (`guard`), Evidence Engine (`evidence`),
   orchestration (`investigate`), report and API.
-- `backend/tests/` — 146 automated tests.
+- `backend/tests/` — 160 automated tests.
 - `frontend/` — React + TypeScript + Vite, MapLibre map, ECharts charts.
 - `data/` — four raw NASA POWER responses stored byte-for-byte, one provenance record (with SHA-256) each.
 - `scripts/` — `build_provenance.py`, `reproduce_gemini.py`, `build_docs.py`, `science_review.py`.
@@ -24,7 +24,7 @@ investigate trends and relationships in NASA data for a chosen point and keep an
 python -m venv .venv && source .venv/bin/activate
 pip install -r backend/requirements-dev.txt
 python scripts/build_provenance.py            # OK ×4: SHA-256 of the NASA files
-(cd backend && python -m pytest)              # 146 passed
+(cd backend && python -m pytest)              # 160 passed
 (cd frontend && npm ci && npm run build)
 EARTH_SENSES_OFFLINE=1 uvicorn earth_senses.api:app --app-dir backend --port 8000
 # open http://localhost:8000 → Investigate → "Precipitation ↔ Relative humidity" → View evidence
@@ -34,12 +34,12 @@ EARTH_SENSES_OFFLINE=1 uvicorn earth_senses.api:app --app-dir backend --port 800
 
 | Check | Result |
 |---|---|
-| Backend tests, clean environment, `requirements-dev.txt` | **PASS** — 146 passed |
-| Backend tests without the optional `pymannkendall` | **PASS** — 137 passed, 9 skipped (reference cross-checks; skipped, not counted as passed) |
+| Backend tests, clean environment, `requirements-dev.txt` | **PASS** — 160 passed |
+| Backend tests without the optional `pymannkendall` | **PASS** — 151 passed, 9 skipped (reference cross-checks; skipped, not counted as passed) |
 | SHA-256 of the four NASA files | **PASS** |
 | Frontend production build (`npm ci && npm run build`) | **PASS** |
 | Interface in a headless browser: region, time series, relationship, evidence drawer, graph, comparison, report, error banner | **PASS** — inspected, not an automated UI test suite |
-| Live request from the backend to NASA | **NOT RUN** — no network route in the build environment |
+| Live request from the backend to NASA | **NOT RUN** — no network route in the build environment; the path is tested with a stubbed transport only |
 | Retrieval through Giovanni / GES DISC | **NOT RUN** |
 | Review by a human scientist | **NOT DONE** |
 

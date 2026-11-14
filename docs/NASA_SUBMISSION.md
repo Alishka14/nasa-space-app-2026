@@ -289,7 +289,7 @@ NASA POWER API ──► power_client  (fetch · validate · store raw bytes · 
   contains no statistics.
 - Frontend: React 19, TypeScript, Vite 7; offline basemap; colour palette checked for colour-vision deficiency;
   every status has an icon and a label, never colour alone; English interface with Russian labels.
-- Tests: 146 automated tests (data traps on real NASA files, statistics cross-checked against `pymannkendall` and
+- Tests: 160 automated tests (data traps on real NASA files, statistics cross-checked against `pymannkendall` and
   `statsmodels`, synthetic controls with known answers, guard rules, API contract, golden values).
 
 ## 8. Reproducibility and Evidence
@@ -299,7 +299,7 @@ git clone https://github.com/Alishka14/nasa-space-app-2026 && cd nasa-space-app-
 python -m venv .venv && source .venv/bin/activate
 pip install -r backend/requirements-dev.txt
 python scripts/build_provenance.py        # SHA-256 of the four NASA files: must print OK four times
-(cd backend && python -m pytest)          # 146 tests
+(cd backend && python -m pytest)          # 160 tests
 python scripts/science_review.py          # recomputes every number of the science review
 (cd frontend && npm ci && npm run build)
 EARTH_SENSES_OFFLINE=1 uvicorn earth_senses.api:app --app-dir backend --port 8000   # http://localhost:8000
@@ -342,6 +342,6 @@ Branch `feat/earth-senses-mvp`; Draft pull request into `main` — **TO DO (see 
 |---|---|
 | **Impact** | A reusable habit-forming tool for students and the public; works for any point on Earth from 1981 |
 | **Creativity** | Counterevidence, a wording guard and "what cannot be concluded" as product features; AI output treated as a hypothesis to be tested |
-| **Validity** | 146 tests; cross-checks against independent libraries; all outside numbers reproduced; self-audit with open items stated |
+| **Validity** | 160 tests; cross-checks against independent libraries; all outside numbers reproduced; self-audit with open items stated |
 | **Relevance** | Directly answers the challenge: what is changing, where, how fast, what changes together, and can we trust it |
 | **Presentation** | One-click demonstration case; the −0.28 → +0.59 reversal tells the story in ten seconds |

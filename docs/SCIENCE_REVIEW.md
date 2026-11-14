@@ -159,7 +159,7 @@ Relative humidity is the ratio of the water vapour present to the amount the air
 - Source: NASA POWER Monthly and Annual API v2.10.0 (`power.larc.nasa.gov`), community AG. The response headers name MERRA-2 as the source. These are **model reanalysis values for one grid cell of about 0.5° × 0.625°**, not station measurements.
 - Chain of custody: the build sandbox had no route to NASA, so each response was fetched in the team's Chrome browser, its SHA-256 was computed in the browser on the response body, the body was stored in `data/raw/` and re-hashed. `scripts/build_provenance.py` fails if any byte differs. The engine re-verifies the hash every time a file is read.
 - The API's own annual values (`YYYY13` keys) are kept apart from the twelve months and are reproduced by our day-weighted means to within rounding.
-- **Live path NOT RUN.** The code path in which the backend itself calls NASA (`PowerStore._fetch_live`) is covered by tests with a stubbed transport only. It has not been exercised against the real service from the build environment.
+- **Live path NOT RUN.** The code path in which the backend itself calls NASA (`PowerStore._fetch_live`) is covered only by tests with a stubbed HTTP transport (`test_08_live_path.py`): they show what the backend does with a good answer, an HTTP error, a network failure and a malformed or mismatched body, not that the real service answers. It has not been exercised against NASA from the build environment.
 - **GPM IMERG.** The POWER service accepts the parameter `IMERG_PRECTOT`, but for this point it returned the missing-value code (−999) for all 288 months and all 24 annual keys, and its header lists MERRA-2 as the only source. The file is stored as evidence of that; the engine refuses to analyse the variable (HTTP 422, no numbers). An independent satellite check of precipitation is therefore **NOT AVAILABLE** by this route. NASA Giovanni / GES DISC was **NOT RUN**: access from the build environment was not permitted.
 - Consequence: all four variables come from one model. Relationships between them may be tighter than in nature, and none has been confirmed against independent observations.
 
@@ -173,7 +173,7 @@ Relative humidity is the ratio of the water vapour present to the amount the air
 | A NASA variable that is entirely missing would have crashed the consistency check | File is registered with status `VALIDATED_WITH_MISSING_DATA`; the variable is refused | None |
 | The data-check sentence counted gaps of variables that were not requested | Count restricted to the requested variables | None on bundled cases |
 | The test proposed in the temperature–humidity hypothesis was worded imprecisely | Reworded; the test is now implemented as the derived-variable check | Wording only |
-| Test collection failed without `pymannkendall` (another verifier reproduced 105 of 129) | The five reference tests are skipped with a reason when the package is absent | None |
+| Test collection failed without `pymannkendall` (another verifier reproduced 105 of 129) | The nine reference test cases are skipped with a reason when the package is absent (151 passed, 9 skipped); 160 pass with it | None |
 | Graph labels overlapped with four variables | Layout for four or more nodes | Display only |
 
 Evidence ids and the data hash of the default three-variable investigation are unchanged (`d9bebf2c77a09f49…`); a test pins them.

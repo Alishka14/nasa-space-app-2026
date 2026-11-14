@@ -72,7 +72,7 @@ create them.
 | DECOMPOSE | Separate modules for ingestion, trends, relationships, guard, evidence |
 | EXECUTE | Small commits per module |
 | CHALLENGE | Synthetic negative controls; cross-checks against other libraries; a separate verification agent |
-| VERIFY | 146 tests; rendered interface inspected screen by screen |
+| VERIFY | 160 tests; rendered interface inspected screen by screen |
 | GOVERN | Guard on all published text; statuses that cannot be self-assigned |
 | EVOLVE | Method revisions recorded with their trigger (`SCIENCE_METHOD.md` §9) |
 

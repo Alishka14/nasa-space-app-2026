@@ -92,7 +92,7 @@ Reference frames (captures of the real application): `docs/screenshots/01_invest
 | 3 | **The flip: −0.28 becomes +0.59** | Pavlodar, NASA POWER / MERRA-2, 2001–2024. Raw: −0.28. Seasonal cycles alone: −0.78. Seasons removed: +0.59 (95% CI +0.51 to +0.66) | `08_precipitation_humidity.png`, cropped to the bar chart |
 | 4 | **Then it doubts its own answer** | Absent in winter (−0.06), strongest in summer (+0.70) · +0.37 with every month weighted equally · +0.44 with temperature and specific humidity held fixed · same in 1981–2000 (+0.58) | By-season chart and the "held fixed" table |
 | 5 | **Every claim keeps its evidence** | Claim · evidence · counterevidence · alternatives · limitations · NASA file SHA-256. Relative humidity flagged as computed from temperature (rebuilt at r = 0.98) | `02_view_evidence.png`, `09_derived_variable_check.png` |
-| 6 | **How it works, and how to check us** | NASA POWER API → validation → trend / relationship engines → evidence records → React interface. 146 automated tests. No AI in the calculations. One command reproduces every number | Architecture diagram from `NASA_SUBMISSION.md` §7 |
+| 6 | **How it works, and how to check us** | NASA POWER API → validation → trend / relationship engines → evidence records → React interface. 160 automated tests. No AI in the calculations. One command reproduces every number | Architecture diagram from `NASA_SUBMISSION.md` §7 |
 | 7 | **Limits and next steps** | One reanalysis grid cell; one model; no human scientific review yet. Next: independent satellite and station data, more regions, classroom use | Repository URL |
 
 ## C. Live walk-through (about four minutes, for judges or mentors)
@@ -124,6 +124,6 @@ tool says exactly that; it also warns that this 'Almaty' cell sits at 2,500 metr
 | So rain makes the air humid? | We do not claim that. Both may follow the same air masses. The tool blocks causal wording and lists this under "cannot be concluded". |
 | Isn't humidity just temperature in disguise? | Partly, and the tool flags it. But the precipitation–humidity link stays at +0.59 with temperature held fixed and +0.44 with temperature and specific humidity held fixed. |
 | Did an AI produce the conclusions? | No. All numbers come from deterministic code on hashed NASA files. AI wrote the code and a first exploratory analysis, which the tool then checked. This is disclosed in the submission. |
-| How do you know the statistics are right? | 146 automated tests: cross-checks against `pymannkendall` and `statsmodels`, synthetic series with known answers, and sixteen outside numbers reproduced. No human scientist has reviewed it yet, and we say so. |
+| How do you know the statistics are right? | 160 automated tests: cross-checks against `pymannkendall` and `statsmodels`, synthetic series with known answers, and sixteen outside numbers reproduced. No human scientist has reviewed it yet, and we say so. |
 | Did you check against satellite precipitation? | We tried. NASA POWER's IMERG parameter returned only missing values for this point. The response is stored, and the tool refuses to analyse it rather than show empty results. |
 | Why is "no significant trend" not "no change"? | The confidence interval for temperature runs from −0.67 to +0.46 °C per decade. |

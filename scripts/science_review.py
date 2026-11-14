@@ -469,8 +469,9 @@ def main() -> int:
     add("- The API's own annual values (`YYYY13` keys) are kept apart from the twelve months and are reproduced by "
         "our day-weighted means to within rounding.")
     add("- **Live path NOT RUN.** The code path in which the backend itself calls NASA (`PowerStore._fetch_live`) "
-        "is covered by tests with a stubbed transport only. It has not been exercised against the real service "
-        "from the build environment.")
+        "is covered only by tests with a stubbed HTTP transport (`test_08_live_path.py`): they show what the "
+        "backend does with a good answer, an HTTP error, a network failure and a malformed or mismatched body, "
+        "not that the real service answers. It has not been exercised against NASA from the build environment.")
     add("- **GPM IMERG.** The POWER service accepts the parameter `IMERG_PRECTOT`, but for this point it returned "
         "the missing-value code (−999) for all 288 months and all 24 annual keys, and its header lists MERRA-2 as "
         "the only source. The file is stored as evidence of that; the engine refuses to analyse the variable "
@@ -497,8 +498,9 @@ def main() -> int:
         "requested variables | None on bundled cases |")
     add("| The test proposed in the temperature–humidity hypothesis was worded imprecisely | Reworded; the test is "
         "now implemented as the derived-variable check | Wording only |")
-    add("| Test collection failed without `pymannkendall` (another verifier reproduced 105 of 129) | The five "
-        "reference tests are skipped with a reason when the package is absent | None |")
+    add("| Test collection failed without `pymannkendall` (another verifier reproduced 105 of 129) | The nine "
+        "reference test cases are skipped with a reason when the package is absent (151 passed, 9 skipped); "
+        "160 pass with it | None |")
     add("| Graph labels overlapped with four variables | Layout for four or more nodes | Display only |")
     add("")
     add("Evidence ids and the data hash of the default three-variable investigation are unchanged "
