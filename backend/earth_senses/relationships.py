@@ -191,6 +191,19 @@ def subperiod_stability(x: pd.Series, y: pd.Series, window_years: int = 10) -> d
     }
 
 
+def _lag1_adjacent(values: np.ndarray, ordinals: np.ndarray) -> float:
+    """Lag-1 autocorrelation from pairs that really are consecutive months.
+    A season subset jumps from February to December; those neighbours in the
+    array are ten months apart and must not be treated as lag 1."""
+    adjacent = np.diff(ordinals) == 1
+    if adjacent.sum() < 8:
+        return 0.0
+    a, b = values[:-1][adjacent], values[1:][adjacent]
+    if np.ptp(a) == 0 or np.ptp(b) == 0:
+        return 0.0
+    return float(np.corrcoef(a, b)[0, 1])
+
+
 def seasonal_correlations(x: pd.Series, y: pd.Series) -> dict[str, Any]:
     """Anomaly correlation inside each meteorological season. A relationship
     whose sign differs between seasons is a counterexample to any single
@@ -198,8 +211,19 @@ def seasonal_correlations(x: pd.Series, y: pd.Series) -> dict[str, Any]:
     out = {}
     for name, months in SEASONS.items():
         mask = x.index.month.isin(months)
-        c = correlate(x[mask], y[mask])
-        out[name] = {"r": c.get("pearson_r"), "n": c["n"], "p_adjusted": c.get("p_adjusted")}
+        xs, ys = x[mask], y[mask]
+        ok = ~(xs.isna() | ys.isna()).to_numpy()
+        a, b = xs.to_numpy(dtype=float)[ok], ys.to_numpy(dtype=float)[ok]
+        n = len(a)
+        if n < 8 or np.ptp(a) == 0 or np.ptp(b) == 0:
+            out[name] = {"r": None, "n": n, "n_eff": None, "p_naive": None, "p_adjusted": None}
+            continue
+        r = float(np.corrcoef(a, b)[0, 1])
+        ordinals = (xs.index.year * 12 + xs.index.month).to_numpy()[ok]
+        prod = _lag1_adjacent(a, ordinals) * _lag1_adjacent(b, ordinals)
+        n_eff = n * (1 - prod) / (1 + prod) if prod > 0 else float(n)
+        out[name] = {"r": r, "n": n, "n_eff": float(n_eff), "p_naive": _p_from_r(r, n),
+                     "p_adjusted": _p_from_r(r, n_eff)}
     rs = [v["r"] for v in out.values() if v["r"] is not None]
     return {"seasons": out, "sign_differs_between_seasons": bool(rs) and min(rs) < 0 < max(rs)}
 

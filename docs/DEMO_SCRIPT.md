@@ -14,7 +14,7 @@ Pavlodar data; check the current Space Apps rules for the allowed length and for
 | 0:00 | Show the start screen with the map. | "The challenge asks for a trend detective. Finding a trend is easy. Knowing whether to believe it is the hard part, so we built a tool that investigates and keeps the evidence." |
 | 0:20 | Click **Pavlodar**. Point at the rectangle on the map. | "This is real NASA data: MERRA-2 through the POWER service. A point is really a grid cell, about fifty kilometres across, and we show that instead of hiding it." |
 | 0:35 | Keep temperature, humidity and precipitation ticked, 2001–2024. Click **Investigate**. | "Three variables, twenty-four years." |
-| 0:45 | Trend cards. | "Temperature: minus 0.02 degrees per year, not significant. The tool does not say 'no warming'. It says a record this short could only detect trends above 0.9 degrees per decade." |
+| 0:45 | Trend cards. | "Temperature: minus 0.02 degrees per year, not significant. The tool does not say 'no warming'. It says a record this short could only detect trends above roughly one degree per decade." |
 | 1:10 | Humidity card, then the heatmap with RH2M selected. | "Humidity looks significant: p = 0.035. But after correcting for three tests it is 0.105, it flips if you remove any one of five years, and over 1981–2024 it is gone. Verdict: fragile." |
 | 1:40 | Scroll to *Air temperature ↔ Relative humidity*. Point at the four bars. | "Raw correlation minus 0.95. The two seasonal cycles alone give minus 0.98. Between anomalies it is minus 0.32. Most of that famous number was the calendar." |
 | 2:00 | *Precipitation ↔ Relative humidity*. | "Here the sign changes: minus 0.28 raw, plus 0.59 once the seasons are removed." |

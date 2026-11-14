@@ -85,8 +85,13 @@ def mk_score(x: Sequence[float]) -> tuple[int, float]:
     return int(s), float(var)
 
 
-def mann_kendall(x: Sequence[float]) -> dict[str, Any]:
-    """Classic Mann-Kendall test (assumes serially independent data)."""
+def mann_kendall(x: Sequence[float], tie_correction: bool = True) -> dict[str, Any]:
+    """Classic Mann-Kendall test (assumes serially independent data).
+
+    ``tie_correction=False`` uses the no-ties variance n(n-1)(2n+5)/18 even
+    when values repeat. It exists only to reproduce analyses made that way;
+    the engine's own tests always correct for ties.
+    """
     x = np.asarray(x, dtype=float)
     x = x[~np.isnan(x)]
     n = len(x)
@@ -94,6 +99,8 @@ def mann_kendall(x: Sequence[float]) -> dict[str, Any]:
         return {"n": n, "s": None, "var_s": None, "z": None, "p": None, "tau": None,
                 "note": "fewer than 4 values"}
     s, var = mk_score(x)
+    if not tie_correction:
+        var = n * (n - 1) * (2 * n + 5) / 18.0
     z = _z_from_s(s, var)
     return {"n": n, "s": s, "var_s": var, "z": z, "p": _two_sided_p(z),
             "tau": s / (n * (n - 1) / 2.0)}
@@ -322,10 +329,11 @@ def summarize_trend(years: Sequence[float], values: Sequence[float], alpha: floa
     Hamed-Rao modified Mann-Kendall test and least squares with the AR(1)
     effective sample size. Both must reject for a trend to count.
 
-    Why two: on trend-free AR(1) noise (tests/test_02_trends.py) Hamed-Rao
-    alone still rejects far too often in short records (about 10% at
-    phi = 0.3, n = 24, against a nominal 5%); requiring agreement with the
-    AR(1)-adjusted least-squares test brings that to about 6%.
+    Why two: on trend-free AR(1) noise with n = 24 (3000 simulations)
+    Hamed-Rao alone rejects in about 12% of cases at phi = 0.3 and 29% at
+    phi = 0.7, against a nominal 5%. Requiring agreement with the
+    AR(1)-adjusted least-squares test brings that to about 7.5% and 14%:
+    better, still above nominal for strongly persistent series.
     Reported alongside: the classic Mann-Kendall test and naive least squares.
     """
     t, x = _drop_nan(years, values)
@@ -393,5 +401,6 @@ def leave_one_out(years: Sequence[float], values: Sequence[float], alpha: float 
     flips = [r for r in rows if r["significant"] != full_sig]
     return {"full_p": full_p, "full_significant": full_sig, "rows": rows,
             "years_that_flip_significance": [r["dropped_year"] for r in flips],
+            "p_range_of_flipping_years": [min(r["p"] for r in flips), max(r["p"] for r in flips)] if flips else None,
             "max_p_after_drop": max(r["p"] for r in rows) if rows else None,
             "min_p_after_drop": min(r["p"] for r in rows) if rows else None}

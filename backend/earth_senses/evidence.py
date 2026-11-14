@@ -134,9 +134,10 @@ def attach_independent_reports(record: EvidenceRecord, metrics: dict[str, float]
         if all(m["agrees"] for m in matched) and record.status == "OBSERVED":
             record.replicated_values = [m["metric"] for m in matched]
             record.limitations = record.limitations + [
-                "Replication covers the listed numeric values only (two assessors, independently "
-                "retrieved data). The rest of this record, and any interpretation, is OBSERVED. Both "
-                "assessors are AI systems: human review remains required."]
+                "Replication covers the listed numeric values only: two assessors, each with a separately "
+                "retrieved copy of the same NASA product. The comparison was not blind (the reported values "
+                "were known). The rest of this record, and any interpretation, is OBSERVED. Both assessors "
+                "are AI systems: human review remains required."]
     return record
 
 

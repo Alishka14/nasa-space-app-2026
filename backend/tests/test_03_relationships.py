@@ -164,6 +164,28 @@ def test_year_shuffle_control_separates_real_from_unrelated_pairs(pavlodar):
     assert again == year_block_permutation(ap, ah, n_perm=500)            # seeded: reproducible
 
 
+def test_seasonal_subsets_do_not_treat_february_and_december_as_neighbours(pavlodar):
+    """Within a season only truly consecutive months may enter the lag-1 autocorrelation."""
+    from earth_senses.relationships import _lag1_adjacent, seasonal_correlations
+    ords = np.array([2001 * 12 + 1, 2001 * 12 + 2, 2001 * 12 + 12, 2002 * 12 + 1, 2002 * 12 + 2, 2002 * 12 + 12])
+    assert (np.diff(ords) == 1).tolist() == [True, False, True, True, False]      # Feb->Dec is not adjacent
+    rng = np.random.default_rng(31)
+    idx = month_index(2001, 40)
+    x = pd.Series(np.repeat(rng.normal(size=40 * 4), 3), index=idx)     # constant within each 3-month block
+    y = pd.Series(np.repeat(rng.normal(size=40 * 4), 3), index=idx)
+    mam = seasonal_correlations(x, y)["seasons"]["MAM"]                 # MAM is one whole block: strongly persistent
+    assert mam["n"] == 120 and mam["n_eff"] < 0.8 * mam["n"] and mam["p_adjusted"] >= mam["p_naive"]
+    # 30 winters, each constant across Dec-Jan-Feb and unrelated to the next: consecutive months are identical
+    # (lag-1 = 1), while the Feb -> next Dec jump carries no relation and must not dilute that.
+    djf_ords = np.concatenate([[y * 12 + 12, (y + 1) * 12 + 1, (y + 1) * 12 + 2] for y in range(2000, 2030)])
+    blocks = np.repeat(rng.normal(size=30), 3)
+    assert _lag1_adjacent(blocks, djf_ords) == pytest.approx(1.0)
+    assert np.corrcoef(blocks[:-1], blocks[1:])[0, 1] < 0.8            # what the gap-blind estimate would say
+    assert _lag1_adjacent(np.arange(6.0), ords) == 0.0                 # too few consecutive pairs: no adjustment
+    real = seasonal_correlations(pavlodar.monthly["T2M"], pavlodar.monthly["RH2M"])["seasons"]["DJF"]
+    assert real["n"] == 72 and real["n_eff"] <= 72
+
+
 def test_seasonal_split_exposes_a_sign_reversal_in_real_data(pavlodar):
     res = analyze_pair(pavlodar.monthly["T2M"], pavlodar.monthly["PRECTOTCORR"], n_perm=300)
     seasons = res["by_season"]["seasons"]

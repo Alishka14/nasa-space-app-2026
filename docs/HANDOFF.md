@@ -28,7 +28,7 @@ Unzip over a clone on a new branch `feat/earth-senses-mvp`, review `git status`,
 ## After pushing
 
 1. `python scripts/build_provenance.py` — must print `OK` three times (SHA-256 of the NASA files).
-2. `cd backend && python -m pytest` — 126 tests.
+2. `cd backend && python -m pytest` — 129 tests.
 3. Start the backend without `EARTH_SENSES_OFFLINE` and investigate a place that is not bundled (for example Astana).
    This is the first live request the backend makes to NASA; watch it once.
 4. Work through "Not done" in `KNOWN_LIMITATIONS.md`, starting with a data source from the challenge's Resources tab.

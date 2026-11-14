@@ -154,7 +154,7 @@ def parse_power_monthly(
     missing: dict[str, int] = {}
     for name, series in params.items():
         vals = np.array([float(series[k]) for _, _, k in monthly_keys], dtype=float)
-        is_fill = np.isclose(vals, fill_value)
+        is_fill = np.isclose(vals, fill_value, rtol=0.0, atol=1e-9)
         suspicious = (~is_fill) & (vals <= -900)
         if suspicious.any():
             warnings.append(f"{name}: {int(suspicious.sum())} values <= -900 that are not the declared fill value")
@@ -162,7 +162,7 @@ def parse_power_monthly(
         missing[name] = int(is_fill.sum())
         data[name] = vals.tolist()
         ann = np.array([float(series[k]) for _, k in annual_keys], dtype=float)
-        ann[np.isclose(ann, fill_value)] = np.nan
+        ann[np.isclose(ann, fill_value, rtol=0.0, atol=1e-9)] = np.nan
         annual[name] = ann.tolist()
 
     monthly = pd.DataFrame(data, index=index)

@@ -172,7 +172,10 @@ result, uncertainty, status, supporting_evidence, counterevidence, alternatives,
 | Change | Trigger | Effect on real results |
 |---|---|---|
 | Hamed–Rao variance factor clipped at ≥ 1 | On the 1981–2024 precipitation record the unclipped factor was 0.48, making the "corrected" test more liberal than the classic one | None on verdicts |
-| Primary p = larger of Hamed–Rao and AR(1)-adjusted least squares | Synthetic control: on trend-free AR(1) noise (φ = 0.3, n = 24) Hamed–Rao alone rejected in about 10% of cases instead of 5%; with φ = 0.7, 27% | Temperature p 0.413 → 0.578; verdicts unchanged |
+| Primary p = larger of Hamed–Rao and AR(1)-adjusted least squares | Synthetic control (3000 simulations, n = 24): on trend-free AR(1) noise Hamed–Rao alone rejects in 12% of cases at φ = 0.3 and 29% at φ = 0.7 instead of 5%; the combined rule in 7.5% and 14% | Temperature p 0.413 → 0.578; verdicts unchanged |
+| Seasonal correlations: lag-1 autocorrelation from consecutive months only | Independent review: a season subset jumps from February to December, and those array neighbours were being treated as lag 1 | By-season adjusted p-values only; no verdict uses them |
+| Fill value matched exactly | Independent review: values within about 0.01 of −999 were also treated as missing | None on these files |
+| Replication tracked per value, records stay `OBSERVED` | A record's claim contains more than the replicated numbers | Status labels only |
 | "Stability cannot be concluded…" sentence split by verdict | The sentence wrongly said the humidity interval included both signs | Wording only |
 
 ## 10. What the method does not do

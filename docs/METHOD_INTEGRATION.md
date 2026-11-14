@@ -72,7 +72,7 @@ create them.
 | DECOMPOSE | Separate modules for ingestion, trends, relationships, guard, evidence |
 | EXECUTE | Small commits per module |
 | CHALLENGE | Synthetic negative controls; cross-checks against other libraries; a separate verification agent |
-| VERIFY | 126 tests; rendered interface inspected screen by screen |
+| VERIFY | 129 tests; rendered interface inspected screen by screen |
 | GOVERN | Guard on all published text; statuses that cannot be self-assigned |
 | EVOLVE | Method revisions recorded with their trigger (`SCIENCE_METHOD.md` §9) |
 
@@ -117,5 +117,5 @@ One principle carried over: pure domain logic → deterministic tests → thin s
 | Original numbers | Gemini | Yes: other model family, separate data retrieval, no shared code |
 | Reproduction and engines | Claude | — (author) |
 | Library cross-checks | `pymannkendall`, `statsmodels` | Yes for the algorithms covered |
-| Separate recomputation and review | a second Claude agent that wrote its own code before seeing ours | **Partly**: separate context and code, but the same model family, so it does not count as independent under MIZAN rule 10 |
+| Separate recomputation and review | a second Claude agent that wrote its own code before seeing ours, then reviewed code and wording | **Partly**: separate context and code, but the same model family, so it does not count as independent under MIZAN rule 10. It found no numerical disagreement, one medium issue (a match tolerance wider than rounding, which hid that the tie-corrected test gives 0.274 where Gemini reported 0.275), four low ones and fifteen overstated or unclear sentences; all confirmed items were fixed (`SCIENCE_METHOD.md` §9, `GEMINI_REPRODUCTION.md`) |
 | Human scientific review | — | **Not done** |

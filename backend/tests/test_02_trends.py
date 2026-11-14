@@ -197,9 +197,13 @@ def test_window_sensitivity_flags_a_reversal_in_synthetic_data():
 def test_leave_one_out_exposes_dependence_on_single_years(pavlodar):
     rh = annual_mean(pavlodar.monthly["RH2M"]).to_numpy()
     loo = leave_one_out(YEARS, rh)
-    assert loo["full_significant"] and 2024 in loo["years_that_flip_significance"]
+    assert loo["full_significant"] and loo["years_that_flip_significance"] == [2002, 2008, 2017, 2018, 2024]
+    lo, hi = loo["p_range_of_flipping_years"]
+    assert 0.05 <= lo < hi == pytest.approx(0.1015, abs=1e-3)          # range of the flipping years only
+    assert loo["min_p_after_drop"] < 0.05                                # other removals keep it significant
     t2m = annual_mean(pavlodar.monthly["T2M"]).to_numpy()
-    assert leave_one_out(YEARS, t2m)["years_that_flip_significance"] == []
+    stable = leave_one_out(YEARS, t2m)
+    assert stable["years_that_flip_significance"] == [] and stable["p_range_of_flipping_years"] is None
 
 
 # ---- a non-significant trend is not "no change" ------------------------------------------------

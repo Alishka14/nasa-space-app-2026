@@ -62,6 +62,15 @@ def test_fill_value_becomes_nan_and_is_counted():
     assert any("missing" in w for w in norm.warnings)
 
 
+def test_only_the_declared_fill_value_counts_as_missing():
+    vals = np.full(24, 5.0)
+    vals[0], vals[1], vals[2] = -999.0, -998.995, -998.98          # the fill value and two near misses
+    norm = parse_power_monthly(make_power_json({"X": vals}, annual=False))
+    assert norm.missing == {"X": 1}
+    assert norm.monthly["X"].iloc[1] == -998.995 and norm.monthly["X"].iloc[2] == -998.98
+    assert any("not the declared fill value" in w for w in norm.warnings)     # suspicious values are flagged, not hidden
+
+
 def test_real_response_declares_fill_value_and_has_no_gaps(pavlodar):
     assert pavlodar.fill_value == -999.0
     assert pavlodar.missing == {"PRECTOTCORR": 0, "RH2M": 0, "T2M": 0}

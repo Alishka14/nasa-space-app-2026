@@ -85,6 +85,11 @@ def f(x: float | None, nd: int = 3, sign: bool = True) -> str:
     return f"{x:+.{nd}f}" if sign else f"{x:.{nd}f}"
 
 
+def fr(x: float | None) -> str:
+    """Correlation or bound to two decimals, three when it would otherwise print as zero."""
+    return f(x, 3) if x is not None and abs(x) < 0.005 else f(x, 2)
+
+
 def fp(p: float | None) -> str:
     if p is None:
         return "n/a"
@@ -243,7 +248,9 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
             rep = ds.annual_reported[v].to_numpy(dtype=float)
             yrs = ds.annual_reported.index.to_numpy(dtype=float)
             api_variant = {"sen_slope": theil_sen(yrs, rep, 1 - alpha)["slope"], "mk_p": mann_kendall(rep)["p"],
-                           "note": "same test on the API's own two-decimal annual means (YYYY13)"}
+                           "mk_p_no_tie_correction": mann_kendall(rep, tie_correction=False)["p"],
+                           "note": "same test on the API's own two-decimal annual means (YYYY13); the variant "
+                                   "without tie correction is kept only for comparison with outside reports"}
 
         support = [
             f"Theil-Sen slope {f(summ['primary_slope'])} {unit} (95% CI {f(summ['primary_ci'][0])} to "
@@ -264,8 +271,9 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
         if loo["years_that_flip_significance"]:
             counter.append(
                 "Leaving out any one of the years " + ", ".join(str(y) for y in loo["years_that_flip_significance"])
-                + f" changes whether the classic test is significant (p between {fp(loo['min_p_after_drop'])} "
-                  f"and {fp(loo['max_p_after_drop'])}).")
+                + f" changes whether the classic test is significant (p between "
+                  f"{fp(loo['p_range_of_flipping_years'][0])} and {fp(loo['p_range_of_flipping_years'][1])} "
+                  f"for those years; {fp(loo['full_p'])} with all years).")
         ctx = None
         if context is not None:
             cann = annual_mean(context.monthly[v])
@@ -303,6 +311,7 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
         if api_variant:
             metrics[f"trend.{v}.sen_slope_api_annual"] = api_variant["sen_slope"]
             metrics[f"trend.{v}.mk_p_api_annual"] = api_variant["mk_p"]
+            metrics[f"trend.{v}.mk_p_api_annual_no_tie_correction"] = api_variant["mk_p_no_tie_correction"]
         attach_independent_reports(rec, metrics, reports)
         evidence.append(rec)
 
@@ -332,7 +341,7 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
             "NOT_SUPPORTED": "No statistically significant association of the anomalies was detected.",
         }
         claim = (f"Monthly anomalies of {la} and {lb} vary {direction} over {start}-{end}: detrended "
-                 f"r = {f(d['pearson_r'], 2)} (95% CI {f(d['ci95_adjusted'][0], 2)} to {f(d['ci95_adjusted'][1], 2)}, "
+                 f"r = {f(d['pearson_r'], 2)} (95% CI {fr(d['ci95_adjusted'][0])} to {fr(d['ci95_adjusted'][1])}, "
                  f"effective n = {d['n_eff']:.0f}). Raw r = {f(raw['pearson_r'], 2)}; the two seasonal cycles "
                  f"alone give r = {f(cyc['pearson_r'], 2)}. {tails[res['status']]}")
         support = [

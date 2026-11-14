@@ -56,7 +56,7 @@ calendar, correct location), stores the raw response unchanged with a provenance
 Theil–Sen, Mann–Kendall with the Hamed–Rao correction, least squares with an AR(1) effective sample size, seasonal
 Kendall, Benjamini–Hochberg, effective-sample-size correlation tests, a year-block permutation control, and
 sensitivity analyses. A React + TypeScript interface with MapLibre and ECharts displays only what the backend
-returns. 126 automated tests cover the data traps, cross-check the statistics against independent libraries, and run
+returns. 129 automated tests cover the data traps, cross-check the statistics against independent libraries, and run
 synthetic controls with known answers.
 
 **What we found in our demonstration case** (Pavlodar, Kazakhstan, 2001–2024, MERRA-2):

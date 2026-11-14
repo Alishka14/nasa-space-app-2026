@@ -109,22 +109,30 @@
     "DJF": {
      "r": -0.1624150619243826,
      "n": 72,
-     "p_adjusted": 0.21707251253913115
+     "n_eff": 53.81150948362149,
+     "p_naive": 0.17285485693790162,
+     "p_adjusted": 0.2415035855361372
     },
     "MAM": {
      "r": -0.5775251514682557,
      "n": 72,
-     "p_adjusted": 1.2235384774508288e-07
+     "n_eff": 72.0,
+     "p_naive": 1.0892736463665016e-07,
+     "p_adjusted": 1.0892736463665016e-07
     },
     "JJA": {
      "r": -0.477276263871857,
      "n": 72,
-     "p_adjusted": 6.103898386102333e-05
+     "n_eff": 57.232083979003555,
+     "p_naive": 2.2451465504736926e-05,
+     "p_adjusted": 0.00016864164911578865
     },
     "SON": {
      "r": -0.34973797700545534,
      "n": 72,
-     "p_adjusted": 0.002897789946094079
+     "n_eff": 66.88968190928469,
+     "p_naive": 0.0026004075608738963,
+     "p_adjusted": 0.0037484025897759534
     }
    },
    "halves": [
@@ -225,22 +233,30 @@
     "DJF": {
      "r": 0.36686008244981566,
      "n": 72,
-     "p_adjusted": 0.0020546758703013225
+     "n_eff": 63.90613171080211,
+     "p_naive": 0.0015258038526358055,
+     "p_adjusted": 0.0028874203367627626
     },
     "MAM": {
      "r": -0.3354752254174962,
      "n": 72,
-     "p_adjusted": 0.004026933368498939
+     "n_eff": 72.0,
+     "p_naive": 0.0039670744322751065,
+     "p_adjusted": 0.0039670744322751065
     },
     "JJA": {
      "r": -0.3208138565193051,
      "n": 72,
-     "p_adjusted": 0.00635570430620402
+     "n_eff": 72.0,
+     "p_naive": 0.006003616944036117,
+     "p_adjusted": 0.006003616944036117
     },
     "SON": {
      "r": -0.35246326220643914,
      "n": 72,
-     "p_adjusted": 0.002401186663678835
+     "n_eff": 67.24965101458605,
+     "p_naive": 0.0023934658031976894,
+     "p_adjusted": 0.003379821978066565
     }
    },
    "halves": [
@@ -341,22 +357,30 @@
     "DJF": {
      "r": -0.06092204718769122,
      "n": 72,
-     "p_adjusted": 0.6243760675858945
+     "n_eff": 57.89907015631741,
+     "p_naive": 0.6111966167451767,
+     "p_adjusted": 0.6499169107747957
     },
     "MAM": {
      "r": 0.542419591339255,
      "n": 72,
-     "p_adjusted": 1.7566937549052204e-06
+     "n_eff": 63.07655157323855,
+     "p_naive": 8.580260859891171e-07,
+     "p_adjusted": 4.328252554897984e-06
     },
     "JJA": {
      "r": 0.7043557108313798,
      "n": 72,
-     "p_adjusted": 9.4121604875062e-12
+     "n_eff": 72.0,
+     "p_naive": 5.077604837241348e-12,
+     "p_adjusted": 5.077604837241348e-12
     },
     "SON": {
      "r": 0.6442063072825986,
      "n": 72,
-     "p_adjusted": 1.0472669891318213e-09
+     "n_eff": 68.20990358056933,
+     "p_naive": 1.0258689915606393e-09,
+     "p_adjusted": 2.910123394220639e-09
     }
    },
    "halves": [
@@ -382,27 +406,31 @@
  "trends": {
   "T2M": {
    "variants": {
-    "A. Theil-Sen + classic MK on the API's annual values (YYYY13)": [
+    "A. Theil-Sen + MK without tie correction, API annual values (YYYY13)": [
+     -0.02102631578947368,
+     0.4273462868100374
+    ],
+    "B. Theil-Sen + MK with tie correction, API annual values (YYYY13)": [
      -0.02102631578947368,
      0.42653893254586694
     ],
-    "B. Theil-Sen + classic MK on day-weighted annual means of the months": [
+    "C. Theil-Sen + MK on day-weighted annual means of the months": [
      -0.02116737129709518,
      0.4130458869045295
     ],
-    "C. Theil-Sen + classic MK on simple (unweighted) annual means": [
+    "D. Theil-Sen + MK on simple (unweighted) annual means": [
      -0.017838541666667,
      0.44193101201121243
     ],
-    "D. Least squares on annual means": [
+    "E. Least squares on annual means": [
      -0.0181254489564111,
      0.5440851353613212
     ],
-    "E. Least squares on 288 monthly anomalies": [
+    "F. Least squares on 288 monthly anomalies (naive p)": [
      -0.017536742099996377,
      0.4313780583540281
     ],
-    "F. Seasonal Kendall on 288 monthly values (covariance-corrected)": [
+    "G. Seasonal Kendall on 288 monthly values (covariance-corrected)": [
      -0.005166666666666705,
      0.7253639022630618
     ]
@@ -474,7 +502,7 @@
     }
    },
    "q_primary": 0.5780412006674245,
-   "q_api_annual": 0.4265389325458669,
+   "q_api_annual": 0.42734628681003733,
    "leave_one_out_flip_years": [],
    "long_record_1981_2024": {
     "slope": 0.0057229696673190295,
@@ -491,27 +519,31 @@
   },
   "PRECTOTCORR": {
    "variants": {
-    "A. Theil-Sen + classic MK on the API's annual values (YYYY13)": [
+    "A. Theil-Sen + MK without tie correction, API annual values (YYYY13)": [
+     0.004999999999999999,
+     0.2750996691485784
+    ],
+    "B. Theil-Sen + MK with tie correction, API annual values (YYYY13)": [
      0.004999999999999999,
      0.27396510240280125
     ],
-    "B. Theil-Sen + classic MK on day-weighted annual means of the months": [
+    "C. Theil-Sen + MK on day-weighted annual means of the months": [
      0.0047945127504553636,
      0.2643373325084948
     ],
-    "C. Theil-Sen + classic MK on simple (unweighted) annual means": [
+    "D. Theil-Sen + MK on simple (unweighted) annual means": [
      0.004730902777777777,
      0.28615732110495806
     ],
-    "D. Least squares on annual means": [
+    "E. Least squares on annual means": [
      0.007413212685146314,
      0.13158090838787304
     ],
-    "E. Least squares on 288 monthly anomalies": [
+    "F. Least squares on 288 monthly anomalies (naive p)": [
      0.00736337002519803,
      0.06678076847797333
     ],
-    "F. Seasonal Kendall on 288 monthly values (covariance-corrected)": [
+    "G. Seasonal Kendall on 288 monthly values (covariance-corrected)": [
      0.0050000000000000044,
      0.09563238581084792
     ]
@@ -583,7 +615,7 @@
     }
    },
    "q_primary": 0.3965059987627422,
-   "q_api_annual": 0.4109476536042019,
+   "q_api_annual": 0.4126495037228676,
    "leave_one_out_flip_years": [],
    "long_record_1981_2024": {
     "slope": 0.0022981008717310116,
@@ -600,27 +632,31 @@
   },
   "RH2M": {
    "variants": {
-    "A. Theil-Sen + classic MK on the API's annual values (YYYY13)": [
+    "A. Theil-Sen + MK without tie correction, API annual values (YYYY13)": [
      0.1637500000000056,
      0.03499862949542659
     ],
-    "B. Theil-Sen + classic MK on day-weighted annual means of the months": [
+    "B. Theil-Sen + MK with tie correction, API annual values (YYYY13)": [
+     0.1637500000000056,
+     0.03499862949542659
+    ],
+    "C. Theil-Sen + MK on day-weighted annual means of the months": [
      0.16448458904109842,
      0.03499862949542659
     ],
-    "C. Theil-Sen + classic MK on simple (unweighted) annual means": [
+    "D. Theil-Sen + MK on simple (unweighted) annual means": [
      0.1623090277777785,
      0.0395167129619474
     ],
-    "D. Least squares on annual means": [
+    "E. Least squares on annual means": [
      0.18336469929082164,
      0.009683264765664223
     ],
-    "E. Least squares on 288 monthly anomalies": [
+    "F. Least squares on 288 monthly anomalies (naive p)": [
      0.18143013876999878,
      1.8480358576411276e-06
     ],
-    "F. Seasonal Kendall on 288 monthly values (covariance-corrected)": [
+    "G. Seasonal Kendall on 288 monthly values (covariance-corrected)": [
      0.09881944444444447,
      0.0163195902975322
     ]

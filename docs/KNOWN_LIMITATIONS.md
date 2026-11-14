@@ -26,10 +26,12 @@ What is not done, what was not run, and what the results cannot support. Nothing
    over an area.
 3. **No ground truth.** Nothing was compared with station records. Agreement between Gemini and this engine shows
    that the arithmetic is right, not that MERRA-2 is.
-4. **Short records, low power.** With 24 annual values, only temperature trends above roughly 0.9 °C per decade would
+4. **Short records, low power.** With 24 annual values, only temperature trends above roughly 0.95 °C per decade would
    be likely to be detected. Non-significance here says little about whether change is occurring.
-5. **Residual false positives under strong persistence.** On trend-free AR(1) noise with φ = 0.7 and 24 points, the
-   primary trend rule still rejects in about 11% of cases (nominal 5%); at φ = 0.3 about 6%. The detrended annual
+5. **Residual false positives under persistence.** On trend-free AR(1) noise with 24 points (3000 simulations), the
+   primary trend rule rejects in about 3.7% of cases at φ = 0, 7.5% at φ = 0.3, 12% at φ = 0.6 and 14% at φ = 0.7
+   (nominal 5%). The Hamed–Rao correction scans every lag up to n − 1, so one noisy high-lag autocorrelation can
+   move its p-value slightly. The detrended annual
    series used here have lag-1 autocorrelations between −0.12 and +0.08, where this is not a concern, but the rule would be
    too liberal for strongly persistent series.
 6. **Monotonic and linear trends only.** Accelerations, reversals and step changes are not modelled; the sub-period
@@ -44,8 +46,10 @@ What is not done, what was not run, and what the results cannot support. Nothing
     which limits any winter correlation involving humidity whatever the underlying physics.
 11. **The guard is pattern matching.** It blocks listed overclaims in English and Russian. A determined writer can
     phrase a causal claim it does not recognise; passing the guard is not validation.
-12. **Replication is narrow.** "Replicated" marks individual numbers that two AI systems obtained independently from
-    NASA data. No record as a whole, and no interpretation, is above `OBSERVED`, and no human has reviewed them.
+12. **Replication is narrow.** "Replicated" marks individual numbers that two AI systems each obtained from a
+    separately retrieved copy of the same NASA product. The comparison was not blind, and Gemini's trend method had to
+    be inferred by trying seven variants. No record as a whole, and no interpretation, is above `OBSERVED`, and no
+    human has reviewed them.
 
 ## Engineering limits
 
