@@ -63,8 +63,12 @@ Frame-exact screen captures of the running application made with `scripts/record
 | File | Length | Picture | Size |
 |---|---|---|---|
 | [`renders/demo_en.mp4`](renders/demo_en.mp4) | 29.3 s | 1920×1080, 24 fps | 11.2 MB |
-| [`renders/explainer_en.mp4`](renders/explainer_en.mp4) | — | — | 1.6 MB |
+| [`renders/explainer_en.mp4`](renders/explainer_en.mp4) | 45.0 s | 1920×1080, 24 fps | 7.6 MB |
+| [`renders/explainer_kk.mp4`](renders/explainer_kk.mp4) | 45.0 s | 1920×1080, 24 fps | 7.8 MB |
+| [`renders/explainer_ru.mp4`](renders/explainer_ru.mp4) | 45.0 s | 1920×1080, 24 fps | 7.8 MB |
 | [`renders/hero_en.mp4`](renders/hero_en.mp4) | 59.5 s | 1920×1080, 24 fps | 17.9 MB |
+| [`renders/hero_kk.mp4`](renders/hero_kk.mp4) | 59.5 s | 1920×1080, 24 fps | 17.9 MB |
+| [`renders/hero_ru.mp4`](renders/hero_ru.mp4) | 59.5 s | 1920×1080, 24 fps | 17.9 MB |
 | [`renders/teaser_en.mp4`](renders/teaser_en.mp4) | 16.5 s | 1920×1080, 24 fps | 6.4 MB |
 | [`renders/teaser_kk.mp4`](renders/teaser_kk.mp4) | 16.5 s | 1920×1080, 24 fps | 6.4 MB |
 | [`renders/teaser_ru.mp4`](renders/teaser_ru.mp4) | 16.5 s | 1920×1080, 24 fps | 6.4 MB |

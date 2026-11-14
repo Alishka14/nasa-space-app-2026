@@ -1,0 +1,112 @@
+[
+  {
+    "file": "demo_en.mp4",
+    "seconds": 29.33,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 11.2,
+    "decodes": true,
+    "sha256": "43cabac82faa19ebcd53f187671e57ef3a60022722988e2d89557788a9c51c70"
+  },
+  {
+    "file": "explainer_en.mp4",
+    "seconds": 45.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 7.6,
+    "decodes": true,
+    "sha256": "ef3810dcfcb7abbda9541ed911bafe7500efc7587b09cf52824424c9a6aa4c62"
+  },
+  {
+    "file": "explainer_kk.mp4",
+    "seconds": 45.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 7.8,
+    "decodes": true,
+    "sha256": "b58bf5f8d47fb280cd0a00a41f3a537c6507ca67bd53efb60b10244dacf8aa92"
+  },
+  {
+    "file": "explainer_ru.mp4",
+    "seconds": 45.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 7.8,
+    "decodes": true,
+    "sha256": "26d9cd61c813f7e81db8ea0c8967f6b7c0d9b56ef4c638a2a45ddd1acf35f1c1"
+  },
+  {
+    "file": "hero_en.mp4",
+    "seconds": 59.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 17.9,
+    "decodes": true,
+    "sha256": "98b7db9caf357b90a8a732f345127404c4d1430d6ed486449fe15f1c41bc64b8"
+  },
+  {
+    "file": "hero_kk.mp4",
+    "seconds": 59.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 17.9,
+    "decodes": true,
+    "sha256": "cd6d04bbd399692b5cb08a221f15f962d95b406a4c3a5b9614ff0e47a34fe439"
+  },
+  {
+    "file": "hero_ru.mp4",
+    "seconds": 59.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 17.9,
+    "decodes": true,
+    "sha256": "b39a008ea60552c59d1772156ce3a8e7dbba65301e4db8f2a484e8ec1d7315ac"
+  },
+  {
+    "file": "teaser_en.mp4",
+    "seconds": 16.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 6.4,
+    "decodes": true,
+    "sha256": "6ac7913bb777941100fda31ac6130dbc89ace1a3b522b7df3cd8d13affe29f16"
+  },
+  {
+    "file": "teaser_kk.mp4",
+    "seconds": 16.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 6.4,
+    "decodes": true,
+    "sha256": "85bb50f35500004005468e052a36f0cc4df78b350a8fac4d388ccc0f28aa453f"
+  },
+  {
+    "file": "teaser_ru.mp4",
+    "seconds": 16.5,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "codec": "h264",
+    "mb": 6.4,
+    "decodes": true,
+    "sha256": "4c64a70bb6cb64d3e8e4d3a50732e9ddd669e1733a3cf45c409ab9cac973d545"
+  }
+]
