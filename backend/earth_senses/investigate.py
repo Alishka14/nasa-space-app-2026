@@ -467,10 +467,13 @@ def investigate(store: PowerStore, *, lat: float, lon: float, start: int, end: i
     for v in variables:
         t = trends[v]
         ci = t["summary"]["primary_ci"]
-        if t["verdict"] != "ROBUST_TREND":
+        if t["verdict"] == "NO_SIGNIFICANT_TREND_DETECTED":
             cannot.append(f"Stability of {infos[v]['label']} cannot be concluded: the 95% interval of its slope "
                           f"runs from {f(ci[0])} to {f(ci[1])} {t['slope_units']}, which includes change in "
                           "either direction.")
+        elif t["verdict"] == "FRAGILE_TREND":
+            cannot.append(f"A lasting trend in {infos[v]['label']} cannot be concluded: "
+                          + "; ".join(t["verdict_reasons"]) + ".")
     for r in relationships:
         cannot.append(f"A cause-and-effect link between {infos[r['x']]['label']} and {infos[r['y']]['label']} "
                       "cannot be concluded from co-variation of anomalies, however strong.")
