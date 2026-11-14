@@ -20,6 +20,8 @@ const VERDICTS: Record<string, { icon: string; label: string; tone: string }> = 
   REGIONS_DIVERGE: { icon: '⇄', label: 'Regions diverge', tone: 'good' },
   OPPOSITE_SIGNS_NOT_SIGNIFICANT: { icon: '?', label: 'Opposite signs, not significant', tone: 'warn' },
   NO_SIGNIFICANT_DIFFERENCE_DETECTED: { icon: '○', label: 'No significant difference detected', tone: 'neutral' },
+  DERIVED_VARIABLE_CONFIRMED: { icon: '⚙', label: 'Computed from the other variables', tone: 'warn' },
+  DERIVED_VARIABLE_CHECK_INCONCLUSIVE: { icon: '?', label: 'Derived-variable check inconclusive', tone: 'warn' },
 }
 
 export function Verdict({ code }: { code: string | null | undefined }) {

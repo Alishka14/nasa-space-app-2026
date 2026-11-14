@@ -121,6 +121,13 @@ details.more .vars { margin-top: 6px; }
 figcaption { font-size: 12px; font-weight: 600; color: var(--ink-2); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; min-height: 24px; }
 .hypothesis { border: 1px dashed var(--hyp); border-radius: 8px; padding: 8px 12px; font-size: 13px; color: var(--ink-2); }
 .hypothesis strong { color: var(--ink); font-size: 12px; }
+.structural { border: 1px solid var(--warn); border-radius: 8px; padding: 8px 12px; font-size: 13px; color: var(--ink-2); }
+.structural strong { color: var(--ink); font-size: 12px; }
+.structural p { margin: 4px 0 0; }
+.partial-title { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+table.mini { border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+table.mini th, table.mini td { text-align: left; padding: 3px 14px 3px 0; border-bottom: 1px solid var(--line); }
+table.mini th { font-weight: 600; color: var(--ink-2); }
 .cannot ul, .card ul { padding-left: 18px; font-size: 13px; color: var(--ink-2); display: flex; flex-direction: column; gap: 4px; }
 .cannot { border-color: var(--warn); }
 

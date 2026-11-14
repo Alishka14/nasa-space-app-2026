@@ -110,6 +110,14 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
           <Card key={r.id} title={<>{infos[r.x].label} ↔ {infos[r.y].label}</>}
                 right={<><Verdict code={r.status} /> <EvidenceStatus ev={ev(r.evidence_id)} /></>}>
             <p className="statement">{r.statement}</p>
+            {r.structural_dependence && (
+              <div className="structural"><strong>⚙ {t('builtIn')}</strong>
+                <p>{r.structural_dependence.note}{' '}
+                  {r.structural_dependence.evidence_id
+                    ? <button className="link" onClick={() => onEvidence(r.structural_dependence.evidence_id)}>{t('builtInEvidence')} →</button>
+                    : <span className="muted">{t('builtInAdd')}</span>}</p>
+              </div>
+            )}
             <div className="grid charts-3">
               <figure><figcaption>{t('stepsTitle')}</figcaption><Chart option={correlationSteps(r, mode)} height={170} /></figure>
               <figure><figcaption>{t('seasonTitle')}{r.by_season.sign_differs_between_seasons && <span className="badge warn"> ▲ sign differs</span>}</figcaption>
@@ -117,6 +125,23 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
               <figure><figcaption>{t('lagTitle')} <Verdict code={r.lag_verdict} /></figcaption><Chart option={lagScan(r, mode)} height={170} /></figure>
             </div>
             <p className="hint">{t('lagHint')}</p>
+            {r.partial?.length > 0 && (
+              <div className="partial">
+                <div className="partial-title">{t('partialTitle')}</div>
+                <table className="mini">
+                  <thead><tr><th>{t('heldFixed')}</th><th>r</th><th>95% CI</th></tr></thead>
+                  <tbody>
+                    <tr><td className="muted">{t('nothingFixed')}</td><td>{fmt(r.detrended.pearson_r, 2)}</td>
+                      <td>{fmt(r.detrended.ci95_adjusted[0], 2)} … {fmt(r.detrended.ci95_adjusted[1], 2)}</td></tr>
+                    {r.partial.map((p: any) => (
+                      <tr key={p.controls.join('+')}><td>{p.labels.join(' + ')}</td><td>{fmt(p.pearson_r, 2)}</td>
+                        <td>{fmt(p.ci95_adjusted[0], 2)} … {fmt(p.ci95_adjusted[1], 2)}</td></tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="hint">{t('partialHint')}</p>
+              </div>
+            )}
             {hyp && <div className="hypothesis"><strong>✎ {t('hypothesis')}</strong><p>{hyp.claim}</p></div>}
             <div className="actions">
               <button className="link" onClick={() => onEvidence(r.evidence_id)}>{t('viewEvidence')} →</button>
@@ -125,6 +150,22 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
           </Card>
         )
       })}
+
+      {(inv.derived_checks ?? []).map((d: any) => (
+        <Card key={d.evidence_id} title={<>⚙ {t('derivedTitle')}</>}
+              right={<><Verdict code={d.verdict} /> <EvidenceStatus ev={ev(d.evidence_id)} /></>}>
+          <p className="statement">{d.statement}</p>
+          <table className="mini">
+            <thead><tr><th>{t('season')}</th>{Object.keys(d.linear_fit_of_anomalies.by_season).map(k => <th key={k}>{k}</th>)}<th>{t('allMonths')}</th></tr></thead>
+            <tbody>
+              <tr><td>R²</td>{Object.values<any>(d.linear_fit_of_anomalies.by_season).map((v, i) => <td key={i}>{fmt(v.r_squared, 2, false)}</td>)}
+                <td>{fmt(d.linear_fit_of_anomalies.overall.r_squared, 2, false)}</td></tr>
+            </tbody>
+          </table>
+          <p className="hint">{t('derivedHint')}</p>
+          <div className="actions"><button className="link" onClick={() => onEvidence(d.evidence_id)}>{t('viewEvidence')} →</button></div>
+        </Card>
+      ))}
 
       <Card title={t('cannot')} className="cannot">
         <ul>{inv.cannot_conclude.map((c: string) => <li key={c}>{c}</li>)}</ul>
@@ -138,6 +179,8 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
             <dt>Retrieved</dt><dd>{p.retrieval_timestamp} — {p.retrieval_method}</dd>
             <dt>Coverage</dt><dd>{p.coverage.start} to {p.coverage.end}, {p.coverage.n_months} months</dd>
             <dt>SHA-256</dt><dd><code className="wrap">{p.sha256}</code></dd>
+            <dt>Missing</dt><dd>{Object.entries<number>(p.missing_values.counts).map(([k, n]) => `${k}: ${n}`).join(' · ')}
+              {Object.entries<number>(p.missing_values.counts).some(([k, n]) => n > 0 && !inv.request.variables.includes(k)) && <span className="muted"> (variables with gaps are not used)</span>}</dd>
             <dt>Validation</dt><dd>{p.validation_status}</dd>
           </dl>
         ))}

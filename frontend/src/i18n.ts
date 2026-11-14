@@ -76,6 +76,20 @@ const D = {
   hypothesis: { en: 'Hypothesis — proposed, not tested here', ru: 'Гипотеза — предложена, здесь не проверена' },
   engineEnglish: { en: '', ru: 'Тексты выводов формируются движком на английском языке.' },
   table: { en: 'Table', ru: 'Таблица' },
+  builtIn: { en: 'Built-in dependence — not an independent finding', ru: 'Встроенная зависимость — не самостоятельный результат' },
+  builtInShort: { en: 'built-in dependence', ru: 'встроенная зависимость' },
+  builtInEvidence: { en: 'See the derived-variable check', ru: 'Открыть проверку производной переменной' },
+  builtInAdd: { en: 'Add Specific humidity (QV2M) to measure how much.', ru: 'Добавьте удельную влажность (QV2M), чтобы измерить, насколько.' },
+  partialTitle: { en: 'Does it survive when another variable is held fixed?', ru: 'Сохраняется ли связь при фиксации другой переменной?' },
+  heldFixed: { en: 'Held fixed (statistically)', ru: 'Зафиксировано (статистически)' },
+  nothingFixed: { en: 'nothing', ru: 'ничего' },
+  partialHint: { en: 'Partial correlation of detrended anomalies. It is still a correlation: it shows whether the association remains, not what causes it.',
+                 ru: 'Частная корреляция аномалий без тренда. Это по-прежнему корреляция: она показывает, сохраняется ли связь, а не её причину.' },
+  derivedTitle: { en: 'Derived-variable check: relative humidity', ru: 'Проверка производной переменной: относительная влажность' },
+  derivedHint: { en: 'R² = share of the variance of relative-humidity anomalies reproduced by temperature and specific-humidity anomalies together.',
+                 ru: 'R² — доля дисперсии аномалий относительной влажности, воспроизводимая аномалиями температуры и удельной влажности вместе.' },
+  season: { en: 'Season', ru: 'Сезон' },
+  allMonths: { en: 'All months', ru: 'Все месяцы' },
 } as const
 
 export type Key = keyof typeof D
