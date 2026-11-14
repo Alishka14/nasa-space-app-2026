@@ -4,9 +4,11 @@
 // Every animated value is a Tween evaluated against one clock, so a frame can be
 // reproduced exactly (video capture sets the clock by hand).
 import * as THREE from 'three'
-import dayUrl from './textures/earth-day.jpg'
-import nightUrl from './textures/earth-night.jpg'
-import waterUrl from './textures/earth-water.png'
+// NASA images, byte-identical to the files in NASA's WorldWind repository; provenance and
+// credits in textures/SOURCES.json (built by scripts/build_earth_textures.py).
+import dayUrl from './textures/nasa-blue-marble-ng-200405-2048x1024.jpg'
+import nightUrl from './textures/nasa-earth-at-night-2012-2048x1024.png'
+import waterUrl from './textures/water-mask-natural-earth-50m.png'
 import { atmosphereFragment, atmosphereVertex, globeFragment, globeVertex } from './shaders'
 import { DEG, Tween, coastlines, latLonToXYZ, nearestAngle, seeded, yawFor } from './geo'
 import { PAVLODAR, type EarthCallbacks, type EarthController, type EarthOverlays, type EarthView, type ScreenPoint } from './types'

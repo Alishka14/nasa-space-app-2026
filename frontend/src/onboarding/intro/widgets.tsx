@@ -189,7 +189,7 @@ export function LayerChips({ marker, p, t }: { marker: ScreenPoint | null; p: nu
           ? { left: anchor.x + 44, top: anchor.y - 62 + i * 46, opacity: a, transform: `translateX(${(1 - a) * 12}px)` }
           : { right: '8%', top: `${30 + i * 9}%`, opacity: a }
         return (
-          <div key={v} className="es-chip" style={style}>
+          <div key={v} className="es-chip" data-i={i} style={style}>
             <i style={{ background: COLORS[v] }} />{t(`var.${v}`)} <code>{v}</code>
           </div>
         )

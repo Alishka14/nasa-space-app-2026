@@ -92,7 +92,9 @@ next step, not done.
 
 ## Assets
 
-See `ASSETS_AND_LICENSES.md`.
+Day: NASA Blue Marble: Next Generation (May 2004, 2048 × 1024). Night: NASA Earth at Night 2012 (2048 × 1024).
+Water mask: drawn from Natural Earth 1:50m land by `scripts/build_earth_textures.py`, which also pins the
+SHA-256 of the NASA files and writes `textures/SOURCES.json`. Credits and terms: `ASSETS_AND_LICENSES.md`.
 
 ## Preview
 

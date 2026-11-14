@@ -83,24 +83,32 @@ Reference frames (captures of the real application): `docs/screenshots/01_invest
 - [ ] Uploaded where it opens without login (for example YouTube *Unlisted* or *Public*); link tested in a private
       window.
 
-## A2. Ready-made option: the app's own Teaser intro (16.5 s)
+## A2. Ready-made demo: `docs/video/renders/demo_en.mp4` (29.3 s)
 
-The onboarding contains a 16.5-second intro (*Short*) that tells the same story on the 3D globe with the engine's
-numbers. It can be exported frame by frame from the running app — no editing, no generated footage:
+Built only from real material: a screenshot of the splash (3 s), the app's own **Short intro** (16.5 s, rendered
+frame by frame from the running app) and three screenshots of the app answering the same question (9.5 s) with
+English captions. 1920×1080, silent — every spoken idea is on screen in English.
 
-```bash
-# app running on http://127.0.0.1:8000 (see Setup); needs Node, puppeteer-core and ffmpeg
-OUT_DIR=docs/video/renders node scripts/record_intro.mjs teaser en 24 1280 720   # → teaser_en.mp4
-```
+| Time | Picture | Text on screen |
+|---|---|---|
+| 0:00–0:03 | Splash: challenge name, EARTH SENSES, tagline, NASA imagery credit | (optional) team name and members |
+| 0:03–0:19.5 | Short intro: Same NASA data → −0.285 → +0.593 → seasonality → Evidence before conclusions | the intro's own titles and subtitles |
+| 0:19.5–0:22.5 | App: Pavlodar investigated, three variables | In the app: choose a place, variables and years — NASA POWER data |
+| 0:22.5–0:26 | App: the precipitation ↔ humidity card | Raw −0.28, seasons removed +0.59 — and not detected in winter |
+| 0:26–0:29.3 | App: the evidence drawer | Every result keeps its evidence, counter-evidence and NASA source file |
 
-Recordings made this way in the build environment (720p, software-rendered WebGL, silent) are listed in
-[`video/VIDEO_MASTER_PLAN.md`](video/VIDEO_MASTER_PLAN.md). What it does **not** contain, compared with cut A: the team
-name and the "next steps" line the guide recommends. Either add a 3-second title card in an editor (total stays under
-30 s), or use cut A. The film is silent; its narration is on screen in English, so no extra subtitles are needed.
-It is a capture of the application, not AI-generated video; the code that draws it was written with an AI assistant,
-which the AI-use statement in `NASA_SUBMISSION.md` already declares.
+**Add the team name** (the guide asks for it at 0:00): `TEAM="Team ⟨NAME⟩ · ⟨member names⟩" bash scripts/make_demo.sh`
+— it rebuilds the file in about a minute. Without `TEAM` the line is left out rather than invented.
 
-To show it live: open `http://localhost:8000/?intro`, pick a language, choose **Short**, press **Start**.
+**Publish:** upload `demo_en.mp4` to YouTube as *Unlisted* (or to Vimeo / Google Drive with "anyone with the link"),
+open the link in a private browser window to check it plays without login, and paste it into the form. The film is
+a screen recording of the app, not generated footage; the AI-use field of the form already says the code and texts
+were written with AI assistance.
+
+To re-record the intro films after a change: `node scripts/record_intro.mjs <teaser|explainer|hero> <en|ru|kk>`
+with `SCALE=1.5` for 1920×1080, then `python scripts/package_videos.py`.
+
+To show it live instead: open `http://localhost:8000/?intro`, pick a language, choose **Short**, press **Start**.
 
 ## B. Seven slides (alternative to the video)
 

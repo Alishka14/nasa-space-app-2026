@@ -8,8 +8,9 @@
 |---|---|
 | In-app intro (3 variants × 3 languages), motion graphics over the real WebGL Earth | **Built** — the primary experience |
 | Scripts, storyboards, on-screen text, subtitles for all 9 versions | **Built** (this folder) |
-| Recorded video files | Only if listed under *Recorded files* below. A recording is a screen capture of the in-app intro, not generated footage |
-| Voice-over audio | **Not recorded.** The scripts in section 3 of each file are ready for recording |
+| Recorded video files | Listed under *Recorded files* below and in `renders/MANIFEST.md`. A recording is a screen capture of the in-app intro, not generated footage |
+| English demo for the NASA form (30 s or less) | `renders/demo_en.mp4`, built by `scripts/make_demo.sh` from the Short intro and screenshots of the app |
+| Voice-over audio | **Not recorded.** Final narration with pronunciation and number readings: `VOICEOVER_FINAL.md` |
 | Generated (AI) video | **Not made.** Prompts are in `EXTERNAL_VIDEO_PROMPTS.md` |
 | Native-speaker review of the Kazakh and Russian texts | **Not done** |
 
@@ -48,7 +49,9 @@ Checked automatically: `backend/tests/test_09_intro_content.py` runs every Engli
 ```bash
 EARTH_SENSES_OFFLINE=1 uvicorn earth_senses.api:app --app-dir backend --port 8000
 # open http://localhost:8000/?capture&variant=teaser&lang=en  (no controls, clock driven by window.__esIntro.seek)
-node scripts/record_intro.mjs teaser en        # frame-exact capture -> docs/video/renders/teaser_en.mp4
+SCALE=1.5 node scripts/record_intro.mjs teaser en   # frame-exact capture, 1920×1080 -> docs/video/renders/teaser_en.mp4
+python scripts/package_videos.py                    # metadata, decode check, renders/MANIFEST.md
+bash scripts/make_demo.sh                           # 30-second English demo -> renders/demo_en.mp4
 ```
 
 Live playback (with controls): <http://localhost:8000/?intro>. Choose the language and the length on the second screen. Keys: Space pause, R replay, C subtitles, Esc skip.
@@ -59,9 +62,12 @@ Frame-exact screen captures of the running application made with `scripts/record
 
 | File | Length | Picture | Size |
 |---|---|---|---|
-| [`renders/teaser_en.mp4`](renders/teaser_en.mp4) | 16.5 s | 1280×720, 24 fps | 3.3 MB |
-| [`renders/teaser_kk.mp4`](renders/teaser_kk.mp4) | 16.5 s | 1280×720, 24 fps | 3.3 MB |
-| [`renders/teaser_ru.mp4`](renders/teaser_ru.mp4) | 16.5 s | 1280×720, 24 fps | 3.3 MB |
+| [`renders/demo_en.mp4`](renders/demo_en.mp4) | 29.3 s | 1920×1080, 24 fps | 11.2 MB |
+| [`renders/explainer_en.mp4`](renders/explainer_en.mp4) | — | — | 1.6 MB |
+| [`renders/hero_en.mp4`](renders/hero_en.mp4) | 59.5 s | 1920×1080, 24 fps | 17.9 MB |
+| [`renders/teaser_en.mp4`](renders/teaser_en.mp4) | 16.5 s | 1920×1080, 24 fps | 6.4 MB |
+| [`renders/teaser_kk.mp4`](renders/teaser_kk.mp4) | 16.5 s | 1920×1080, 24 fps | 6.4 MB |
+| [`renders/teaser_ru.mp4`](renders/teaser_ru.mp4) | 16.5 s | 1920×1080, 24 fps | 6.4 MB |
 
 ---
 

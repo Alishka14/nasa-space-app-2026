@@ -38,7 +38,7 @@ No audio track exists yet. The in-app intro shows this narration as subtitles; r
 - −0.285 → +0.593
 - The difference: seasonality.
 - EARTH SENSES · Evidence before conclusions.
-- Data: NASA POWER (MERRA-2 reanalysis) · Pavlodar grid cell · 2001–2024
+- Data: NASA POWER (MERRA-2 reanalysis) · Pavlodar grid cell · 2001–2024 · Earth imagery: NASA Earth Observatory
 
 ## 5. Subtitles
 

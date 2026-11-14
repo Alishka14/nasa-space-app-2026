@@ -2,6 +2,8 @@
 // Needs: the app running (EARTH_SENSES_OFFLINE=1 uvicorn ... --port 8000), Chrome or Chromium,
 // puppeteer-core (npm i puppeteer-core) and ffmpeg on PATH.
 //   node scripts/record_intro.mjs <teaser|explainer|hero> <en|ru|kk> [fps=24] [width=1280] [height=720]
+// SCALE=1.5 renders the same 1280×720 layout at 1920×1080 (sharper, identical composition).
+// FRAME_LIMIT=n stops after n frames (timing tests). CRF=22 by default.
 // Writes docs/video/renders/<variant>_<lang>.mp4
 import { spawn } from 'node:child_process'
 import { mkdirSync } from 'node:fs'
@@ -11,6 +13,7 @@ import puppeteer from 'puppeteer-core'
 
 const [variant = 'teaser', lang = 'en', fpsArg = '24', wArg = '1280', hArg = '720'] = process.argv.slice(2)
 const fps = Number(fpsArg), width = Number(wArg), height = Number(hArg)
+const scale = Number(process.env.SCALE || '1')
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const outDir = process.env.OUT_DIR ? resolve(process.env.OUT_DIR) : resolve(root, 'docs/video/renders')
 mkdirSync(outDir, { recursive: true })
@@ -21,12 +24,12 @@ const base = process.env.APP_URL || 'http://127.0.0.1:8000/'
 const browser = await puppeteer.launch({ executablePath: chrome, headless: 'new',
   args: ['--no-sandbox', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--hide-scrollbars'] })
 const page = await browser.newPage()
-await page.setViewport({ width, height, deviceScaleFactor: 1 })
+await page.setViewport({ width, height, deviceScaleFactor: scale })
 await page.goto(`${base}?capture&variant=${variant}&lang=${lang}`, { waitUntil: 'load', timeout: 60000 })
 await page.waitForFunction(() => window.__esIntro?.ready, { timeout: 30000 })
 await new Promise(r => setTimeout(r, 3000))      // textures arrive and fade in (wall-clock)
 const duration = await page.evaluate(() => window.__esIntro.duration)
-const frames = Math.round(duration * fps)
+const frames = Math.min(Math.round(duration * fps), Number(process.env.FRAME_LIMIT || Infinity))
 
 const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-i', '-',
   '-c:v', 'libx264', '-preset', 'veryfast', '-crf', process.env.CRF || '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out],

@@ -48,9 +48,12 @@ teaches the detective's most important habit, which is to doubt the first answer
 **TO DO** — public link to a video of 30 seconds or less, or to a deck of at most 7 slides
 (see `docs/DEMO_SCRIPT.md`).
 
-Candidate: the app's own **Teaser intro, 16.5 s** (`docs/video/renders/teaser_en.mp4`, with Russian and Kazakh
-versions beside it). It is a frame-exact screen capture of the running application — the WebGL globe and the real
-numbers from the engine — not generated footage. Upload it where it opens without login and paste the link here.
+Prepared: **`docs/video/renders/demo_en.mp4`** — 30 seconds or less, English, recorded from the running
+application (the 3D globe, the intro's main finding and the app itself), not generated footage. Longer films
+(Full film ≈ 60 s, Explainer 45 s) and the Russian and Kazakh versions are for presentations, not for this field:
+the rules allow at most 30 seconds, and a non-English video needs English subtitles. Upload `demo_en.mp4` where
+it opens without login (YouTube *Unlisted* or Vimeo), check the link in a private browser window, and paste it
+here.
 
 ## A4. Link to Final Project
 
@@ -171,7 +174,7 @@ References
 - Benjamini, Y., Hochberg, Y. (1995). Controlling the false discovery rate. *JRSS B* 57, 289–300.
 - World Meteorological Organization (2008). *Guide to Meteorological Instruments and Methods of Observation*, WMO-No. 8, Annex 4.B.
 - Software: NumPy, SciPy, pandas, statsmodels, FastAPI, Uvicorn, pydantic, httpx, pytest, pymannkendall (tests only), React, Vite, TypeScript, MapLibre GL JS, Apache ECharts, world-atlas, topojson-client, three.js.
-- Earth textures in the onboarding: example images of the npm package `three-globe` 2.45.6 (MIT); the package does not state their source — see `docs/visual/ASSETS_AND_LICENSES.md`.
+- Earth imagery in the onboarding and films: NASA Earth Observatory — Blue Marble: Next Generation (Reto Stöckli) and Earth at Night 2012 (with NOAA NGDC), as distributed in NASA's WorldWind repository; coastlines and water mask: Natural Earth (public domain). See `docs/visual/ASSETS_AND_LICENSES.md`.
 - SI tools: Claude (Anthropic), Gemini (Google) — see A6.
 
 ---

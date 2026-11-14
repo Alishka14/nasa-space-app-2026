@@ -2,7 +2,7 @@
 // (seconds); scenes, text fades, widgets and the globe's camera all derive from
 // it. Real playback advances t with requestAnimationFrame; capture mode
 // (?capture) exposes window.__esIntro.seek(t) so frames can be rendered exactly.
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { duration, positionAt, type Variant } from '../content/scripts'
 import { fill, makeT, type UiLang } from '../i18n'
 import type { EarthController, ScreenPoint } from '../earth/types'
@@ -118,17 +118,33 @@ export default function IntroPlayer({ variant, lang, earth, capture, onFinish, o
   const vo = fill(s.vo[lang], lang)
   const layout = s.widget ? 'with-panel' : `solo-${s.visual}`
 
+  // A long title can wrap onto an extra line; push the panel down so the two never touch.
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const place = () => {
+      const h = titleRef.current, p = panelRef.current
+      if (!h || !p) return
+      p.style.top = ''
+      const needed = h.offsetTop + h.offsetHeight + 14
+      if (p.offsetTop < needed) p.style.top = `${needed}px`
+    }
+    place()
+    window.addEventListener('resize', place)
+    return () => window.removeEventListener('resize', place)
+  }, [s.id, title])
+
   return (
     <div className={`es-intro es-layout-${layout}`} data-scene={s.id} data-capture={capture ? '1' : undefined}>
       {s.visual === 'focus' && <PlaceLabel marker={marker} p={pos.progress} t={t} />}
       {s.visual === 'layers' && <LayerChips marker={marker} p={pos.progress} t={t} />}
 
       <div className="es-stage">
-        <h2 className={`es-title es-title-${s.visual}${title === 'EARTH SENSES' ? ' es-title-wordmark' : ''}`} style={{ opacity: textAlpha, transform: `translateY(${(1 - ramp(pos.local / s.dur, 0, 0.12)) * 10}px)` }}>
+        <h2 ref={titleRef} className={`es-title es-title-${s.visual}${title === 'EARTH SENSES' ? ' es-title-wordmark' : ''}`} style={{ opacity: textAlpha, transform: `translateY(${(1 - ramp(pos.local / s.dur, 0, 0.12)) * 10}px)` }}>
           {title}
         </h2>
         {s.widget && (
-          <div className="es-panel" style={{ opacity: Math.min(1, pos.local / 0.5, (s.dur - pos.local) / 0.35) }}>
+          <div ref={panelRef} className="es-panel" style={{ opacity: Math.min(1, pos.local / 0.5, (s.dur - pos.local) / 0.35) }}>
             <WidgetView widget={s.widget} p={pos.progress} lang={lang} t={t} />
           </div>
         )}

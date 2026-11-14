@@ -1,6 +1,6 @@
 # Preview notes — onboarding and intro
 
-All images in [`screenshots/`](screenshots/) are captures of the running application (`EARTH_SENSES_OFFLINE=1`,
+All images in [`screenshots/`](screenshots/) are captures of the running application with the NASA Earth textures (`EARTH_SENSES_OFFLINE=1`,
 built frontend served by the backend), taken in headless Chrome with **software WebGL (SwiftShader)** at 1440 × 900
 (mobile: 390 × 844). Nothing is mocked up or generated. On a laptop with a real GPU the globe is the same scene, drawn
 faster and with smoother edges.
@@ -9,7 +9,7 @@ faster and with smoother edges.
 
 | File | What it shows | Where in the flow |
 |---|---|---|
-| `01_splash_en.jpg` | Splash: wordmark, tagline, the Earth rising from below | First second of a first visit |
+| `01_splash_en.jpg` | Splash: wordmark, tagline, the Earth rising from below, NASA imagery credit | First seconds of a first visit |
 | `02_language_en.jpg` · `03_language_ru.jpg` · `04_language_kk.jpg` | Language screen: three cards in their own names, intro length chips, globe turned to Kazakhstan | After the splash |
 | `05_intro_place_en.jpg` | Explainer, scene 1: Pavlodar marker and coordinates | Intro, 0–6.5 s |
 | `06_intro_raw_and_cycles_en.jpg` | Explainer, scene 2→3: raw −0.285 and the seasonal cycles alone −0.775 | Intro, 13–19.5 s |
@@ -18,7 +18,7 @@ faster and with smoother edges.
 | `09_intro_checks_en.jpg` | "Before any conclusion": the six checks, incl. winter −0.06 / summer +0.70 and correlation ≠ causation | Explainer, 28–35 s |
 | `10_intro_rejected_claims_en.jpg` | "No warming" and "Humidity is rising" struck through, with the reasons | Explainer, 35–40.5 s |
 | `11_intro_flip_kk.jpg` | The same flip in Kazakh (decimal comma, Kazakh labels) | Full film, Kazakh |
-| `12_intro_end_kk.jpg` | Last scene with the button that opens the app | Full film, Kazakh, end |
+| `12_intro_end_kk.jpg` | Last scene, as recorded in the film (in the app a button opens the app here) | Full film, Kazakh, end |
 | `13_app_header_kk.jpg` | Main app in Kazakh: **EN · RU · KZ** switch and **▶ Intro** in the header | After the intro |
 | `14_fallback_2d.jpg` | No-WebGL fallback: a labelled 2D dotted globe instead of the 3D one | `?earth=2d` or no WebGL |
 | `15_mobile_kk.jpg` | Splash and language screen on a phone-sized screen | 390 × 844 |
@@ -64,5 +64,5 @@ on every later visit.
 - Software rendering in these captures makes the coastlines slightly soft and the motion less smooth than on a GPU.
 - The Russian and Kazakh texts have not yet been reviewed by native speakers.
 - The intro is silent; the narration is shown as subtitles.
-- The Earth images' original source is not stated by the package they came from — see
-  [`ASSETS_AND_LICENSES.md`](ASSETS_AND_LICENSES.md).
+- Earth imagery is NASA's (Blue Marble: Next Generation, Earth at Night 2012), credited on the splash screen and in
+  every film; provenance in [`ASSETS_AND_LICENSES.md`](ASSETS_AND_LICENSES.md).

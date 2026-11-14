@@ -51,6 +51,7 @@ export default function Splash({ lang, progress, ready, reducedMotion, onContinu
         <p className="es-tagline">{t('splash.tagline')}</p>
         <p className="es-motto">{t('splash.motto')}</p>
       </div>
+      <div className="es-credit">{t('splash.credit')}</div>
       <div className="es-splash-foot">
         {!ready
           ? <div className="es-loading" role="status"><i style={{ width: `${Math.round(progress * 100)}%` }} />{t('splash.loading')} · {Math.round(progress * 100)}%</div>

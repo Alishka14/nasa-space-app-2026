@@ -50,7 +50,7 @@ No audio track exists yet. The in-app intro shows this narration as subtitles; r
 - Before any conclusion: Seasonal cycle removed; Autocorrelation and multiple tests accounted for; Other periods checked; Seasons compared: winter r = −0.06, summer r = +0.70; Correlation ≠ causation; One grid cell, one model (MERRA-2)
 - “No warming” — Not supported: the 95% confidence interval runs from −0.67 to +0.46 °C per decade
 - “Humidity is rising” — Fragile: q = 0.105 after correction; leaving out one of 5 years flips it
-- Data: NASA POWER (MERRA-2 reanalysis) · Pavlodar grid cell · 2001–2024
+- Data: NASA POWER (MERRA-2 reanalysis) · Pavlodar grid cell · 2001–2024 · Earth imagery: NASA Earth Observatory
 
 ## 5. Subtitles
 

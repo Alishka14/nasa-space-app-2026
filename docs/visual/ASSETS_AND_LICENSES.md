@@ -1,34 +1,44 @@
 # Assets and licences used by the onboarding
 
-## Earth textures — provenance to verify before public release
+## Earth textures
 
-| File in `frontend/src/onboarding/earth/textures/` | Size | Made from | Source file SHA-256 |
+| File in `frontend/src/onboarding/earth/textures/` | Pixels | What it is | Credit |
 |---|---|---|---|
-| `earth-day.jpg` | 3072 × 1536, 590 KB | `three-globe@2.45.6/example/img/earth-blue-marble.jpg` (4096 × 2048), resized | `228deba2e4b600146bdcb6cfa359b8ead6aacc2b1c13550a29cd82824cfa1c01` |
-| `earth-night.jpg` | 2048 × 1024, 131 KB | `three-globe@2.45.6/example/img/earth-night.jpg` (4096 × 2048), resized | `355ab23dd1323315b393d7b91dd2d7ee223a1cbaaba2b48dc72ba90d371ced24` |
-| `earth-water.png` | 1024 × 512, 108 KB | `three-globe@2.45.6/example/img/earth-water.png` (1600 × 800), resized, greyscale | `3a8132db56aac4e64e7fcbf2928ee970c075ac6a96b38798d0bb8be82836a4d3` |
+| `nasa-blue-marble-ng-200405-2048x1024.jpg` | 2048 × 1024, 312 kB | Blue Marble: Next Generation with topography and bathymetry, May 2004 (Terra MODIS) | NASA Earth Observatory (Reto Stöckli) |
+| `nasa-earth-at-night-2012-2048x1024.png` | 2048 × 1024, 1.5 MB | Earth at Night 2012 — land, ocean, ice (Suomi NPP VIIRS day-night band) | NASA Earth Observatory/NOAA NGDC (Robert Simmon; data courtesy Chris Elvidge, NOAA NGDC) |
+| `water-mask-natural-earth-50m.png` | 2048 × 1024, 141 kB | Land/water mask for the sun glint, drawn by this project | Made with Natural Earth |
 
-**What is known.** The files were taken from the npm package `three-globe` 2.45.6
-(MIT licence, © Vasco Asturiano), which ships them as example images. The package does
-not state where the images come from. The day image matches the appearance of NASA's
-Blue Marble composites and the night image NASA's "Earth at Night" city-lights
-composites, but that was **not verified** in this build: the build environment could not
-reach NASA's image servers.
+**Where the NASA images come from.** Both are **byte-identical copies** of the files that NASA's own
+WorldWind project ships in its repository —
+`github.com/NASAWorldWind/WebWorldWind`, folder `images/`, commit `5ffe2dfc54ab4d744fc9e587af9639c9910db228`
+(`BMNG_world.topo.bathy.200405.3.2048x1024.jpg` for its Blue Marble layer,
+`dnb_land_ocean_ice_2012.png` for its atmosphere/night layer). WorldWind is developed by NASA Ames Research
+Center, and its site `worldwind.arc.nasa.gov` names that GitHub organisation as the project's official home.
+`scripts/build_earth_textures.py` refuses a file whose SHA-256 differs from the pinned value, and
+`backend/tests/test_10_earth_textures.py` checks every shipped texture against
+[`SOURCES.json`](../../frontend/src/onboarding/earth/textures/SOURCES.json).
 
-**What NASA says about its imagery** (if they are NASA images): Visible Earth images are
-freely available for re-use, the only mandatory credit is "NASA", and NASA branding must
-not imply endorsement.
+**What was not possible here.** NASA's own image servers (`visibleearth.nasa.gov`, `eoimages.gsfc.nasa.gov`)
+are blocked by this build environment's network policy, so the files were not downloaded from Visible Earth
+directly and could not be compared with Visible Earth's copies byte for byte. They are NASA images distributed
+by a NASA project, not images found in a third-party package; the earlier, unverified textures from the npm
+package `three-globe` have been removed.
 
-**To do before public release (5 minutes):** download the day and night images directly
-from NASA Visible Earth (Blue Marble Next Generation; Earth at Night / Black Marble),
-resize them to the sizes above, replace the three files and record the source URLs here.
-The code does not depend on the exact images.
+**Terms.** NASA Visible Earth: most images are freely available for re-publication or re-use, including
+commercial purposes, except where copyright is indicated; please use the credit given with each image; the
+only mandatory credit is **NASA** (visibleearth.nasa.gov/image-use-policy). For Blue Marble: Next Generation
+the Earth Observatory asks for the credit "NASA Earth Observatory". NASA does not endorse this project, and no
+NASA logo or insignia is used.
+
+**Credit line used in the app and the films:** *Earth imagery: NASA Earth Observatory (Blue Marble: Next
+Generation; Earth at Night 2012, with NOAA NGDC). Coastlines and water mask: Natural Earth.*
 
 ## Data drawn on the globe
 
 | Data | Licence | Use |
 |---|---|---|
 | Natural Earth 1:110m land, via `world-atlas@2` (`countries-110m.json`) | Public domain (Natural Earth); package ISC | Coastline overlay, 2D fallback land dots |
+| Natural Earth 1:50m land, via `world-atlas@2` (`land-50m.json`) | Public domain (Natural Earth); package ISC | Water mask (drawn once by `scripts/build_earth_textures.py`) |
 | `facts.json`, `series.json` | Computed by this project from NASA POWER (MERRA-2) data | Numbers and curves in the intro |
 
 ## Libraries

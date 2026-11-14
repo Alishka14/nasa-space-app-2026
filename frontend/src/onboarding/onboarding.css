@@ -167,6 +167,25 @@
   .es-subtitle { bottom: 96px; }
   .es-buttons span { display: none; }
 }
+/* Phones: keep the place label, layer chips and panel inside the screen and clear of the subtitles. */
+@media (max-width: 760px) {
+  .es-panel { top: 22%; bottom: auto; }
+  .es-place { left: 50% !important; top: 27% !important; transform: translateX(-50%); width: 88vw; }
+  .es-leader { display: none; }
+  .es-place-text { position: static; align-items: center; text-align: center; white-space: normal; }
+  .es-chip { left: 6% !important; transform: none !important; }
+  .es-chip[data-i="0"] { top: 25% !important; }
+  .es-chip[data-i="1"] { top: 31% !important; }
+  .es-chip[data-i="2"] { top: 37% !important; }
+  .es-credit { bottom: 8px; font-size: 10px; }
+  .es-splash .es-splash-foot { bottom: 70px; }
+}
+/* Recorded films (capture mode): larger subtitles so they stay readable on a projector and at 1080p. */
+.es-capture .es-subtitle { font-size: 23px; width: min(1120px, 90%); padding: 8px 18px; }
+@media (max-width: 760px) {
+  .es-capture .es-subtitle { font-size: 16px; bottom: 88px; }
+}
+.es-credit { position: absolute; left: 24px; right: 24px; bottom: 12px; text-align: center; font-size: 11px; color: var(--es-muted); pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
   .es-onboarding, .es-onboarding * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

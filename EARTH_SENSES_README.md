@@ -76,8 +76,10 @@ computed by the engine (`scripts/build_intro_assets.py`) and checked by `backend
   the language. `?intro` forces the onboarding, `?nointro` skips it.
 - Design and implementation: [`docs/visual/`](docs/visual/) · scripts, storyboards and subtitles for all nine
   versions: [`docs/video/VIDEO_MASTER_PLAN.md`](docs/video/VIDEO_MASTER_PLAN.md).
-- Silent by design (narration shown as subtitles). The Earth textures' provenance is still to be verified
-  (see [`docs/visual/ASSETS_AND_LICENSES.md`](docs/visual/ASSETS_AND_LICENSES.md)).
+- Silent by design (narration shown as subtitles). Earth imagery: NASA Earth Observatory (Blue Marble: Next
+  Generation; Earth at Night 2012) — provenance and credits in
+  [`docs/visual/ASSETS_AND_LICENSES.md`](docs/visual/ASSETS_AND_LICENSES.md).
+- Recorded films (1920×1080, screen captures of the app): [`docs/video/renders/MANIFEST.md`](docs/video/renders/MANIFEST.md).
 
 ## Run it
 
@@ -175,7 +177,7 @@ calculations. Humans remain accountable for what is submitted.
 
 No licence has been chosen for this repository yet; that is the owner's decision. Third-party components keep their own
 licences: React (MIT), Vite (MIT), MapLibre GL JS (BSD-3-Clause), Apache ECharts (Apache-2.0), three.js (MIT), world-atlas (ISC; Natural
-Earth outlines, public domain), NumPy, SciPy, pandas, statsmodels (BSD-3-Clause), FastAPI (MIT). NASA data are not
+Earth outlines, public domain), NASA Earth Observatory imagery (Blue Marble: Next Generation; Earth at Night 2012 — credit NASA), NumPy, SciPy, pandas, statsmodels (BSD-3-Clause), FastAPI (MIT). NASA data are not
 copyrighted; NASA does not endorse this project.
 
 ---
