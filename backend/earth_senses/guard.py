@@ -47,6 +47,8 @@ _ABSENCE = [
     r"\bhas not (?:changed|warmed)\b", r"\bunchanged\b", r"\bstable climate\b",
     r"нет (?:потеплени\w+|похолодани\w+|тренд\w*|изменени\w+|связ\w+|зависимост\w+|памят\w+)",
     r"отсутств\w+ (?:тренд\w*|потеплени\w+|связ\w+|памят\w+|изменени\w+)", r"не (?:теплеет|меняется|изменил\w*)",
+    # Russian puts the negation after the noun just as often: «потепления нет», «связи нет».
+    r"(?:потеплени\w+|похолодани\w+|тренд\w*|изменени\w+|связ\w+|зависимост\w+|памят\w+) нет\b",
 ]
 _LAG_DIRECTION = [
     r"\blag\w*[^.]{0,60}\b(?:shows?|means?|implies|indicates?|establish\w*)[^.]{0,40}\b(?:direction|influence|control|response)",

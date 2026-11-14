@@ -48,6 +48,13 @@ teaches the detective's most important habit, which is to doubt the first answer
 **TO DO** — public link to a video of 30 seconds or less, or to a deck of at most 7 slides
 (see `docs/DEMO_SCRIPT.md`).
 
+Prepared: **`docs/video/renders/demo_en.mp4`** — 30 seconds or less, English, recorded from the running
+application (the 3D globe, the intro's main finding and the app itself), not generated footage. Longer films
+(Full film ≈ 60 s, Explainer 45 s) and the Russian and Kazakh versions are for presentations, not for this field:
+the rules allow at most 30 seconds, and a non-English video needs English subtitles. Upload `demo_en.mp4` where
+it opens without login (YouTube *Unlisted* or Vimeo), check the link in a private browser window, and paste it
+here.
+
 ## A4. Link to Final Project
 
 <https://github.com/Alishka14/nasa-space-app-2026> (branch `feat/earth-senses-mvp` until the team merges it) —
@@ -123,8 +130,11 @@ SI tools were used and are disclosed here, in the repository README and in the c
   evidence.
 - **No SI takes part in the tool's results.** Every number and every sentence the user sees comes from deterministic
   code and fixed templates. The repository contains no SI-generated data.
-- **No SI-generated images, video or audio** are used. Screenshots are captures of the running application. No NASA
-  logos or branding are used.
+- **No SI-generated images, video or audio** are used. Screenshots and the intro recordings are captures of the
+  running application. No NASA logos or branding are used.
+- The **onboarding** (3D globe, splash, language screen, intro films in English, Russian and Kazakh) and the Kazakh
+  interface texts were also written by Claude; the Russian and Kazakh texts have not yet been reviewed by a native
+  speaker. Every number shown in the intro is computed by the engine and checked by a test.
 - The project idea, the challenge choice and the methodological principles (MIZAN, BATYR AGA, Ghost Busters and the
   others described in `docs/METHOD_INTEGRATION.md`) came from the team. **TO DO: the team confirms this sentence.**
 - The checks described in `docs/SCIENCE_REVIEW.md` were run by an SI system and are a self-audit, not an independent
@@ -163,7 +173,8 @@ References
 - Bretherton, C. S., et al. (1999). The effective number of spatial degrees of freedom of a time-varying field. *Journal of Climate* 12, 1990–2009.
 - Benjamini, Y., Hochberg, Y. (1995). Controlling the false discovery rate. *JRSS B* 57, 289–300.
 - World Meteorological Organization (2008). *Guide to Meteorological Instruments and Methods of Observation*, WMO-No. 8, Annex 4.B.
-- Software: NumPy, SciPy, pandas, statsmodels, FastAPI, Uvicorn, pydantic, httpx, pytest, pymannkendall (tests only), React, Vite, TypeScript, MapLibre GL JS, Apache ECharts, world-atlas, topojson-client.
+- Software: NumPy, SciPy, pandas, statsmodels, FastAPI, Uvicorn, pydantic, httpx, pytest, pymannkendall (tests only), React, Vite, TypeScript, MapLibre GL JS, Apache ECharts, world-atlas, topojson-client, three.js.
+- Earth imagery in the onboarding and films: NASA Earth Observatory — Blue Marble: Next Generation (Reto Stöckli) and Earth at Night 2012 (with NOAA NGDC), as distributed in NASA's WorldWind repository; coastlines and water mask: Natural Earth (public domain). See `docs/visual/ASSETS_AND_LICENSES.md`.
 - SI tools: Claude (Anthropic), Gemini (Google) — see A6.
 
 ---

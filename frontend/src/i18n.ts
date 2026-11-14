@@ -1,6 +1,9 @@
-// Interface labels in English (for the jury) and Russian. Findings themselves are
+// Interface labels in English (for the jury), Russian and Kazakh. Findings themselves are
 // produced by the engine in English only; that is stated in the interface.
-export type Lang = 'en' | 'ru'
+// Kazakh lives in the separate KK table below, so the original en/ru table is unchanged;
+// a key missing from KK falls back to English.
+export type Lang = 'en' | 'ru' | 'kk'
+export const LANG_LABEL: Record<Lang, string> = { en: 'EN', ru: 'RU', kk: 'KZ' }
 
 const D = {
   tagline: { en: 'Interconnected Earth Intelligence', ru: 'Интеллект взаимосвязей системы Земли' },
@@ -90,7 +93,97 @@ const D = {
                  ru: 'R² — доля дисперсии аномалий относительной влажности, воспроизводимая аномалиями температуры и удельной влажности вместе.' },
   season: { en: 'Season', ru: 'Сезон' },
   allMonths: { en: 'All months', ru: 'Все месяцы' },
+  intro: { en: 'Intro', ru: 'Вступление' },
+  language: { en: 'Language', ru: 'Язык' },
 } as const
 
 export type Key = keyof typeof D
-export const tr = (lang: Lang) => (k: Key): string => D[k][lang]
+const KK: Partial<Record<Key, string>> = {
+  tagline: 'Жер жүйесінің өзара байланыс интеллекті',
+  motto: 'ЖИ ұсынады. Дәлел шешеді. Earth Senses зерттейді.',
+  tabInvestigate: 'Зерттеу',
+  tabGraph: 'Байланыс графы',
+  tabTimeline: 'Дәлелдер хронологиясы',
+  tabCompare: 'Аймақтарды салыстыру',
+  tabReport: 'Есеп',
+  where: '1 · Қай жерде',
+  what: '2 · Не',
+  when: '3 · Қашан',
+  mapHint: 'Картадан орынды таңдаңыз немесе кез келген нүктені шертіңіз.',
+  latitude: 'Ендік',
+  longitude: 'Бойлық',
+  from: 'Басы',
+  to: 'Соңы',
+  baseline: 'Климаттық база',
+  baselineFull: 'бүкіл кезең',
+  investigate: 'Зерттеу',
+  working: 'Есептелуде…',
+  cached: 'сақталған NASA файлы',
+  live: 'NASA-ға сұрау қажет',
+  moreVars: 'Қосымша айнымалылар — осы нұсқада нақты жауаппен тексерілмеген',
+  emptyTitle: 'Орынды, айнымалыларды және кезеңді таңдап, зерттеуді бастаңыз.',
+  emptyBody: 'Павлодардан, температура мен ылғалдылықтан, 2001–2024 жылдардан бастаңыз: құрал осы жағдайда тексерілген.',
+  changing: 'Не өзгеріп жатыр',
+  together: 'Не бірге өзгереді',
+  series: 'Уақыт қатарлары',
+  raw: 'Айлық мәндер',
+  cycle: 'Маусымдық цикл',
+  anomalies: 'Аномалиялар',
+  annual: 'Жылдық орташа мәндер мен тренд',
+  viewEvidence: 'Дәлелдер',
+  cannot: 'Бұл деректерден қандай қорытынды жасауға болмайды',
+  provenance: 'Деректердің шығу тегі',
+  warnings: 'Ескертулер',
+  windowTitle: 'Кезең өзгергенде тренд сақтала ма?',
+  windowHint: 'Әр ұяшық — бір ішкі кезең; нүкте p < 0,05 дегенді білдіреді.',
+  stepsTitle: 'Маусымдылық пен тренд алынғандағы корреляция',
+  lagTitle: 'Лагтық талдау (трендсіз аномалиялар)',
+  lagHint: 'Тұтас бағандар 13 лагқа түзетуден кейін де мәнді. Лаг — тек кешігу статистикасы.',
+  seasonTitle: 'Маусымдар бойынша',
+  graphRule: 'Қабырға тек деректерден есептелген байланыс болғанда ғана пайда болады. Гипотезалар қабырғаларға тек түсініктеме береді.',
+  guardTitle: 'MIZAN Guard-ты байқап көріңіз',
+  guardHint: 'Нәтижеге түсініктеме жазыңыз. Себеп-салдарлық, «дәлелдейді» және «өзгеріс жоқ» деген тұжырымдар бұғатталады.',
+  check: 'Тұжырымды тексеру',
+  allowed: 'Рұқсат етілген',
+  blocked: 'Бұғатталған',
+  timelineHint: 'Әр түсіндірме қалай алынып, қалай қайта қаралды. Әр қадам өз дәлеліне сілтейді.',
+  compareRun: 'Салыстыру',
+  regionA: 'Бірінші аймақ',
+  regionB: 'Екінші аймақ',
+  download: '.md жүктеп алу',
+  close: 'Жабу',
+  needRun: 'Алдымен зерттеуді іске қосыңыз.',
+  claim: 'Тұжырым',
+  evidenceFor: 'Дәлелдер',
+  counter: 'Қарсы дәлелдер',
+  alternatives: 'Жоққа шығарылмаған балама түсіндірмелер',
+  limitations: 'Шектеулер',
+  method: 'Әдіс',
+  parameters: 'Параметрлер',
+  result: 'Нәтиже',
+  uncertainty: 'Белгісіздік',
+  sourceData: 'NASA бастапқы деректері',
+  independent: 'Сол шама туралы тәуелсіз хабарламалар',
+  hypothesis: 'Гипотеза — ұсынылған, мұнда тексерілмеген',
+  engineEnglish: 'Қорытынды мәтіндерін есептеу жүйесі ағылшын тілінде жасайды.',
+  table: 'Кесте',
+  builtIn: 'Кіріктірілген тәуелділік — дербес нәтиже емес',
+  builtInShort: 'кіріктірілген тәуелділік',
+  builtInEvidence: 'Туынды айнымалы тексерісін ашу',
+  builtInAdd: 'Қаншалықты екенін өлшеу үшін меншікті ылғалдылықты (QV2M) қосыңыз.',
+  partialTitle: 'Басқа айнымалы бекітілгенде байланыс сақтала ма?',
+  heldFixed: 'Бекітілген (статистикалық)',
+  nothingFixed: 'ештеңе',
+  partialHint: 'Трендсіз аномалиялардың жартылай корреляциясы. Бұл әлі де корреляция: ол байланыстың сақталатынын көрсетеді, оның себебін емес.',
+  derivedTitle: 'Туынды айнымалы тексерісі: салыстырмалы ылғалдылық',
+  derivedHint: 'R² — салыстырмалы ылғалдылық аномалиялары дисперсиясының температура мен меншікті ылғалдылық аномалиялары бірге қайталайтын үлесі.',
+  season: 'Маусым',
+  allMonths: 'Барлық айлар',
+  intro: 'Кіріспе',
+  language: 'Тіл',
+}
+
+export const tr = (lang: Lang) => (k: Key): string => (lang === 'kk' ? KK[k] ?? D[k].en : D[k][lang])
+
+/** Share of interface keys that have a Kazakh translation (reported in docs/visual/LANGUAGE_FLOW.md). */
+export const kkCoverage = (): [number, number] => [Object.keys(KK).length, Object.keys(D).length]

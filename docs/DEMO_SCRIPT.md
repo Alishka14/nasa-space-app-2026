@@ -83,6 +83,33 @@ Reference frames (captures of the real application): `docs/screenshots/01_invest
 - [ ] Uploaded where it opens without login (for example YouTube *Unlisted* or *Public*); link tested in a private
       window.
 
+## A2. Ready-made demo: `docs/video/renders/demo_en.mp4` (29.3 s)
+
+Built only from real material: a screenshot of the splash (3 s), the app's own **Short intro** (16.5 s, rendered
+frame by frame from the running app) and three screenshots of the app answering the same question (9.5 s) with
+English captions. 1920×1080, silent — every spoken idea is on screen in English.
+
+| Time | Picture | Text on screen |
+|---|---|---|
+| 0:00–0:03 | Splash: challenge name, EARTH SENSES, tagline, NASA imagery credit | (optional) team name and members |
+| 0:03–0:19.5 | Short intro: Same NASA data → −0.285 → +0.593 → seasonality → Evidence before conclusions | the intro's own titles and subtitles |
+| 0:19.5–0:22.5 | App: Pavlodar investigated, three variables | In the app: choose a place, variables and years — NASA POWER data |
+| 0:22.5–0:26 | App: the precipitation ↔ humidity card | Raw −0.28, seasons removed +0.59 — and not detected in winter |
+| 0:26–0:29.3 | App: the evidence drawer | Every result keeps its evidence, counter-evidence and NASA source file |
+
+**Add the team name** (the guide asks for it at 0:00): `TEAM="Team ⟨NAME⟩ · ⟨member names⟩" bash scripts/make_demo.sh`
+— it rebuilds the file in about a minute. Without `TEAM` the line is left out rather than invented.
+
+**Publish:** upload `demo_en.mp4` to YouTube as *Unlisted* (or to Vimeo / Google Drive with "anyone with the link"),
+open the link in a private browser window to check it plays without login, and paste it into the form. The film is
+a screen recording of the app, not generated footage; the AI-use field of the form already says the code and texts
+were written with AI assistance.
+
+To re-record the intro films after a change: `node scripts/record_intro.mjs <teaser|explainer|hero> <en|ru|kk>`
+with `SCALE=1.5` for 1920×1080, then `python scripts/package_videos.py`.
+
+To show it live instead: open `http://localhost:8000/?intro`, pick a language, choose **Short**, press **Start**.
+
 ## B. Seven slides (alternative to the video)
 
 | # | Title | Content | Visual |

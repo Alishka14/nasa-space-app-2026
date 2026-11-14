@@ -1,0 +1,59 @@
+1
+00:00:00,250 --> 00:00:05,800
+This is one planet — and one connected
+system.
+
+2
+00:00:06,250 --> 00:00:12,300
+Air, water and heat change together, month
+after month, all over the planet.
+
+3
+00:00:12,750 --> 00:00:18,800
+We followed one place for twenty-four
+years: Pavlodar, in NASA POWER data.
+
+4
+00:00:19,250 --> 00:00:26,800
+At first glance, months with more precipitation
+have lower humidity: r = −0.285.
+
+5
+00:00:27,250 --> 00:00:30,921
+Remove the seasonal cycle and the sign
+flips: +0.593.
+
+6
+00:00:30,921 --> 00:00:34,800
+Wetter-than-usual months are also more
+humid than usual.
+
+7
+00:00:35,250 --> 00:00:40,300
+The first number described the calendar,
+not the weather.
+
+8
+00:00:40,750 --> 00:00:44,511
+EARTH SENSES tests every relationship,
+keeps the evidence,
+
+9
+00:00:44,511 --> 00:00:47,300
+and does not mistake correlation for
+cause.
+
+10
+00:00:47,750 --> 00:00:51,235
+“No warming” is not a valid conclusion
+here,
+
+11
+00:00:51,235 --> 00:00:54,800
+and “humidity is rising” is a fragile
+result.
+
+12
+00:00:55,250 --> 00:00:59,300
+Now, investigate for yourself.
+
