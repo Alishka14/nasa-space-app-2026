@@ -117,6 +117,15 @@
           "max_abs_diff_simple_mean": 0.13249999999999984
         }
       }
+    },
+    {
+      "check": "no missing monthly values in any variable of the file",
+      "passed": true,
+      "detail": {
+        "PRECTOTCORR": 0,
+        "RH2M": 0,
+        "T2M": 0
+      }
     }
   ],
   "warnings": []

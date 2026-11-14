@@ -35,6 +35,9 @@ SPATIAL_RESOLUTION = (
 DATA_KIND = "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
 
 
+MISSING_CHECK = "no missing monthly values in any variable of the file"
+
+
 class DataUnavailable(RuntimeError):
     """Neither the verified cache nor the network could provide the data."""
 
@@ -108,6 +111,15 @@ def build_provenance(raw: bytes, *, url: str, retrieved_at: str, method: str, no
         {"check": "our day-weighted annual means agree with the API's own annual values",
          "passed": bool(worst <= 0.011), "detail": consistency},
     ]
+    n_missing = int(sum(norm.missing.values()))
+    structural_ok = all(c["passed"] for c in checks)
+    checks.append({"check": MISSING_CHECK, "passed": n_missing == 0, "detail": norm.missing})
+    if not structural_ok:
+        status = "FAILED"
+    elif n_missing:
+        status = "VALIDATED_WITH_MISSING_DATA"     # stored as evidence; variables with gaps are not analysed
+    else:
+        status = "VALIDATED"
     return {
         "record_type": "DataProvenanceRecord",
         "original_source": SOURCE_DESCRIPTION,
@@ -130,7 +142,7 @@ def build_provenance(raw: bytes, *, url: str, retrieved_at: str, method: str, no
         "sha256": sha256_bytes(raw), "bytes": len(raw),
         "sha256_canonical_data": canonical_data_hash(obj),
         "raw_path": raw_path,
-        "validation_status": "VALIDATED" if all(c["passed"] for c in checks) else "FAILED",
+        "validation_status": status,
         "validation_checks": checks,
         "warnings": norm.warnings,
     }
@@ -145,6 +157,23 @@ class PowerDataset:
     request: dict[str, Any]
     notes: list[str] = field(default_factory=list)
     annual_reported: pd.DataFrame | None = None   # the API's own YYYY13 values for the period
+    extra: dict[str, Any] = field(default_factory=dict)   # merged metadata when variables come from several files
+
+    @property
+    def units(self) -> dict[str, str]:
+        return self.extra.get("units") or self.norm.units
+
+    @property
+    def longnames(self) -> dict[str, str]:
+        return self.extra.get("longnames") or self.norm.longnames
+
+    @property
+    def warnings(self) -> list[str]:
+        """Parser warnings that concern the requested variables (a file may hold others)."""
+        requested = set(self.request["parameters"])
+        others = {c for p in self.provenance for c in p["request"]["parameters"]} - requested
+        base = self.extra.get("warnings", self.norm.warnings)
+        return [w for w in base if not any(w.startswith(f"{o}:") for o in others)]
 
     @property
     def data_hash(self) -> str:
@@ -237,6 +266,39 @@ class PowerStore:
                                      "parameters": list(parameters), "community": community},
                             notes=notes, annual_reported=annual)
 
+    def _from_cache_by_parameter(self, lat: float, lon: float, start: int, end: int, parameters: list[str],
+                                 community: str) -> PowerDataset | None:
+        """Fallback when no single retrieval holds every requested variable:
+        resolve each variable from its own verified file(s) and join them on
+        the calendar. Every file is still re-verified by ``_from_cache``."""
+        parts = []
+        for name in parameters:
+            part = self._from_cache(lat, lon, start, end, [name], community)
+            if part is None:
+                return None
+            parts.append(part)
+        monthly = pd.concat([p.monthly for p in parts], axis=1)
+        if any(not p.monthly.index.equals(parts[0].monthly.index) for p in parts):
+            raise PowerFormatError("cached files for different variables are not on the same calendar")
+        provenance, seen = [], set()
+        for p in parts:
+            for rec in p.provenance:
+                if rec["sha256"] not in seen:
+                    seen.add(rec["sha256"])
+                    provenance.append(rec)
+        annual = None
+        if all(p.annual_reported is not None for p in parts):
+            annual = pd.concat([p.annual_reported for p in parts], axis=1)
+        notes = [n for p in parts for n in p.notes]
+        notes.append(f"variables assembled from {len(provenance)} verified raw files")
+        extra = {"units": {n: p.units[n] for n, p in zip(parameters, parts)},
+                 "longnames": {n: p.longnames[n] for n, p in zip(parameters, parts)},
+                 "warnings": [w for p in parts for w in p.norm.warnings]}
+        return PowerDataset(norm=parts[0].norm, monthly=monthly[parameters], provenance=provenance, source="cache",
+                            request={"latitude": lat, "longitude": lon, "start": start, "end": end,
+                                     "parameters": list(parameters), "community": community},
+                            notes=list(dict.fromkeys(notes)), annual_reported=annual, extra=extra)
+
     # -- live ----------------------------------------------------------------
     def _fetch_live(self, lat: float, lon: float, start: int, end: int, parameters: list[str],
                     community: str) -> PowerDataset:
@@ -293,6 +355,8 @@ class PowerStore:
         validate_request(lat, lon, start, end, parameters)
         if not refresh:
             cached = self._from_cache(lat, lon, start, end, parameters, community)
+            if cached is None and len(parameters) > 1:
+                cached = self._from_cache_by_parameter(lat, lon, start, end, parameters, community)
             if cached is not None:
                 return cached
         if not self.allow_network:

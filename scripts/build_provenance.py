@@ -23,6 +23,7 @@ METHOD = ("HTTPS GET issued from a Chrome browser on the team's computer (the bu
           "to power.larc.nasa.gov); SHA-256 computed in the browser on the response body and matched "
           "after the body was stored in the repository (byte-identical)")
 PARAMS = ["T2M", "PRECTOTCORR", "RH2M"]          # order used in the original requests
+PARAMS_AUDIT = ["QV2M", "IMERG_PRECTOT"]         # science-review retrieval (specific humidity, IMERG)
 FIXTURES = [
     {"lat": 52.29, "lon": 76.97, "start": 2001, "end": 2024, "retrieved_at": "2026-11-14T04:58:11.069Z",
      "sha256": "8a65f9e56b005f77eec3783a09903ad2842031590cc0c8084441d92b19f87de6"},
@@ -30,6 +31,11 @@ FIXTURES = [
      "sha256": "db5aa2495699186440353f8b9eb77cd8ce04c149b612b900b17cb95d33ae0a87"},
     {"lat": 43.24, "lon": 76.95, "start": 2001, "end": 2024, "retrieved_at": "2026-11-14T05:05:38.289Z",
      "sha256": "9c8fcb0467a87a63c20adcec96d9dff9240855aa2493ac0cb1426530ae4d6235"},
+    # Specific humidity for the derived-variable check, and the IMERG precipitation the POWER
+    # service offers. For this point IMERG_PRECTOT came back as the fill value in every month:
+    # the file is kept as evidence of that, and the engine refuses to analyse the variable.
+    {"lat": 52.29, "lon": 76.97, "start": 2001, "end": 2024, "retrieved_at": "2026-11-14T09:23:59.982Z",
+     "sha256": "978b737e26d8e1c4b2b0de4e605b3952934da4fcacb2bc4ac3646055459c768c", "params": PARAMS_AUDIT},
 ]
 
 
@@ -38,7 +44,8 @@ def main() -> int:
     norm_dir = ROOT / "data" / "normalized"
     norm_dir.mkdir(parents=True, exist_ok=True)
     for fx in FIXTURES:
-        stem = cache_stem(fx["lat"], fx["lon"], fx["start"], fx["end"], PARAMS)
+        params = fx.get("params", PARAMS)
+        stem = cache_stem(fx["lat"], fx["lon"], fx["start"], fx["end"], params)
         raw_path = store.raw_dir / f"{stem}.json"
         raw = raw_path.read_bytes()
         digest = sha256_bytes(raw)
@@ -46,12 +53,13 @@ def main() -> int:
             print(f"FAIL {raw_path.name}: sha256 {digest} != browser-side {fx['sha256']}")
             return 1
         ds = store.register_raw(raw, lat=fx["lat"], lon=fx["lon"], start=fx["start"], end=fx["end"],
-                                parameters=PARAMS, url=request_url(fx["lat"], fx["lon"], fx["start"], fx["end"], PARAMS),
+                                parameters=params, url=request_url(fx["lat"], fx["lon"], fx["start"], fx["end"], params),
                                 retrieved_at=fx["retrieved_at"], method=METHOD)
         m = ds.norm.monthly.copy()
         out = m.rename(columns={c: f"{c} [{ds.norm.units[c]}]" for c in m.columns})
         out["days_in_month"] = days_in_month(m.index).astype(int)
-        out["PRECTOTCORR [mm/month]"] = rate_to_monthly_total(m["PRECTOTCORR"], ds.norm.units["PRECTOTCORR"]).round(3)
+        if "PRECTOTCORR" in m.columns:
+            out["PRECTOTCORR [mm/month]"] = rate_to_monthly_total(m["PRECTOTCORR"], ds.norm.units["PRECTOTCORR"]).round(3)
         out.to_csv(norm_dir / f"{stem}.monthly.csv")
         ann = ds.norm.annual_reported.rename(columns={c: f"{c} [{ds.norm.units[c]}] (API annual, YYYY13)"
                                                       for c in ds.norm.annual_reported.columns})

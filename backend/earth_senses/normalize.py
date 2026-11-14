@@ -254,6 +254,8 @@ def check_annual_consistency(norm: NormalizedPower) -> dict[str, dict[str, float
         if name not in norm.annual_reported:
             continue
         rep = norm.annual_reported[name]
+        if norm.monthly[name].isna().all() or rep.isna().all():
+            continue                                  # nothing to compare: the variable carries no data
         weighted = annual_mean(norm.monthly[name], day_weighted=True).reindex(rep.index)
         simple = annual_mean(norm.monthly[name], day_weighted=False).reindex(rep.index)
         report[name] = {
