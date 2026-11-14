@@ -1,0 +1,115 @@
+{
+  "record_type": "DataProvenanceRecord",
+  "original_source": "NASA POWER (Prediction Of Worldwide Energy Resources) Monthly & Annual API, NASA Langley Research Center; meteorological parameters from MERRA-2 (NASA GMAO)",
+  "original_api_request": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=QV2M,IMERG_PRECTOT&community=AG&longitude=76.97&latitude=52.29&start=2001&end=2024&format=JSON",
+  "retrieval_timestamp": "2026-11-14T09:23:59.982Z",
+  "retrieval_method": "HTTPS GET issued from a Chrome browser on the team's computer (the build sandbox had no route to power.larc.nasa.gov); SHA-256 computed in the browser on the response body and matched after the body was stored in the repository (byte-identical)",
+  "request": {
+    "latitude": 52.29,
+    "longitude": 76.97,
+    "start": 2001,
+    "end": 2024,
+    "parameters": [
+      "IMERG_PRECTOT",
+      "QV2M"
+    ],
+    "community": "AG"
+  },
+  "variables": {
+    "IMERG_PRECTOT": {
+      "units": "mm/day",
+      "longname": "Total Precipitation",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    },
+    "QV2M": {
+      "units": "g/kg",
+      "longname": "Specific Humidity at 2 Meters",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    }
+  },
+  "spatial_resolution": "MERRA-2 native grid, 0.5 deg latitude x 0.625 deg longitude; a point query returns the enclosing grid cell, at the grid cell's mean elevation (per POWER documentation)",
+  "grid_cell_elevation_m": 110.97,
+  "temporal_resolution": "monthly means (keys YYYY01..YYYY12) plus the API's annual mean (YYYY13)",
+  "coverage": {
+    "start": "2001-01",
+    "end": "2024-12",
+    "n_months": 288
+  },
+  "missing_values": {
+    "fill_value": -999.0,
+    "counts": {
+      "IMERG_PRECTOT": 288,
+      "QV2M": 0
+    }
+  },
+  "source_product_version": {
+    "api": {
+      "version": "v2.10.0",
+      "name": "POWER Monthly and Annual API"
+    },
+    "sources": [
+      "MERRA2"
+    ],
+    "time_standard": "LST"
+  },
+  "sha256": "978b737e26d8e1c4b2b0de4e605b3952934da4fcacb2bc4ac3646055459c768c",
+  "bytes": 9908,
+  "sha256_canonical_data": "120c2693264ea7cb705c0aec88fa5b3dd1cccc051d2ae6c7d7a5e844a5290d6a",
+  "raw_path": "raw/power/power_monthly_point_lat52.29_lon76.97_2001-2024_IMERG_PRECTOT-QV2M_AG.json",
+  "validation_status": "VALIDATED_WITH_MISSING_DATA",
+  "validation_checks": [
+    {
+      "check": "calendar complete and identical for all variables",
+      "passed": true
+    },
+    {
+      "check": "YYYY13 annual summaries separated from the 12 calendar months",
+      "passed": true,
+      "detail": "24 annual keys per variable"
+    },
+    {
+      "check": "fill value converted to NaN",
+      "passed": true,
+      "detail": {
+        "fill_value": -999.0,
+        "missing_counts": {
+          "IMERG_PRECTOT": 288,
+          "QV2M": 0
+        }
+      }
+    },
+    {
+      "check": "units present in response metadata",
+      "passed": true,
+      "detail": {
+        "IMERG_PRECTOT": "mm/day",
+        "QV2M": "g/kg"
+      }
+    },
+    {
+      "check": "response geometry matches the request",
+      "passed": true
+    },
+    {
+      "check": "our day-weighted annual means agree with the API's own annual values",
+      "passed": true,
+      "detail": {
+        "QV2M": {
+          "max_abs_diff_day_weighted": 0.0049041095890407504,
+          "max_abs_diff_simple_mean": 0.025000000000000355
+        }
+      }
+    },
+    {
+      "check": "no missing monthly values in any variable of the file",
+      "passed": false,
+      "detail": {
+        "IMERG_PRECTOT": 288,
+        "QV2M": 0
+      }
+    }
+  ],
+  "warnings": [
+    "IMERG_PRECTOT: 288 missing monthly values (fill -999.0) converted to NaN"
+  ]
+}

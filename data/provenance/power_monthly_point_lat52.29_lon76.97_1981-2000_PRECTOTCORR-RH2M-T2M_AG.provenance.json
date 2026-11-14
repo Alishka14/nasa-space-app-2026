@@ -1,0 +1,132 @@
+{
+  "record_type": "DataProvenanceRecord",
+  "original_source": "NASA POWER (Prediction Of Worldwide Energy Resources) Monthly & Annual API, NASA Langley Research Center; meteorological parameters from MERRA-2 (NASA GMAO)",
+  "original_api_request": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M,PRECTOTCORR,RH2M&community=AG&longitude=76.97&latitude=52.29&start=1981&end=2000&format=JSON",
+  "retrieval_timestamp": "2026-11-14T05:04:44.570Z",
+  "retrieval_method": "HTTPS GET issued from a Chrome browser on the team's computer (the build sandbox had no route to power.larc.nasa.gov); SHA-256 computed in the browser on the response body and matched after the body was stored in the repository (byte-identical)",
+  "request": {
+    "latitude": 52.29,
+    "longitude": 76.97,
+    "start": 1981,
+    "end": 2000,
+    "parameters": [
+      "PRECTOTCORR",
+      "RH2M",
+      "T2M"
+    ],
+    "community": "AG"
+  },
+  "variables": {
+    "PRECTOTCORR": {
+      "units": "mm/day",
+      "longname": "Precipitation Corrected",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    },
+    "RH2M": {
+      "units": "%",
+      "longname": "Relative Humidity at 2 Meters",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    },
+    "T2M": {
+      "units": "C",
+      "longname": "Temperature at 2 Meters",
+      "kind": "model reanalysis (assimilates satellite and conventional observations); not a direct measurement"
+    }
+  },
+  "spatial_resolution": "MERRA-2 native grid, 0.5 deg latitude x 0.625 deg longitude; a point query returns the enclosing grid cell, at the grid cell's mean elevation (per POWER documentation)",
+  "grid_cell_elevation_m": 110.97,
+  "temporal_resolution": "monthly means (keys YYYY01..YYYY12) plus the API's annual mean (YYYY13)",
+  "coverage": {
+    "start": "1981-01",
+    "end": "2000-12",
+    "n_months": 240
+  },
+  "missing_values": {
+    "fill_value": -999.0,
+    "counts": {
+      "PRECTOTCORR": 0,
+      "RH2M": 0,
+      "T2M": 0
+    }
+  },
+  "source_product_version": {
+    "api": {
+      "version": "v2.10.0",
+      "name": "POWER Monthly and Annual API"
+    },
+    "sources": [
+      "MERRA2",
+      "POWER"
+    ],
+    "time_standard": "LST"
+  },
+  "sha256": "db5aa2495699186440353f8b9eb77cd8ce04c149b612b900b17cb95d33ae0a87",
+  "bytes": 12014,
+  "sha256_canonical_data": "55af0530dd9911f593d91ff4eaa53e168aa57583f80f7ce0d806e1deb027ae94",
+  "raw_path": "raw/power/power_monthly_point_lat52.29_lon76.97_1981-2000_PRECTOTCORR-RH2M-T2M_AG.json",
+  "validation_status": "VALIDATED",
+  "validation_checks": [
+    {
+      "check": "calendar complete and identical for all variables",
+      "passed": true
+    },
+    {
+      "check": "YYYY13 annual summaries separated from the 12 calendar months",
+      "passed": true,
+      "detail": "20 annual keys per variable"
+    },
+    {
+      "check": "fill value converted to NaN",
+      "passed": true,
+      "detail": {
+        "fill_value": -999.0,
+        "missing_counts": {
+          "PRECTOTCORR": 0,
+          "RH2M": 0,
+          "T2M": 0
+        }
+      }
+    },
+    {
+      "check": "units present in response metadata",
+      "passed": true,
+      "detail": {
+        "PRECTOTCORR": "mm/day",
+        "RH2M": "%",
+        "T2M": "C"
+      }
+    },
+    {
+      "check": "response geometry matches the request",
+      "passed": true
+    },
+    {
+      "check": "our day-weighted annual means agree with the API's own annual values",
+      "passed": true,
+      "detail": {
+        "PRECTOTCORR": {
+          "max_abs_diff_day_weighted": 0.004328767123287669,
+          "max_abs_diff_simple_mean": 0.009166666666666656
+        },
+        "RH2M": {
+          "max_abs_diff_day_weighted": 0.004328767123283228,
+          "max_abs_diff_simple_mean": 0.1566666666666663
+        },
+        "T2M": {
+          "max_abs_diff_day_weighted": 0.004672131147541059,
+          "max_abs_diff_simple_mean": 0.12249999999999961
+        }
+      }
+    },
+    {
+      "check": "no missing monthly values in any variable of the file",
+      "passed": true,
+      "detail": {
+        "PRECTOTCORR": 0,
+        "RH2M": 0,
+        "T2M": 0
+      }
+    }
+  ],
+  "warnings": []
+}

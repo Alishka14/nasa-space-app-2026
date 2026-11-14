@@ -1,0 +1,9 @@
+# Pinned: analytical results must be reproducible. Python 3.13.
+numpy==2.3.4
+pandas==2.3.3
+scipy==1.16.3
+statsmodels==0.14.5
+fastapi==0.121.1
+uvicorn==0.38.0
+pydantic==2.12.4
+httpx==0.28.1
