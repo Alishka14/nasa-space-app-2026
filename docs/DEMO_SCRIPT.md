@@ -91,14 +91,15 @@ English captions. 1920×1080, silent — every spoken idea is on screen in Engli
 
 | Time | Picture | Text on screen |
 |---|---|---|
-| 0:00–0:03 | Splash: challenge name, EARTH SENSES, tagline, NASA imagery credit | (optional) team name and members |
+| 0:00–0:03 | Splash: challenge name, EARTH SENSES, tagline, NASA imagery credit | Ali & Diyaz · Team EARTH SENSES |
 | 0:03–0:19.5 | Short intro: Same NASA data → −0.285 → +0.593 → seasonality → Evidence before conclusions | the intro's own titles and subtitles |
 | 0:19.5–0:22.5 | App: Pavlodar investigated, three variables | In the app: choose a place, variables and years — NASA POWER data |
 | 0:22.5–0:26 | App: the precipitation ↔ humidity card | Raw −0.28, seasons removed +0.59 — and not detected in winter |
 | 0:26–0:29.3 | App: the evidence drawer | Every result keeps its evidence, counter-evidence and NASA source file |
 
-**Add the team name** (the guide asks for it at 0:00): `TEAM="Team ⟨NAME⟩ · ⟨member names⟩" bash scripts/make_demo.sh`
-— it rebuilds the file in about a minute. Without `TEAM` the line is left out rather than invented.
+**Names at 0:00** (the guide asks for them): the committed file was built with
+`TEAM="Ali & Diyaz · Team EARTH SENSES" bash scripts/make_demo.sh`. If the team is registered under another name,
+rebuild with that name — it takes about a minute. Without `TEAM` the line is left out rather than invented.
 
 **Publish:** upload `demo_en.mp4` to YouTube as *Unlisted* (or to Vimeo / Google Drive with "anyone with the link"),
 open the link in a private browser window to check it plays without login, and paste it into the form. The film is
