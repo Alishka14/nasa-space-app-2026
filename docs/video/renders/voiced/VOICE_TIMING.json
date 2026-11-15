@@ -3,10 +3,11 @@
   "film": "demo_en",
   "status": "DONE",
   "duration_s": 29.333,
-  "bytes": 10919554,
+  "bytes": 11061312,
   "loudness": {
-   "input_lufs": -25.35,
-   "target_lufs": -16.0
+   "input_lufs": -26.31,
+   "target_lufs": -16.0,
+   "music": true
   },
   "segments": [
    {
@@ -89,10 +90,11 @@
   "missing_clips": [],
   "duration_s": 18.922,
   "silent_duration_s": 16.5,
-  "bytes": 7093605,
+  "bytes": 7197804,
   "loudness": {
-   "input_lufs": -26.39,
-   "target_lufs": -16.0
+   "input_lufs": -27.26,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -139,10 +141,11 @@
   "missing_clips": [],
   "duration_s": 23.169,
   "silent_duration_s": 16.5,
-  "bytes": 7832945,
+  "bytes": 7893693,
   "loudness": {
-   "input_lufs": -18.45,
-   "target_lufs": -16.0
+   "input_lufs": -18.58,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -185,11 +188,19 @@
  },
  "teaser_kk": {
   "film": "teaser_kk",
-  "status": "SKIPPED",
+  "status": "MUSIC_ONLY",
   "missing_clips": [
    "t2",
    "t4"
-  ]
+  ],
+  "file": "teaser_kk_music.mp4",
+  "duration_s": 16.5,
+  "bytes": 6738026,
+  "loudness": {
+   "input_lufs": -31.72,
+   "target_lufs": -20.0,
+   "music": true
+  }
  },
  "hero_en": {
   "film": "hero_en",
@@ -197,10 +208,11 @@
   "missing_clips": [],
   "duration_s": 60.883,
   "silent_duration_s": 59.5,
-  "bytes": 19279638,
+  "bytes": 19518141,
   "loudness": {
-   "input_lufs": -26.53,
-   "target_lufs": -16.0
+   "input_lufs": -27.15,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -292,10 +304,11 @@
   "missing_clips": [],
   "duration_s": 65.103,
   "silent_duration_s": 59.5,
-  "bytes": 20345517,
+  "bytes": 20504346,
   "loudness": {
-   "input_lufs": -17.82,
-   "target_lufs": -16.0
+   "input_lufs": -17.94,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -387,10 +400,11 @@
   "missing_clips": [],
   "duration_s": 65.015,
   "silent_duration_s": 59.5,
-  "bytes": 20361503,
+  "bytes": 20546278,
   "loudness": {
-   "input_lufs": -17.54,
-   "target_lufs": -16.0
+   "input_lufs": -17.66,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -482,10 +496,11 @@
   "missing_clips": [],
   "duration_s": 53.417,
   "silent_duration_s": 45.0,
-  "bytes": 9947462,
+  "bytes": 10032245,
   "loudness": {
-   "input_lufs": -26.04,
-   "target_lufs": -16.0
+   "input_lufs": -26.38,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -559,10 +574,11 @@
   "missing_clips": [],
   "duration_s": 63.306,
   "silent_duration_s": 45.0,
-  "bytes": 11118015,
+  "bytes": 11151600,
   "loudness": {
-   "input_lufs": -18.08,
-   "target_lufs": -16.0
+   "input_lufs": -18.19,
+   "target_lufs": -16.0,
+   "music": true
   },
   "scenes": [
    {
@@ -632,11 +648,19 @@
  },
  "explainer_kk": {
   "film": "explainer_kk",
-  "status": "SKIPPED",
+  "status": "MUSIC_ONLY",
   "missing_clips": [
    "e3",
    "e5",
    "e7"
-  ]
+  ],
+  "file": "explainer_kk_music.mp4",
+  "duration_s": 45.0,
+  "bytes": 8738929,
+  "loudness": {
+   "input_lufs": -31.24,
+   "target_lufs": -20.0,
+   "music": true
+  }
  }
 }
