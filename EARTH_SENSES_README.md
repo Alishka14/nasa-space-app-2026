@@ -1,5 +1,7 @@
 # EARTH SENSES — Interconnected Earth Intelligence
 
+**Live app:** https://earth-senses.vercel.app
+
 **NASA Space Apps Challenge 2026 · Challenge: _Be An Earth System Trend Detective!_**
 
 > We don't just visualize Earth's changes. We investigate their relationships, challenge our assumptions, and preserve the evidence.

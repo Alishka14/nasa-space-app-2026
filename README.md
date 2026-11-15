@@ -15,6 +15,9 @@
 **An independent NASA Space Apps Challenge 2026 project**  
 **Challenge:** [Be An Earth System Trend Detective!](https://www.spaceappschallenge.org/2026/challenges/earth-system-trend-detective/)
 
+### 🌍 [Open the live app → earth-senses.vercel.app](https://earth-senses.vercel.app)
+🎬 [Demo video (EN, 29 s)](docs/video/renders/voiced/demo_en_voice.mp4)
+
 **[English](#english)** · **[Қазақша](#qazaqsha)** · **[Русский](#russian)**
 
 `NASA POWER / MERRA-2` &nbsp; `REPRODUCIBLE SCIENCE` &nbsp; `EVIDENCE FIRST` &nbsp; `3D EARTH`
