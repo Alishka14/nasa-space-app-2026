@@ -545,9 +545,10 @@
   "scene": "d0",
   "start": 0.0,
   "dur": 3.0,
-  "text": "We're Ali and Diyaz, team EARTH SENSES.",
+  "text": "We're Ali and Diyaz.",
   "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
-  "model": "eleven_v4"
+  "model": "eleven_v4",
+  "edit": "cut from the generated line \"We're Ali and Diyaz, team EARTH SENSES.\" at 1.30 s (team name is alishkaTeam; no credits to regenerate)"
  },
  {
   "variant": "demo",

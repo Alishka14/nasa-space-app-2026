@@ -170,7 +170,7 @@ docs/                   see below
 
 ## Credits and licences
 
-Team: repository owner Alishka14; contributor RakamakadoN. Preliminary analysis: Gemini (Google). Engineering,
+Team **alishkaTeam** (Ali, Diyaz): repository owner Alishka14; contributor RakamakadoN. Preliminary analysis: Gemini (Google). Engineering,
 reproduction of that analysis, scientific self-audit and documentation in this branch: Claude (Anthropic), working
 under the team's direction; commits carry a `Co-Authored-By` trailer. No AI system takes part in the tool's
 calculations. Humans remain accountable for what is submitted.
