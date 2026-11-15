@@ -25,6 +25,12 @@
 
 > **Mission note:** This repository belongs to an independent hackathon project, not an official NASA application or a NASA-endorsed product. The animated cover is original **illustrative artwork**, not a scientific Earth observation. GitHub may display SVG motion as a still image; open the artwork itself or launch the app for the full moving WebGL Earth.
 
+<p align="center">
+  <img src="docs/brand/earth-senses-orbit-loop.gif" width="76%" alt="Animated stylized Earth rotating slowly in space with orbiting sensor, twinkling stars, and flowing scientific signals. Illustration, not a scientific map.">
+</p>
+
+<p align="center"><sub>ORBITAL SIGNAL LOOP · ORIGINAL ILLUSTRATION · THE REAL 3D EARTH IS IN THE APPLICATION</sub></p>
+
 ---
 
 <a id="english"></a>
