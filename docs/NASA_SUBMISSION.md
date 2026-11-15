@@ -137,6 +137,8 @@ SI tools were used and are disclosed here, in the repository README and in the c
   Russian and Kazakh: the designed voice «Иван»). The script — the films' own subtitle text, plus five short demo lines — was written with Claude;
   no real person's voice is imitated. Every voiced file shows "AI voice (ElevenLabs)" in the picture and says so in
   its metadata.
+- **Background music** is not from an AI music model and not a recording: it is synthesised by our own script
+  (`scripts/synth_music_bed.py`, additive synthesis, written with Claude) and is the team's own work.
 - The **onboarding** (3D globe, splash, language screen, intro films in English, Russian and Kazakh) and the Kazakh
   interface texts were also written by Claude; the Russian and Kazakh texts have not yet been reviewed by a native
   speaker. Every number shown in the intro is computed by the engine and checked by a test.

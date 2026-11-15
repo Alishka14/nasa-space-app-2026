@@ -50,7 +50,15 @@ Generation; Earth at Night 2012, with NOAA NGDC). Coastlines and water mask: Nat
 | topojson-client | 3.1.0 | ISC |
 | React | 19 | MIT |
 
+## Audio (films only — the app itself plays no sound)
+
+| Audio | Source | Licence / status | Where |
+|---|---|---|---|
+| Voice-over, English | ElevenLabs text-to-speech, model `eleven_v4`, library voice *Marcus K — Calm Documentary Narrator* | Generated on the team's ElevenLabs account under its terms; AI-generated, labelled "AI voice (ElevenLabs)" in every voiced picture | `docs/video/renders/voiced/*_en_voice.mp4` |
+| Voice-over, Russian and Kazakh | ElevenLabs text-to-speech, model `eleven_v4`, designed voice «Иван» (the team's Pavlodar Pulse voice) | As above; not an imitation of a real person | `*_ru_voice.mp4`, `*_kk_voice.mp4` |
+| Background music | `docs/video/music/earth_senses_bed.mp3`, synthesised by `scripts/synth_music_bed.py` (additive synthesis, seeded) | Team's own work: no samples, no recordings, no AI music model | all files in `docs/video/renders/voiced/` |
+
 ## Not used
 
-No fonts are downloaded, no audio files exist, no generated (AI) images or video are
-included, no NASA logo or insignia is used.
+No fonts are downloaded, no generated (AI) images or video are included, no NASA logo or insignia is used.
+The app plays no audio; the only audio is in the films listed above.
