@@ -17,7 +17,7 @@ the engine's output for the bundled NASA files (`docs/SCIENCE_REVIEW.md`, `docs/
 | 4 | Host the demo at a public link (no login) and paste it into *Link to Project Demo* | **TO DO** |
 | 5 | Read the science once as humans (`docs/SCIENCE_REVIEW.md`, 10 minutes) and confirm you stand behind it | **TO DO** — no human review has taken place |
 | 6 | Confirm the statement about the origin of the idea in *Use of Super Intelligence* (field A6) | **TO DO** |
-| 7 | Fill in team name, members (1–6), local event | **TO DO** |
+| 7 | Fill in team name (**alishkaTeam**), members (Ali, Diyaz), local event | **TO DO** |
 | 8 | Tick the two checkboxes (terms; originality with all outside resources listed in References) | **TO DO** |
 | 9 | Submit before Sunday 15 November, 23:59 local-event time | **TO DO** |
 
