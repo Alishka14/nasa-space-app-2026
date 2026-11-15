@@ -55,5 +55,6 @@
   "claims.rejected": "rejected",
   "app.intro": "Intro",
   "app.language": "Language",
-  "splash.credit": "Earth imagery: NASA Earth Observatory (Blue Marble: Next Generation; Earth at Night 2012, with NOAA NGDC) · Outlines: Natural Earth"
+  "splash.credit": "Earth imagery: NASA Earth Observatory (Blue Marble: Next Generation; Earth at Night 2012, with NOAA NGDC) · Outlines: Natural Earth",
+  "intro.sound": "Sound · AI voice"
 }
