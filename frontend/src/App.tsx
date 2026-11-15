@@ -9,6 +9,7 @@ import TimelineView from './views/TimelineView'
 import CompareView from './views/CompareView'
 import ReportView from './views/ReportView'
 import EvidenceDrawer from './views/EvidenceDrawer'
+import { placeNote, setSciLang, varDef, varName } from './sciI18n'
 
 type Tab = 'investigate' | 'graph' | 'timeline' | 'compare' | 'report'
 
@@ -44,6 +45,7 @@ export default function App({ lang: langProp, onLang, onReplayIntro }: AppProps 
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [evidenceId, setEvidenceId] = useState<string | null>(null)
+  setSciLang(lang)   // scientific labels follow the interface language (engine sentences stay English)
   const t = useMemo(() => tr(lang), [lang])
 
   useEffect(() => { document.documentElement.dataset.theme = mode }, [mode])
@@ -73,7 +75,7 @@ export default function App({ lang: langProp, onLang, onReplayIntro }: AppProps 
     .map(([id, v]) => (
       <label key={id} className={'var' + (vars.includes(id) ? ' on' : '')} title={v.definition}>
         <input type="checkbox" checked={vars.includes(id)} onChange={() => toggleVar(id)} />
-        <span><b>{v.label}</b> <code>{id}</code><small>{v.definition}</small></span>
+        <span><b>{varName(id, v.label)}</b> <code>{id}</code><small>{varDef(id, v.definition)}</small></span>
       </label>
     ))
   const toggleVar = (v: string) => setVars(cur => (cur.includes(v) ? cur.filter(x => x !== v) : [...cur, v]))
@@ -126,7 +128,7 @@ export default function App({ lang: langProp, onLang, onReplayIntro }: AppProps 
                 <strong>{name}</strong>
                 <span className={'chip ' + (cachedHere ? 'ok' : 'warn')}>{cachedHere ? '● ' + t('cached') : '◌ ' + t('live')}</span>
               </p>
-              {region && <p className="hint">{region.note}</p>}
+              {region && <p className="hint">{placeNote(region.note)}</p>}
 
               <h2>{t('what')}</h2>
               <div className="vars">{varList(true)}</div>

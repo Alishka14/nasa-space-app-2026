@@ -5,6 +5,7 @@ import { annualHeight, annualTrends, climatology, correlationSteps, lagScan, sea
 import type { Investigation } from '../api'
 import { fmt, fmtP, seriesColor, type Mode } from '../theme'
 import { Card, EvidenceStatus, Swatch, Verdict, type T } from './common'
+import { statLabel, unitLabel, varName } from '../sciI18n'
 
 type SeriesTab = 'raw' | 'cycle' | 'anomalies' | 'annual'
 
@@ -53,14 +54,14 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
           const tr_ = inv.trends[v]
           const s = tr_.summary
           return (
-            <Card key={v} title={<><Swatch color={seriesColor(v, mode)} />{infos[v].label}</>} right={<EvidenceStatus ev={ev(tr_.evidence_id)} />}>
+            <Card key={v} title={<><Swatch color={seriesColor(v, mode)} />{varName(v, infos[v].label)}</>} right={<EvidenceStatus ev={ev(tr_.evidence_id)} />}>
               <p className="definition">{infos[v].definition}</p>
-              <div className="big">{fmt(s.primary_slope)} <small>{tr_.slope_units}</small></div>
+              <div className="big">{fmt(s.primary_slope)} <small>{unitLabel(tr_.slope_units)}</small></div>
               <dl className="facts">
-                <dt>95% CI</dt><dd>{fmt(s.primary_ci[0])} to {fmt(s.primary_ci[1])}</dd>
-                <dt>p (adjusted)</dt><dd>{fmtP(s.primary_p)}</dd>
+                <dt>{statLabel('95% CI')}</dt><dd>{fmt(s.primary_ci[0])} {statLabel('to')} {fmt(s.primary_ci[1])}</dd>
+                <dt>{statLabel('p (adjusted)')}</dt><dd>{fmtP(s.primary_p)}</dd>
                 <dt>q (FDR)</dt><dd>{fmtP(tr_.q)}</dd>
-                <dt>per decade</dt><dd>{fmt(tr_.per_decade, 2)} {infos[v].display_units}</dd>
+                <dt>{statLabel('per decade')}</dt><dd>{fmt(tr_.per_decade, 2)} {unitLabel(infos[v].display_units)}</dd>
               </dl>
               <Verdict code={tr_.verdict} />
               <p className="statement">{tr_.statement}</p>
@@ -87,7 +88,7 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
         {table && (
           <div className="table-wrap">
             <table>
-              <thead><tr><th>Year</th>{vars.map(v => <th key={v}>{infos[v].label} ({infos[v].display_units})</th>)}</tr></thead>
+              <thead><tr><th>{statLabel('Year')}</th>{vars.map(v => <th key={v}>{varName(v, infos[v].label)} ({unitLabel(infos[v].display_units)})</th>)}</tr></thead>
               <tbody>{inv.trends[vars[0]].annual.years.map((y: number, i: number) => (
                 <tr key={y}><td>{y}</td>{vars.map(v => <td key={v}>{inv.trends[v].annual.values[i].toFixed(2)}</td>)}</tr>))}</tbody>
             </table>
@@ -107,7 +108,7 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
       {inv.relationships.map((r: any) => {
         const hyp = r.hypothesis_id ? inv.evidence.find((e: any) => e.id === r.hypothesis_id) : null
         return (
-          <Card key={r.id} title={<>{infos[r.x].label} ↔ {infos[r.y].label}</>}
+          <Card key={r.id} title={<>{varName(r.x, infos[r.x].label)} ↔ {varName(r.y, infos[r.y].label)}</>}
                 right={<><Verdict code={r.status} /> <EvidenceStatus ev={ev(r.evidence_id)} /></>}>
             <p className="statement">{r.statement}</p>
             {r.structural_dependence && (
@@ -129,7 +130,7 @@ export default function InvestigateView({ inv, t, mode, onEvidence }: {
               <div className="partial">
                 <div className="partial-title">{t('partialTitle')}</div>
                 <table className="mini">
-                  <thead><tr><th>{t('heldFixed')}</th><th>r</th><th>95% CI</th></tr></thead>
+                  <thead><tr><th>{t('heldFixed')}</th><th>r</th><th>{statLabel('95% CI')}</th></tr></thead>
                   <tbody>
                     <tr><td className="muted">{t('nothingFixed')}</td><td>{fmt(r.detrended.pearson_r, 2)}</td>
                       <td>{fmt(r.detrended.ci95_adjusted[0], 2)} … {fmt(r.detrended.ci95_adjusted[1], 2)}</td></tr>
