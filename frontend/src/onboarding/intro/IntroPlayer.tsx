@@ -3,6 +3,7 @@
 // it. Real playback advances t with requestAnimationFrame; capture mode
 // (?capture) exposes window.__esIntro.seek(t) so frames can be rendered exactly.
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { IntroAudio, soundPreferred } from './introAudio'
 import { duration, positionAt, type Variant } from '../content/scripts'
 import { fill, makeT, type UiLang } from '../i18n'
 import type { EarthController, ScreenPoint } from '../earth/types'
@@ -30,9 +31,17 @@ export default function IntroPlayer({ variant, lang, earth, capture, onFinish, o
   const [playing, setPlaying] = useState(!capture)
   const [subs, setSubs] = useState(true)
   const [marker, setMarker] = useState<ScreenPoint | null>(null)
+  const [sound, setSound] = useState(soundPreferred())
+  const audio = useRef<IntroAudio | null>(null)
+  if (!capture && !audio.current) audio.current = new IntroAudio(sound)
   const appliedScene = useRef<string | null>(null)
   const finished = useRef(false)
   const pos = positionAt(variant, time)
+  const sceneId = variant.scenes[pos.index].id
+  // Sound: one voice line per scene, music bed underneath; follows play/pause; silent in capture mode.
+  useEffect(() => { if (playing) audio.current?.scene(sceneId, lang) }, [sceneId]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (playing) audio.current?.resume(); else audio.current?.pause() }, [playing])
+  useEffect(() => () => audio.current?.stop(), [])
 
   // Apply camera and overlays when a new scene starts.
   const applyScene = useCallback((index: number) => {
@@ -94,6 +103,7 @@ export default function IntroPlayer({ variant, lang, earth, capture, onFinish, o
   }, [capture, earth, total, variant, applyScene])
 
   const replay = useCallback(() => {
+    audio.current?.stop()
     appliedScene.current = null
     finished.current = false
     setTime(0)
@@ -169,7 +179,7 @@ export default function IntroPlayer({ variant, lang, earth, capture, onFinish, o
             <button onClick={replay}>↺ <span>{t('intro.replay')}</span></button>
             <button onClick={() => setSubs(x => !x)} aria-pressed={subs}>CC <span>{t('intro.subtitles')}</span></button>
             <span className="es-time">{fmtTime(time)} / {fmtTime(total)}</span>
-            <span className="es-nosound">{t('intro.noSound')}</span>
+            <button onClick={() => { const v = !sound; setSound(v); audio.current?.setOn(v); if (v && playing) audio.current?.scene(sceneId, lang) }} aria-pressed={sound}>{sound ? '🔊' : '🔇'} <span>{t('intro.sound')}</span></button>
             <button className="es-skip" onClick={onSkip}>{t('intro.skip')} · Esc</button>
           </div>
           <div className="es-source">{t('intro.source')}</div>

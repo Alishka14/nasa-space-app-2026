@@ -55,5 +55,6 @@
   "claims.rejected": "отклонено",
   "app.intro": "Вступление",
   "app.language": "Язык",
-  "splash.credit": "Снимки Земли: NASA Earth Observatory (Blue Marble: Next Generation; Earth at Night 2012, совместно с NOAA NGDC) · Контуры: Natural Earth"
+  "splash.credit": "Снимки Земли: NASA Earth Observatory (Blue Marble: Next Generation; Earth at Night 2012, совместно с NOAA NGDC) · Контуры: Natural Earth",
+  "intro.sound": "Звук · ИИ-голос"
 }

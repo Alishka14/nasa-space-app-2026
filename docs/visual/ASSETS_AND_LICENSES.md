@@ -50,7 +50,7 @@ Generation; Earth at Night 2012, with NOAA NGDC). Coastlines and water mask: Nat
 | topojson-client | 3.1.0 | ISC |
 | React | 19 | MIT |
 
-## Audio (films only — the app itself plays no sound)
+## Audio (films and the in-app intro)
 
 | Audio | Source | Licence / status | Where |
 |---|---|---|---|
@@ -61,4 +61,4 @@ Generation; Earth at Night 2012, with NOAA NGDC). Coastlines and water mask: Nat
 ## Not used
 
 No fonts are downloaded, no generated (AI) images or video are included, no NASA logo or insignia is used.
-The app plays no audio; the only audio is in the films listed above.
+The app's intro plays the same voice-over lines and music bed after the user starts it (button "Sound · AI voice", can be switched off; files in `frontend/public/audio/`). Five Kazakh lines were never generated; those scenes are music-only.
