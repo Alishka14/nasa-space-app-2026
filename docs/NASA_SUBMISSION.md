@@ -130,8 +130,14 @@ SI tools were used and are disclosed here, in the repository README and in the c
   evidence.
 - **No SI takes part in the tool's results.** Every number and every sentence the user sees comes from deterministic
   code and fixed templates. The repository contains no SI-generated data.
-- **No SI-generated images or video** are used. Screenshots and the intro recordings are captures of the
-  running application. No NASA logos or branding are used.
+- **README visual artwork / OpenAI ChatGPT.** ChatGPT assisted in writing the JavaScript that
+  draws and encodes the orbital GIF (`docs/brand/earth-senses-orbit-loop.gif`, 14 frames, 480 × 216 px) and the
+  SVG cover. The animation is generated **procedurally by code**, not by a prompt-to-image or AI video model.
+  Its exact source, integrity check and SHA-256 are recorded in `scripts/build_earth_orbit_loop.mjs` and
+  `docs/visual/ASSETS_AND_LICENSES.md`. The stylized Earth GIF is illustrative art, not NASA observational data.
+- **No prompt-to-image or AI video generation model** was used for the visuals. The GIF is AI-assisted coding,
+  while the screenshots and intro recordings are captures of the running application. No NASA logos or
+  insignia are used.
 - **SI-generated audio: the voice-over.** The narration of the demo and of the voiced intro films is synthetic
   speech made with ElevenLabs (model `eleven_v4`; English: library voice *Marcus K — Calm Documentary Narrator*;
   Russian and Kazakh: the designed voice «Иван»). The script — the films' own subtitle text, plus five short demo lines — was written with Claude;
@@ -182,7 +188,8 @@ References
 - World Meteorological Organization (2008). *Guide to Meteorological Instruments and Methods of Observation*, WMO-No. 8, Annex 4.B.
 - Software: NumPy, SciPy, pandas, statsmodels, FastAPI, Uvicorn, pydantic, httpx, pytest, pymannkendall (tests only), React, Vite, TypeScript, MapLibre GL JS, Apache ECharts, world-atlas, topojson-client, three.js.
 - Earth imagery in the onboarding and films: NASA Earth Observatory — Blue Marble: Next Generation (Reto Stöckli) and Earth at Night 2012 (with NOAA NGDC), as distributed in NASA's WorldWind repository; coastlines and water mask: Natural Earth (public domain). See `docs/visual/ASSETS_AND_LICENSES.md`.
-- SI tools: Claude (Anthropic), Gemini (Google) — see A6.
+- Programmatic README art: `docs/brand/earth-senses-orbit-loop.gif` generated using ChatGPT-assisted JavaScript; original code and exact-byte reproduction: `scripts/build_earth_orbit_loop.mjs`; see `docs/visual/ASSETS_AND_LICENSES.md`.
+- SI tools: Claude (Anthropic), Gemini (Google), ChatGPT (OpenAI) — see A6.
 
 ---
 
