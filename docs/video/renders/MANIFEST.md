@@ -4,7 +4,7 @@ Screen recordings of the running app, made frame by frame with `scripts/record_i
 
 | File | Length | Picture | Size | Decodes cleanly | SHA-256 |
 |---|---|---|---|---|---|
-| [`demo_en.mp4`](demo_en.mp4) | 29.3 s | 1920×1080, 24 fps H264 | 11.2 MB | yes | `2978654d17223f28…` |
+| [`demo_en.mp4`](demo_en.mp4) | 29.3 s | 1920×1080, 24 fps H264 | 10.1 MB | yes | `2281b7bcd6670c6b…` |
 | [`explainer_en.mp4`](explainer_en.mp4) | 45.0 s | 1920×1080, 24 fps H264 | 7.6 MB | yes | `ef3810dcfcb7abbd…` |
 | [`explainer_kk.mp4`](explainer_kk.mp4) | 45.0 s | 1920×1080, 24 fps H264 | 7.8 MB | yes | `b58bf5f8d47fb280…` |
 | [`explainer_ru.mp4`](explainer_ru.mp4) | 45.0 s | 1920×1080, 24 fps H264 | 7.8 MB | yes | `26d9cd61c813f7e8…` |
@@ -15,4 +15,4 @@ Screen recordings of the running app, made frame by frame with `scripts/record_i
 | [`teaser_kk.mp4`](teaser_kk.mp4) | 16.5 s | 1920×1080, 24 fps H264 | 6.4 MB | yes | `85bb50f355000040…` |
 | [`teaser_ru.mp4`](teaser_ru.mp4) | 16.5 s | 1920×1080, 24 fps H264 | 6.4 MB | yes | `4c64a70bb6cb64d3…` |
 
-For the NASA form use **`demo_en.mp4`** (30 seconds or less, English). The other films are for presentations: the form allows at most 30 seconds.
+For the NASA form use **`voiced/demo_en_voice.mp4`** (29.3 s, English, voice-over + music; silent version: `demo_en.mp4`). The other films are for presentations: the form allows at most 30 seconds.

@@ -21,7 +21,7 @@ cap() {  # drawtext for a caption file, bottom centre
   echo "drawtext=fontfile=$FONT:textfile=$1:fontsize=44:fontcolor=white:box=1:boxcolor=black@0.86:boxborderw=22:x=(w-text_w)/2:y=h-150"
 }
 still() {  # $1 image, $2 seconds, $3 extra filter (may be empty)
-  local f="scale=1920:1080,zoompan=z='1+0.00035*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24,setsar=1"
+  local f="scale=7680:4320:flags=lanczos,zoompan=z='1+0.00035*on':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24,setsar=1"
   [ -n "${3:-}" ] && f="$f,$3"
   echo "$f,fade=t=in:st=0:d=0.3,fade=t=out:st=$(echo "$2 - 0.3" | bc):d=0.3,format=yuv420p"
 }
