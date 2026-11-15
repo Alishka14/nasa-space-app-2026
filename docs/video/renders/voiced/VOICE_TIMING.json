@@ -1,0 +1,642 @@
+{
+ "demo_en": {
+  "film": "demo_en",
+  "status": "DONE",
+  "duration_s": 29.333,
+  "bytes": 10919554,
+  "loudness": {
+   "input_lufs": -25.35,
+   "target_lufs": -16.0
+  },
+  "segments": [
+   {
+    "segment": "d0",
+    "start": 0.0,
+    "speech_at": 0.15,
+    "speech_s": 2.662,
+    "ends": 2.812,
+    "limit": 3.0,
+    "fits": true
+   },
+   {
+    "segment": "d1",
+    "start": 3.0,
+    "speech_at": 3.15,
+    "speech_s": 1.144,
+    "ends": 4.294,
+    "limit": 7.0,
+    "fits": true
+   },
+   {
+    "segment": "d2b",
+    "start": 7.0,
+    "speech_at": 7.15,
+    "speech_s": 3.829,
+    "ends": 10.979,
+    "limit": 12.0,
+    "fits": true
+   },
+   {
+    "segment": "d3",
+    "start": 12.0,
+    "speech_at": 12.15,
+    "speech_s": 1.853,
+    "ends": 14.003,
+    "limit": 15.5,
+    "fits": true
+   },
+   {
+    "segment": "d4",
+    "start": 15.5,
+    "speech_at": 15.65,
+    "speech_s": 3.237,
+    "ends": 18.887,
+    "limit": 19.5,
+    "fits": true
+   },
+   {
+    "segment": "d5",
+    "start": 19.5,
+    "speech_at": 19.65,
+    "speech_s": 2.596,
+    "ends": 22.246,
+    "limit": 22.5,
+    "fits": true
+   },
+   {
+    "segment": "d6b",
+    "start": 22.5,
+    "speech_at": 22.366,
+    "speech_s": 3.532,
+    "ends": 25.898,
+    "limit": 25.9,
+    "fits": true
+   },
+   {
+    "segment": "d7c",
+    "start": 25.9,
+    "speech_at": 26.05,
+    "speech_s": 2.28,
+    "ends": 28.33,
+    "limit": 29.333,
+    "fits": true
+   }
+  ]
+ },
+ "teaser_en": {
+  "film": "teaser_en",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 18.922,
+  "silent_duration_s": 16.5,
+  "bytes": 7093605,
+  "loudness": {
+   "input_lufs": -26.39,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "t1",
+    "start": 0.0,
+    "scene_s": 4.0,
+    "slowed_to_s": 4.0,
+    "factor": 1.0,
+    "speech_s": 1.144,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "t2",
+    "start": 4.0,
+    "scene_s": 5.0,
+    "slowed_to_s": 7.422,
+    "factor": 1.4843,
+    "speech_s": 6.722,
+    "speech_at": 4.25
+   },
+   {
+    "scene": "t3",
+    "start": 11.422,
+    "scene_s": 3.5,
+    "slowed_to_s": 3.5,
+    "factor": 1.0,
+    "speech_s": 1.853,
+    "speech_at": 11.672
+   },
+   {
+    "scene": "t4",
+    "start": 14.922,
+    "scene_s": 4.0,
+    "slowed_to_s": 4.0,
+    "factor": 1.0,
+    "speech_s": 3.237,
+    "speech_at": 15.172
+   }
+  ]
+ },
+ "teaser_ru": {
+  "film": "teaser_ru",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 23.169,
+  "silent_duration_s": 16.5,
+  "bytes": 7832945,
+  "loudness": {
+   "input_lufs": -18.45,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "t1",
+    "start": 0.0,
+    "scene_s": 4.0,
+    "slowed_to_s": 4.0,
+    "factor": 1.0,
+    "speech_s": 2.133,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "t2",
+    "start": 4.0,
+    "scene_s": 5.0,
+    "slowed_to_s": 10.36,
+    "factor": 2.072,
+    "speech_s": 9.66,
+    "speech_at": 4.25
+   },
+   {
+    "scene": "t3",
+    "start": 14.36,
+    "scene_s": 3.5,
+    "slowed_to_s": 3.5,
+    "factor": 1.0,
+    "speech_s": 2.105,
+    "speech_at": 14.61
+   },
+   {
+    "scene": "t4",
+    "start": 17.86,
+    "scene_s": 4.0,
+    "slowed_to_s": 5.309,
+    "factor": 1.3272,
+    "speech_s": 4.609,
+    "speech_at": 18.11
+   }
+  ]
+ },
+ "teaser_kk": {
+  "film": "teaser_kk",
+  "status": "SKIPPED",
+  "missing_clips": [
+   "t2",
+   "t4"
+  ]
+ },
+ "hero_en": {
+  "film": "hero_en",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 60.883,
+  "silent_duration_s": 59.5,
+  "bytes": 19279638,
+  "loudness": {
+   "input_lufs": -26.53,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "h1",
+    "start": 0.0,
+    "scene_s": 6.0,
+    "slowed_to_s": 6.0,
+    "factor": 1.0,
+    "speech_s": 3.25,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "h2",
+    "start": 6.0,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.5,
+    "factor": 1.0,
+    "speech_s": 5.227,
+    "speech_at": 6.25
+   },
+   {
+    "scene": "h3",
+    "start": 12.5,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.5,
+    "factor": 1.0,
+    "speech_s": 5.176,
+    "speech_at": 12.75
+   },
+   {
+    "scene": "h4",
+    "start": 19.0,
+    "scene_s": 8.0,
+    "slowed_to_s": 8.0,
+    "factor": 1.0,
+    "speech_s": 7.143,
+    "speech_at": 19.25
+   },
+   {
+    "scene": "h5",
+    "start": 27.0,
+    "scene_s": 8.0,
+    "slowed_to_s": 9.383,
+    "factor": 1.1729,
+    "speech_s": 8.683,
+    "speech_at": 27.25
+   },
+   {
+    "scene": "h6",
+    "start": 36.383,
+    "scene_s": 5.5,
+    "slowed_to_s": 5.5,
+    "factor": 1.0,
+    "speech_s": 2.954,
+    "speech_at": 36.633
+   },
+   {
+    "scene": "h7",
+    "start": 41.883,
+    "scene_s": 7.0,
+    "slowed_to_s": 7.0,
+    "factor": 1.0,
+    "speech_s": 6.153,
+    "speech_at": 42.133
+   },
+   {
+    "scene": "h8",
+    "start": 48.883,
+    "scene_s": 7.5,
+    "slowed_to_s": 7.5,
+    "factor": 1.0,
+    "speech_s": 6.215,
+    "speech_at": 49.133
+   },
+   {
+    "scene": "h9",
+    "start": 56.383,
+    "scene_s": 4.5,
+    "slowed_to_s": 4.5,
+    "factor": 1.0,
+    "speech_s": 2.037,
+    "speech_at": 56.633
+   }
+  ]
+ },
+ "hero_ru": {
+  "film": "hero_ru",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 65.103,
+  "silent_duration_s": 59.5,
+  "bytes": 20345517,
+  "loudness": {
+   "input_lufs": -17.82,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "h1",
+    "start": 0.0,
+    "scene_s": 6.0,
+    "slowed_to_s": 6.0,
+    "factor": 1.0,
+    "speech_s": 4.126,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "h2",
+    "start": 6.0,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.98,
+    "factor": 1.0738,
+    "speech_s": 6.28,
+    "speech_at": 6.25
+   },
+   {
+    "scene": "h3",
+    "start": 12.98,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.945,
+    "factor": 1.0684,
+    "speech_s": 6.245,
+    "speech_at": 13.23
+   },
+   {
+    "scene": "h4",
+    "start": 19.924,
+    "scene_s": 8.0,
+    "slowed_to_s": 9.829,
+    "factor": 1.2287,
+    "speech_s": 9.129,
+    "speech_at": 20.174
+   },
+   {
+    "scene": "h5",
+    "start": 29.754,
+    "scene_s": 8.0,
+    "slowed_to_s": 10.677,
+    "factor": 1.3346,
+    "speech_s": 9.977,
+    "speech_at": 30.004
+   },
+   {
+    "scene": "h6",
+    "start": 40.431,
+    "scene_s": 5.5,
+    "slowed_to_s": 5.5,
+    "factor": 1.0,
+    "speech_s": 3.29,
+    "speech_at": 40.681
+   },
+   {
+    "scene": "h7",
+    "start": 45.931,
+    "scene_s": 7.0,
+    "slowed_to_s": 7.173,
+    "factor": 1.0247,
+    "speech_s": 6.473,
+    "speech_at": 46.181
+   },
+   {
+    "scene": "h8",
+    "start": 53.103,
+    "scene_s": 7.5,
+    "slowed_to_s": 7.5,
+    "factor": 1.0,
+    "speech_s": 6.009,
+    "speech_at": 53.353
+   },
+   {
+    "scene": "h9",
+    "start": 60.603,
+    "scene_s": 4.5,
+    "slowed_to_s": 4.5,
+    "factor": 1.0,
+    "speech_s": 2.11,
+    "speech_at": 60.853
+   }
+  ]
+ },
+ "hero_kk": {
+  "film": "hero_kk",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 65.015,
+  "silent_duration_s": 59.5,
+  "bytes": 20361503,
+  "loudness": {
+   "input_lufs": -17.54,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "h1",
+    "start": 0.0,
+    "scene_s": 6.0,
+    "slowed_to_s": 6.0,
+    "factor": 1.0,
+    "speech_s": 3.493,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "h2",
+    "start": 6.0,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.5,
+    "factor": 1.0,
+    "speech_s": 5.212,
+    "speech_at": 6.25
+   },
+   {
+    "scene": "h3",
+    "start": 12.5,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.558,
+    "factor": 1.0089,
+    "speech_s": 5.858,
+    "speech_at": 12.75
+   },
+   {
+    "scene": "h4",
+    "start": 19.058,
+    "scene_s": 8.0,
+    "slowed_to_s": 8.426,
+    "factor": 1.0532,
+    "speech_s": 7.726,
+    "speech_at": 19.308
+   },
+   {
+    "scene": "h5",
+    "start": 27.483,
+    "scene_s": 8.0,
+    "slowed_to_s": 11.773,
+    "factor": 1.4716,
+    "speech_s": 11.073,
+    "speech_at": 27.733
+   },
+   {
+    "scene": "h6",
+    "start": 39.256,
+    "scene_s": 5.5,
+    "slowed_to_s": 5.5,
+    "factor": 1.0,
+    "speech_s": 3.578,
+    "speech_at": 39.506
+   },
+   {
+    "scene": "h7",
+    "start": 44.756,
+    "scene_s": 7.0,
+    "slowed_to_s": 8.259,
+    "factor": 1.1799,
+    "speech_s": 7.559,
+    "speech_at": 45.006
+   },
+   {
+    "scene": "h8",
+    "start": 53.015,
+    "scene_s": 7.5,
+    "slowed_to_s": 7.5,
+    "factor": 1.0,
+    "speech_s": 6.175,
+    "speech_at": 53.265
+   },
+   {
+    "scene": "h9",
+    "start": 60.515,
+    "scene_s": 4.5,
+    "slowed_to_s": 4.5,
+    "factor": 1.0,
+    "speech_s": 2.054,
+    "speech_at": 60.765
+   }
+  ]
+ },
+ "explainer_en": {
+  "film": "explainer_en",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 53.417,
+  "silent_duration_s": 45.0,
+  "bytes": 9947462,
+  "loudness": {
+   "input_lufs": -26.04,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "e1",
+    "start": 0.0,
+    "scene_s": 6.5,
+    "slowed_to_s": 8.36,
+    "factor": 1.2862,
+    "speech_s": 7.66,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "e2",
+    "start": 8.36,
+    "scene_s": 6.5,
+    "slowed_to_s": 9.114,
+    "factor": 1.4022,
+    "speech_s": 8.415,
+    "speech_at": 8.61
+   },
+   {
+    "scene": "e3",
+    "start": 17.475,
+    "scene_s": 6.5,
+    "slowed_to_s": 6.631,
+    "factor": 1.0202,
+    "speech_s": 5.931,
+    "speech_at": 17.725
+   },
+   {
+    "scene": "e4",
+    "start": 24.106,
+    "scene_s": 8.5,
+    "slowed_to_s": 11.752,
+    "factor": 1.3826,
+    "speech_s": 11.052,
+    "speech_at": 24.356
+   },
+   {
+    "scene": "e5",
+    "start": 35.858,
+    "scene_s": 7.0,
+    "slowed_to_s": 7.546,
+    "factor": 1.078,
+    "speech_s": 6.846,
+    "speech_at": 36.108
+   },
+   {
+    "scene": "e6",
+    "start": 43.404,
+    "scene_s": 5.5,
+    "slowed_to_s": 5.5,
+    "factor": 1.0,
+    "speech_s": 4.715,
+    "speech_at": 43.654
+   },
+   {
+    "scene": "e7",
+    "start": 48.904,
+    "scene_s": 4.5,
+    "slowed_to_s": 4.5,
+    "factor": 1.0,
+    "speech_s": 3.127,
+    "speech_at": 49.154
+   }
+  ]
+ },
+ "explainer_ru": {
+  "film": "explainer_ru",
+  "status": "DONE",
+  "missing_clips": [],
+  "duration_s": 63.306,
+  "silent_duration_s": 45.0,
+  "bytes": 11118015,
+  "loudness": {
+   "input_lufs": -18.08,
+   "target_lufs": -16.0
+  },
+  "scenes": [
+   {
+    "scene": "e1",
+    "start": 0.0,
+    "scene_s": 6.5,
+    "slowed_to_s": 9.101,
+    "factor": 1.4001,
+    "speech_s": 8.401,
+    "speech_at": 0.25
+   },
+   {
+    "scene": "e2",
+    "start": 9.101,
+    "scene_s": 6.5,
+    "slowed_to_s": 11.877,
+    "factor": 1.8272,
+    "speech_s": 11.177,
+    "speech_at": 9.351
+   },
+   {
+    "scene": "e3",
+    "start": 20.978,
+    "scene_s": 6.5,
+    "slowed_to_s": 9.028,
+    "factor": 1.3889,
+    "speech_s": 8.328,
+    "speech_at": 21.228
+   },
+   {
+    "scene": "e4",
+    "start": 30.006,
+    "scene_s": 8.5,
+    "slowed_to_s": 14.554,
+    "factor": 1.7122,
+    "speech_s": 13.854,
+    "speech_at": 30.256
+   },
+   {
+    "scene": "e5",
+    "start": 44.56,
+    "scene_s": 7.0,
+    "slowed_to_s": 7.553,
+    "factor": 1.079,
+    "speech_s": 6.853,
+    "speech_at": 44.81
+   },
+   {
+    "scene": "e6",
+    "start": 52.113,
+    "scene_s": 5.5,
+    "slowed_to_s": 6.693,
+    "factor": 1.217,
+    "speech_s": 5.993,
+    "speech_at": 52.363
+   },
+   {
+    "scene": "e7",
+    "start": 58.806,
+    "scene_s": 4.5,
+    "slowed_to_s": 4.5,
+    "factor": 1.0,
+    "speech_s": 3.656,
+    "speech_at": 59.056
+   }
+  ]
+ },
+ "explainer_kk": {
+  "film": "explainer_kk",
+  "status": "SKIPPED",
+  "missing_clips": [
+   "e3",
+   "e5",
+   "e7"
+  ]
+ }
+}

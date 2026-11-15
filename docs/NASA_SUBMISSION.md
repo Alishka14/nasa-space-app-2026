@@ -48,7 +48,7 @@ teaches the detective's most important habit, which is to doubt the first answer
 **TO DO** — public link to a video of 30 seconds or less, or to a deck of at most 7 slides
 (see `docs/DEMO_SCRIPT.md`).
 
-Prepared: **`docs/video/renders/demo_en.mp4`** — 30 seconds or less, English, recorded from the running
+Prepared, with voice-over: **`docs/video/renders/voiced/demo_en_voice.mp4`** (29.3 s, English, burned-in English captions, synthetic voice labelled "AI voice (ElevenLabs)"). Silent version: **`docs/video/renders/demo_en.mp4`** — 30 seconds or less, English, recorded from the running
 application (the 3D globe, the intro's main finding and the app itself), not generated footage. Longer films
 (Full film ≈ 60 s, Explainer 45 s) and the Russian and Kazakh versions are for presentations, not for this field:
 the rules allow at most 30 seconds, and a non-English video needs English subtitles. Upload `demo_en.mp4` where
@@ -130,8 +130,13 @@ SI tools were used and are disclosed here, in the repository README and in the c
   evidence.
 - **No SI takes part in the tool's results.** Every number and every sentence the user sees comes from deterministic
   code and fixed templates. The repository contains no SI-generated data.
-- **No SI-generated images, video or audio** are used. Screenshots and the intro recordings are captures of the
+- **No SI-generated images or video** are used. Screenshots and the intro recordings are captures of the
   running application. No NASA logos or branding are used.
+- **SI-generated audio: the voice-over.** The narration of the demo and of the voiced intro films is synthetic
+  speech made with ElevenLabs (model `eleven_v4`; English: library voice *Marcus K — Calm Documentary Narrator*;
+  Russian and Kazakh: the designed voice «Иван»). The script — the films' own subtitle text, plus five short demo lines — was written with Claude;
+  no real person's voice is imitated. Every voiced file shows "AI voice (ElevenLabs)" in the picture and says so in
+  its metadata.
 - The **onboarding** (3D globe, splash, language screen, intro films in English, Russian and Kazakh) and the Kazakh
   interface texts were also written by Claude; the Russian and Kazakh texts have not yet been reviewed by a native
   speaker. Every number shown in the intro is computed by the engine and checked by a test.

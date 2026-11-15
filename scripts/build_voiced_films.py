@@ -49,6 +49,9 @@ SCENES = {
 DEMO = [("d0", 0.0, 3.0), ("d1", 3.0, 4.0), ("d2b", 7.0, 5.0), ("d3", 12.0, 3.5), ("d4", 15.5, 4.0),
         ("d5", 19.5, 3.0), ("d6b", 22.5, 3.4), ("d7c", 25.9, 3.4)]
 DEMO_LEAD = 0.15
+DEMO_GAP = 0.12     # minimum silence between two demo lines
+DEMO_EARLY = 0.3    # a line may start this much before its picture cut …
+DEMO_SPILL = 0.12   # … or end this much after the next cut (imperceptible; the demo cannot be slowed)
 LABEL = "AI voice (ElevenLabs)"
 
 
@@ -185,12 +188,15 @@ def build_film(film: str, clips: Path, texts: dict, allow_partial: bool, tmp: Pa
 def build_demo(clips: Path, tmp: Path) -> dict:
     src = RENDERS / "demo_en.mp4"
     total = duration(src)
-    placements, timing = [], []
+    placements, timing, prev_end = [], [], 0.0
     for i, (s, start, dur) in enumerate(DEMO):
         d = trim_clip(clips / "demo_en" / f"{s}.mp3", tmp / f"demo_{s}.wav")
         end_limit = DEMO[i + 1][1] if i + 1 < len(DEMO) else total
-        at = start + DEMO_LEAD
-        ok = at + d <= end_limit - 0.05
+        at = max(start + DEMO_LEAD, prev_end + DEMO_GAP)
+        if at + d > end_limit - 0.05:  # a long line may start up to DEMO_EARLY s before its cut
+            at = max(prev_end + DEMO_GAP, start - DEMO_EARLY, end_limit - 0.05 - d)
+        ok = at + d <= end_limit + DEMO_SPILL and (i + 1 < len(DEMO) or at + d <= total - 0.2)
+        prev_end = at + d
         timing.append({"segment": s, "start": start, "speech_at": round(at, 3), "speech_s": round(d, 3),
                        "ends": round(at + d, 3), "limit": round(end_limit, 3), "fits": ok})
         if not ok:
@@ -237,7 +243,33 @@ def main() -> None:
             print(f"{film:14s} {r['status']:8s} {r.get('duration_s', '')} {r.get('missing_clips', '')}", flush=True)
     OUT.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=1, ensure_ascii=False), encoding="utf-8")
+    write_manifest(report)
 
 
-if __name__ == "__main__":
+def write_manifest(report: dict) -> None:
+    rows = ["# Voiced films", "",
+            "Made by `scripts/build_voiced_films.py` from the silent renders in `docs/video/renders/` and one ElevenLabs "
+            "speech clip per scene (texts: `docs/video/voiceover_lines.json`). The voice is synthetic and every file "
+            "says so in the picture (\"AI voice (ElevenLabs)\") and in its metadata.", "",
+            "| File | Status | Length | Silent original | Slowest scene | Size |", "|---|---|---|---|---|---|"]
+    for film in ["demo_en"] + [f"{v}_{l}" for v in ("hero", "explainer", "teaser") for l in ("en", "ru", "kk")]:
+        r = report.get(film)
+        if not r:
+            continue
+        if r["status"] == "SKIPPED":
+            rows.append(f"| `{film}` | not voiced — missing lines {', '.join(r['missing_clips'])} | | | | |")
+            continue
+        slow = max((s["factor"] for s in r.get("scenes", [])), default=1.0)
+        silent = r.get("silent_duration_s", r["duration_s"])
+        rows.append(f"| `{film}_voice.mp4` | {r['status']} | {r['duration_s']:.1f} s | {silent:.1f} s | "
+                    f"×{slow:.2f} | {r['bytes'] / 1e6:.1f} MB |")
+    rows += ["", "Loudness: two-pass EBU R128 normalisation to −16 LUFS; true peak after AAC encoding ≤ −0.6 dBTP.",
+             "Subtitles: `<film>_voice.srt` are the films' on-screen subtitles re-timed to the slowed scenes.", ""]
+    (OUT / "MANIFEST.md").write_text("\n".join(rows), encoding="utf-8")
+
+
+if __name__ == "__main__":  # python scripts/build_voiced_films.py --manifest-only rewrites MANIFEST.md
+    if sys.argv[1:] == ["--manifest-only"]:
+        write_manifest(json.loads((OUT / "VOICE_TIMING.json").read_text(encoding="utf-8")))
+        sys.exit(0)
     main()

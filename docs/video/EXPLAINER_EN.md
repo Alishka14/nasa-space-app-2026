@@ -28,7 +28,7 @@ One place, one question, one finding — told with the numbers on screen: raw ve
 
 ## 3. Voiceover script
 
-No audio track exists yet. The in-app intro shows this narration as subtitles; record the voice-over from section 3 if a sound version is needed.
+A voiced version with a synthetic voice (ElevenLabs, labelled "AI voice") is in `docs/video/renders/voiced/`; scenes whose line is longer than the scene are slowed there (see `VOICE_TIMING.json`). The in-app intro itself stays silent and shows this narration as subtitles.
 
 **[0:00.0]** Pavlodar, Kazakhstan: 288 months of NASA POWER data. Do precipitation and humidity vary together?  
 **[0:06.5]** Raw correlation: −0.285. But the two seasonal cycles alone give −0.775.  

@@ -78,8 +78,9 @@ Reference frames (captures of the real application): `docs/screenshots/01_invest
 - [ ] Exported duration ≤ 0:30 (check the file, not the timeline).
 - [ ] English captions readable at 720p; no caption covers the bar chart.
 - [ ] Nobody under 18 appears in the video; no NASA logo is added.
-- [ ] No AI-generated image, voice or footage. If an AI voice is used for narration, say so in the *Use of Super
-      Intelligence* field and add a visible watermark.
+- [x] No AI-generated image or footage. The narration **is** an AI voice (ElevenLabs): disclosed in the *Use of Super
+      Intelligence* field (`docs/NASA_SUBMISSION.md`, A6) and shown in the picture as "AI voice (ElevenLabs)"
+      (`docs/video/renders/voiced/demo_en_voice.mp4`).
 - [ ] Uploaded where it opens without login (for example YouTube *Unlisted* or *Public*); link tested in a private
       window.
 
