@@ -10,7 +10,7 @@
 | Scripts, storyboards, on-screen text, subtitles for all 9 versions | **Built** (this folder) |
 | Recorded video files | Listed under *Recorded files* below and in `renders/MANIFEST.md`. A recording is a screen capture of the in-app intro, not generated footage |
 | English demo for the NASA form (30 s or less) | `renders/demo_en.mp4`, built by `scripts/make_demo.sh` from the Short intro and screenshots of the app |
-| Voice-over audio | **Not recorded.** Final narration with pronunciation and number readings: `VOICEOVER_FINAL.md` |
+| Voice-over audio | **Synthetic (ElevenLabs), 8 of 10 files voiced:** `renders/voiced/*_voice.mp4`; Kazakh Explainer and Kazakh Short not voiced (credits ran out). Texts and readings: `VOICEOVER_FINAL.md`; build: `scripts/build_voiced_films.py` |
 | Generated (AI) video | **Not made.** Prompts are in `EXTERNAL_VIDEO_PROMPTS.md` |
 | Native-speaker review of the Kazakh and Russian texts | **Not done** |
 

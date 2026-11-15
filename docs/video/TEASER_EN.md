@@ -25,7 +25,7 @@ Same data, two opposite correlations, one word of explanation: seasons. Then the
 
 ## 3. Voiceover script
 
-No audio track exists yet. The in-app intro shows this narration as subtitles; record the voice-over from section 3 if a sound version is needed.
+A voiced version with a synthetic voice (ElevenLabs, labelled "AI voice") is in `docs/video/renders/voiced/`; scenes whose line is longer than the scene are slowed there (see `VOICE_TIMING.json`). The in-app intro itself stays silent and shows this narration as subtitles.
 
 **[0:00.0]** Same NASA data.  
 **[0:04.0]** Two opposite correlations: −0.285 and +0.593.  

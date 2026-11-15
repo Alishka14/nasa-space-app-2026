@@ -1,0 +1,622 @@
+[
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h1",
+  "dur": 6.0,
+  "text": "This is one planet — and one connected system.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h2",
+  "dur": 6.5,
+  "text": "Air, water and heat change together, month after month, all over the planet.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h3",
+  "dur": 6.5,
+  "text": "We followed one place for twenty-four years: Pavlodar, in NASA POWER data.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h4",
+  "dur": 8.0,
+  "text": "At first glance, months with more precipitation have lower humidity: r equals minus zero point two eight five.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h5",
+  "dur": 8.0,
+  "text": "Remove the seasonal cycle and the sign flips: plus zero point five nine three. Wetter-than-usual months are also more humid than usual.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h6",
+  "dur": 5.5,
+  "text": "The first number described the calendar, not the weather.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h7",
+  "dur": 7.0,
+  "text": "Earth Senses tests every relationship, keeps the evidence, and does not mistake correlation for cause.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h8",
+  "dur": 7.5,
+  "text": "“No warming” is not a valid conclusion here, and “humidity is rising” is a fragile result.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "en",
+  "scene": "h9",
+  "dur": 4.5,
+  "text": "Now, investigate for yourself.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h1",
+  "dur": 6.0,
+  "text": "Это одна планета — и одна взаимосвязанная система.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h2",
+  "dur": 6.5,
+  "text": "Воздух, вода и тепло меняются вместе — месяц за месяцем, по всей планете.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h3",
+  "dur": 6.5,
+  "text": "Мы проследили одно место за двадцать четыре года: Павлодар, данные НАСА Пауэр.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h4",
+  "dur": 8.0,
+  "text": "На первый взгляд в месяцы с большими осадками влажность ниже: эр равно минус ноль целых двести восемьдесят пять тысячных.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h5",
+  "dur": 8.0,
+  "text": "Уберём сезонный цикл — и знак меняется: плюс ноль целых пятьсот девяносто три тысячных. Месяцы с осадками выше нормы и влажнее обычного.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h6",
+  "dur": 5.5,
+  "text": "Первое число описывало календарь, а не погоду.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h7",
+  "dur": 7.0,
+  "text": "Earth Senses проверяет каждую связь, сохраняет доказательства и не путает корреляцию с причиной.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h8",
+  "dur": 7.5,
+  "text": "«Потепления нет» — неверный вывод, а «влажность растёт» — хрупкий результат.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "ru",
+  "scene": "h9",
+  "dur": 4.5,
+  "text": "Теперь — исследуйте сами.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h1",
+  "dur": 6.0,
+  "text": "Бұл — бір планета және бір тұтас жүйе.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h2",
+  "dur": 6.5,
+  "text": "Ауа, су және жылу бірге өзгереді — ай сайын, бүкіл планетада.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h3",
+  "dur": 6.5,
+  "text": "Біз бір аймақты жиырма төрт жыл бойы бақыладық: Павлодар, НАСА Пауэр деректері.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h4",
+  "dur": 8.0,
+  "text": "Бір қарағанда, жауын-шашын көп айларда ылғалдылық төмен: эр тең минус нөл бүтін мыңнан екі жүз сексен бес.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h5",
+  "dur": 8.0,
+  "text": "Маусымдық циклді алып тастасақ, таңба өзгереді: плюс нөл бүтін мыңнан бес жүз тоқсан үш. Жауын-шашыны нормадан көп айлар әдеттегіден ылғалдырақ.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h6",
+  "dur": 5.5,
+  "text": "Алғашқы сан ауа райын емес, күнтізбені сипаттады.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h7",
+  "dur": 7.0,
+  "text": "Earth Senses әр байланысты тексереді, дәлелдерді сақтайды және корреляцияны себеппен шатастырмайды.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h8",
+  "dur": 7.5,
+  "text": "«Жылыну жоқ» деген қорытынды дұрыс емес, ал «ылғалдылық өсуде» — тұрақсыз нәтиже.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "hero",
+  "lang": "kk",
+  "scene": "h9",
+  "dur": 4.5,
+  "text": "Енді — өзіңіз зерттеңіз.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e1",
+  "dur": 6.5,
+  "text": "Pavlodar, Kazakhstan: two hundred and eighty-eight months of NASA POWER data. Do precipitation and humidity vary together?",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e2",
+  "dur": 6.5,
+  "text": "Raw correlation: minus zero point two eight five. But the two seasonal cycles alone give minus zero point seven seven five.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e3",
+  "dur": 6.5,
+  "text": "Subtract each month's usual value, and the anomalies correlate at plus zero point five nine three.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e4",
+  "dur": 8.5,
+  "text": "Temperature and humidity: minus zero point nine four five raw, minus zero point three one six without seasons. And relative humidity is partly computed from temperature.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e5",
+  "dur": 7.0,
+  "text": "In winter the link is not detected. And it is a correlation inside one model, not a demonstrated cause.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e6",
+  "dur": 5.5,
+  "text": "“No warming” is not supported. “Humidity is rising” is fragile.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "en",
+  "scene": "e7",
+  "dur": 4.5,
+  "text": "Every claim comes with its evidence. Open the data.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e1",
+  "dur": 6.5,
+  "text": "Павлодар, Казахстан: двести восемьдесят восемь месяцев данных НАСА Пауэр. Меняются ли осадки и влажность вместе?",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e2",
+  "dur": 6.5,
+  "text": "Сырая корреляция: минус ноль целых двести восемьдесят пять тысячных. Но одни только сезонные циклы дают минус ноль целых семьсот семьдесят пять тысячных.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e3",
+  "dur": 6.5,
+  "text": "Вычтем обычное для каждого месяца значение — аномалии коррелируют на плюс ноль целых пятьсот девяносто три тысячных.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e4",
+  "dur": 8.5,
+  "text": "Температура и влажность: минус ноль целых девятьсот сорок пять тысячных в сырых данных, минус ноль целых триста шестнадцать тысячных без сезонности. А относительная влажность частично вычисляется из температуры.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e5",
+  "dur": 7.0,
+  "text": "Зимой связь не обнаруживается. И это корреляция внутри одной модели, а не установленная причина.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e6",
+  "dur": 5.5,
+  "text": "«Потепления нет» — не подтверждается. «Влажность растёт» — хрупкий результат.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "ru",
+  "scene": "e7",
+  "dur": 4.5,
+  "text": "Каждый вывод — с доказательствами. Откройте данные.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e1",
+  "dur": 6.5,
+  "text": "Павлодар, Қазақстан: НАСА Пауэр-дың екі жүз сексен сегіз айлық деректері. Жауын-шашын мен ылғалдылық бірге өзгере ме?",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e2",
+  "dur": 6.5,
+  "text": "Бастапқы корреляция: минус нөл бүтін мыңнан екі жүз сексен бес. Бірақ маусымдық циклдердің өзі минус нөл бүтін мыңнан жеті жүз жетпіс бес береді.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e3",
+  "dur": 6.5,
+  "text": "Әр айдың әдеттегі мәнін шегерсек, аномалиялар корреляциясы плюс нөл бүтін мыңнан бес жүз тоқсан үш болады.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e4",
+  "dur": 8.5,
+  "text": "Температура мен ылғалдылық: бастапқы деректе минус нөл бүтін мыңнан тоғыз жүз қырық бес, маусымдылықсыз минус нөл бүтін мыңнан үш жүз он алты. Салыстырмалы ылғалдылық ішінара температурадан есептеледі.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e5",
+  "dur": 7.0,
+  "text": "Қыста байланыс байқалмайды. Және бұл — бір модель ішіндегі корреляция, анықталған себеп емес.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e6",
+  "dur": 5.5,
+  "text": "«Жылыну жоқ» — расталмайды. «Ылғалдылық өсуде» — тұрақсыз нәтиже.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "explainer",
+  "lang": "kk",
+  "scene": "e7",
+  "dur": 4.5,
+  "text": "Әр қорытынды — дәлелімен. Деректерді ашыңыз.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "en",
+  "scene": "t1",
+  "dur": 4.0,
+  "text": "Same NASA data.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "en",
+  "scene": "t2",
+  "dur": 5.0,
+  "text": "Two opposite correlations: minus zero point two eight five and plus zero point five nine three.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "en",
+  "scene": "t3",
+  "dur": 3.5,
+  "text": "The difference is the seasons.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "en",
+  "scene": "t4",
+  "dur": 4.0,
+  "text": "Earth Senses. Evidence before conclusions.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "ru",
+  "scene": "t1",
+  "dur": 4.0,
+  "text": "Одни и те же данные НАСА.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "ru",
+  "scene": "t2",
+  "dur": 5.0,
+  "text": "Две противоположные корреляции: минус ноль целых двести восемьдесят пять тысячных и плюс ноль целых пятьсот девяносто три тысячных.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "ru",
+  "scene": "t3",
+  "dur": 3.5,
+  "text": "Разница — в сезонности.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "ru",
+  "scene": "t4",
+  "dur": 4.0,
+  "text": "Earth Senses. Сначала доказательства, потом выводы.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "kk",
+  "scene": "t1",
+  "dur": 4.0,
+  "text": "НАСА-ның бір ғана деректері.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "kk",
+  "scene": "t2",
+  "dur": 5.0,
+  "text": "Екі қарама-қарсы корреляция: минус нөл бүтін мыңнан екі жүз сексен бес және плюс нөл бүтін мыңнан бес жүз тоқсан үш.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "kk",
+  "scene": "t3",
+  "dur": 3.5,
+  "text": "Айырма — маусымдылықта.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "teaser",
+  "lang": "kk",
+  "scene": "t4",
+  "dur": 4.0,
+  "text": "Earth Senses. Алдымен дәлел, сосын қорытынды.",
+  "voice": "designed voice «Иван» (ElevenLabs, id wcuCYUhWhVPBBagFewv6)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d0",
+  "start": 0.0,
+  "dur": 3.0,
+  "text": "We're Ali and Diyaz, team EARTH SENSES.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d1",
+  "start": 3.0,
+  "dur": 4.0,
+  "text": "Same NASA data.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d2b",
+  "start": 7.0,
+  "dur": 5.0,
+  "text": "Negative in the raw data — positive once the seasons are removed.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d3",
+  "start": 12.0,
+  "dur": 3.5,
+  "text": "The difference is the seasons.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d4",
+  "start": 15.5,
+  "dur": 4.0,
+  "text": "Earth Senses. Evidence before conclusions.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d5",
+  "start": 19.5,
+  "dur": 3.0,
+  "text": "In the app, it's the same NASA POWER data.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d6b",
+  "start": 22.5,
+  "dur": 3.4,
+  "text": "Seasons removed, it's positive — but not in winter.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ },
+ {
+  "variant": "demo",
+  "lang": "en",
+  "scene": "d7c",
+  "start": 25.9,
+  "dur": 3.4,
+  "text": "Correlation is not causation.",
+  "voice": "Marcus K - Calm Documentary Narrator (ElevenLabs voice library, id 3H55HGnNE1XjYxigHSAS)",
+  "model": "eleven_v4"
+ }
+]
