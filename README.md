@@ -24,6 +24,7 @@
 </div>
 
 > **Mission note:** This repository belongs to an independent hackathon project, not an official NASA application or a NASA-endorsed product. The animated cover is original **illustrative artwork**, not a scientific Earth observation. GitHub may display SVG motion as a still image; open the artwork itself or launch the app for the full moving WebGL Earth.
+  The separate orbital GIF was **drawn and encoded with deterministic JavaScript written with ChatGPT assistance**, not produced by an AI image/video generator ([reproduce it](scripts/build_earth_orbit_loop.mjs) · [asset provenance](docs/visual/ASSETS_AND_LICENSES.md)).
 
 <p align="center">
   <img src="docs/brand/earth-senses-orbit-loop.gif" width="76%" alt="Animated stylized Earth rotating slowly in space with orbiting sensor, twinkling stars, and flowing scientific signals. Illustration, not a scientific map.">
@@ -260,7 +261,7 @@ For development, use a second terminal: `cd frontend && npm run dev` (http://loc
 - **Earth-system data:** [NASA POWER](https://power.larc.nasa.gov/) · MERRA-2 reanalysis, NASA GMAO.
 - **Earth imagery:** NASA Earth Observatory, Blue Marble: Next Generation and Earth at Night 2012, distributed through NASA WorldWind; coastline and water-mask inputs from Natural Earth. [Image provenance and attribution](docs/visual/ASSETS_AND_LICENSES.md).
 - **Methods and provenance:** [Scientific method](docs/SCIENCE_METHOD.md) · [Evidence ledger](docs/EVIDENCE_LEDGER.md) · [Science self-audit](docs/SCIENCE_REVIEW.md) · [Video credits](docs/video/renders/voiced/MANIFEST.md).
-- **AI disclosure:** Gemini provided an exploratory analysis; Claude assisted with implementation, tests, documentation and review under the team's direction. Scientific numbers come from reproducible calculations, **not** from LLM-generated estimates. Some films include clearly labelled synthetic ElevenLabs voices. See [submission notes](docs/NASA_SUBMISSION.md).
+- **AI disclosure:** Gemini provided an exploratory analysis; Claude assisted with implementation, tests, documentation and review; ChatGPT assisted with code for the procedural README animation and SVG. No prompt-to-image/video model was used for that art. Scientific numbers come from reproducible calculations, **not** from LLM-generated estimates. Some films include clearly labelled synthetic ElevenLabs voices. See [submission notes](docs/NASA_SUBMISSION.md).
 - **Team and licensing:** The project belongs to the hackathon team operating this repository. Code licensing remains the repository owner's decision; external NASA and Natural Earth assets retain their respective terms and required credits.
 
 <div align="center">
