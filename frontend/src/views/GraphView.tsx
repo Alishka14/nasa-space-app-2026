@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { api, type Investigation } from '../api'
 import { chrome, fmt, fmtP, seriesColor, type Mode } from '../theme'
 import { Card, EvidenceStatus, Verdict, type T } from './common'
+import { varName } from '../sciI18n'
 
 const DASH: Record<string, string> = { SUPPORTED: '', WEAK: '10 7', INCONCLUSIVE: '3 7', NOT_SUPPORTED: '1 9' }
 
@@ -75,7 +76,7 @@ export default function GraphView({ inv, t, mode, onEvidence }: {
                 <circle r={50} fill={c.surface} stroke={seriesColor(n.id, mode)} strokeWidth={5} />
                 <text textAnchor="middle" y={-4} fill={c.ink} fontSize={n.id.length > 8 ? 10.5 : 13} fontWeight={700}>{n.id}</text>
                 <text textAnchor="middle" y={14} fill={c.ink2} fontSize={11}>{fmt(n.slope, 3)}/yr</text>
-                <text textAnchor="middle" y={up ? -78 : 70} fill={c.ink} fontSize={12}>{n.label}</text>
+                <text textAnchor="middle" y={up ? -78 : 70} fill={c.ink} fontSize={12}>{varName(n.id ?? n.variable ?? '', n.label)}</text>
                 <text textAnchor="middle" y={up ? -62 : 86} fill={c.muted} fontSize={11}>{n.trend_verdict.replaceAll('_', ' ').toLowerCase()}</text>
               </g>
             )

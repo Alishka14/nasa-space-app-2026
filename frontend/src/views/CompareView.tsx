@@ -5,6 +5,7 @@ import { api, type Catalog, type Comparison } from '../api'
 import { compareSeries } from '../charts'
 import type { Mode } from '../theme'
 import { Card, Verdict, type T } from './common'
+import { unitLabel, varName } from '../sciI18n'
 
 export default function CompareView({ catalog, start, end, vars, t, mode }: {
   catalog: Catalog; start: number; end: number; vars: string[]; t: T; mode: Mode
@@ -49,7 +50,7 @@ export default function CompareView({ catalog, start, end, vars, t, mode }: {
               Levels differ with elevation; only the changes over time are compared.</p>
           </Card>
           {res.variables.map((v: any) => (
-            <Card key={v.variable} title={`${v.label} (${v.units})`} right={<Verdict code={v.verdict} />}>
+            <Card key={v.variable} title={`${varName(v.variable, v.label)} (${unitLabel(v.units)})`} right={<Verdict code={v.verdict} />}>
               <p className="statement">{v.statement}</p>
               <Chart option={compareSeries(v, res.region_a.name, res.region_b.name, mode)} height={300} />
             </Card>
