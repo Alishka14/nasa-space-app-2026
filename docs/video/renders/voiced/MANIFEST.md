@@ -4,7 +4,7 @@ Made by `scripts/build_voiced_films.py` from the silent renders in `docs/video/r
 
 | File | Status | Length | Silent original | Slowest scene | Size |
 |---|---|---|---|---|---|
-| `demo_en_voice.mp4` | DONE | 29.3 s | 29.3 s | ×1.00 | 11.1 MB |
+| `demo_en_voice.mp4` | DONE | 29.3 s | 29.3 s | ×1.00 | 10.2 MB |
 | `hero_en_voice.mp4` | DONE | 60.9 s | 59.5 s | ×1.17 | 19.5 MB |
 | `hero_ru_voice.mp4` | DONE | 65.1 s | 59.5 s | ×1.33 | 20.5 MB |
 | `hero_kk_voice.mp4` | DONE | 65.0 s | 59.5 s | ×1.47 | 20.5 MB |
