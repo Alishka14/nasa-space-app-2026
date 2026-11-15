@@ -11,13 +11,13 @@ the engine's output for the bundled NASA files (`docs/SCIENCE_REVIEW.md`, `docs/
 
 | # | Item | State |
 |---|---|---|
-| 1 | Push `feat/earth-senses-mvp` and open the Draft PR (`docs/HANDOFF.md`) | **TO DO** — could not be done from the build environment |
-| 2 | Make the repository **public**: the guide says the final-project link must open without login, permission or registration | **TO DO** — the repository currently asks for credentials |
-| 3 | Record the demo: a video of **30 seconds or less**, or **at most 7 slides** including the title slide. A longer demo makes the project ineligible for awards | **TO DO** — script, subtitles and slide outline in `docs/DEMO_SCRIPT.md` |
-| 4 | Host the demo at a public link (no login) and paste it into *Link to Project Demo* | **TO DO** |
+| 1 | Code in the team repository `Alishka14/nasa-space-app-2026`, branch `main` | **DONE** — MVP merged (PR #1), visual onboarding, films, voice-over and music merged into `main` |
+| 2 | Make the repository **public**: the guide says the final-project link must open without login, permission or registration | **TO DO** — checked 15 Nov 20:58: the repository is still **Private**. Secret scan of the whole history: no keys, tokens or personal paths. GitHub → Settings → General → Danger Zone → Change visibility → Public (owner/admin) |
+| 3 | Record the demo: a video of **30 seconds or less**, or **at most 7 slides** including the title slide. A longer demo makes the project ineligible for awards | **DONE** — `docs/video/renders/voiced/demo_en_voice.mp4`, 29.3 s, English captions, AI voice labelled |
+| 4 | Host the demo at a public link (no login) and paste it into *Link to Project Demo* | **TO DO** — upload `demo_en_voice.mp4` to Google Drive (sharing: anyone with the link) or YouTube; once the repository is public, its GitHub file link also opens without login |
 | 5 | Read the science once as humans (`docs/SCIENCE_REVIEW.md`, 10 minutes) and confirm you stand behind it | **TO DO** — no human review has taken place |
 | 6 | Confirm the statement about the origin of the idea in *Use of Super Intelligence* (field A6) | **TO DO** |
-| 7 | Fill in team name, members (1–6), local event | **TO DO** |
+| 7 | Fill in team name (**alishkaTeam**), members (Ali, Diyaz), local event | **TO DO** |
 | 8 | Tick the two checkboxes (terms; originality with all outside resources listed in References) | **TO DO** |
 | 9 | Submit before Sunday 15 November, 23:59 local-event time | **TO DO** |
 

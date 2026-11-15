@@ -391,8 +391,9 @@
    "film": "demo_en",
    "scene": "d0",
    "similarity": 0.67,
-   "line": "We're Ali and Diyaz, team EARTH SENSES.",
-   "heard": "We're Allian Diaz, Team Earth Senses."
+   "line": "We're Ali and Diyaz.",
+   "heard": "We're Ali and Diaz.",
+   "note": "trimmed clip (see voiceover_lines.json)"
   },
   {
    "film": "demo_en",

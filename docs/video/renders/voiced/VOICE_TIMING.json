@@ -3,9 +3,9 @@
   "film": "demo_en",
   "status": "DONE",
   "duration_s": 29.333,
-  "bytes": 10222065,
+  "bytes": 10217451,
   "loudness": {
-   "input_lufs": -26.31,
+   "input_lufs": -26.54,
    "target_lufs": -16.0,
    "music": true
   },
@@ -14,8 +14,8 @@
     "segment": "d0",
     "start": 0.0,
     "speech_at": 0.15,
-    "speech_s": 2.662,
-    "ends": 2.812,
+    "speech_s": 1.141,
+    "ends": 1.291,
     "limit": 3.0,
     "fits": true
    },
