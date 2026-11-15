@@ -1,0 +1,138 @@
+{
+ "source": {
+  "place": "Pavlodar, Kazakhstan",
+  "lat": 52.29,
+  "lon": 76.97,
+  "start": 2001,
+  "end": 2024,
+  "months": 288,
+  "dataset": "NASA POWER (MERRA-2)",
+  "data_hash": "d9bebf2c77a09f4947ab24c7dd750d64e9dd9059a8324fde9dffdf85efcba0ea",
+  "generated_by": "scripts/build_intro_assets.py",
+  "verdicts": {
+   "T2M": "NO_SIGNIFICANT_TREND_DETECTED",
+   "RH2M": "FRAGILE_TREND",
+   "PRECTOTCORR-RH2M": "SUPPORTED"
+  }
+ },
+ "p_rh_raw": {
+  "value": -0.2849502290436374,
+  "digits": 3,
+  "signed": true,
+  "note": "precipitation-relative humidity, raw monthly values"
+ },
+ "p_rh_cycles": {
+  "value": -0.7751634280273179,
+  "digits": 3,
+  "signed": true,
+  "note": "the two seasonal cycles alone"
+ },
+ "p_rh_deseason": {
+  "value": 0.5934640857867882,
+  "digits": 3,
+  "signed": true,
+  "note": "monthly anomalies (seasonal cycle removed)"
+ },
+ "p_rh_detrended": {
+  "value": 0.5898926309663908,
+  "digits": 3,
+  "signed": true,
+  "note": "detrended anomalies"
+ },
+ "p_rh_ci_low": {
+  "value": 0.5074149267648459,
+  "digits": 2,
+  "signed": true,
+  "note": "95% CI, detrended anomalies"
+ },
+ "p_rh_ci_high": {
+  "value": 0.6616600402463588,
+  "digits": 2,
+  "signed": true,
+  "note": "95% CI, detrended anomalies"
+ },
+ "p_rh_winter": {
+  "value": -0.06092204718769122,
+  "digits": 2,
+  "signed": true,
+  "note": "December-February only"
+ },
+ "p_rh_summer": {
+  "value": 0.7043557108313798,
+  "digits": 2,
+  "signed": true,
+  "note": "June-August only"
+ },
+ "p_rh_equal_months": {
+  "value": 0.3671983337461715,
+  "digits": 2,
+  "signed": true,
+  "note": "every calendar month weighted equally"
+ },
+ "p_rh_held_t": {
+  "value": 0.5857758953564729,
+  "digits": 2,
+  "signed": true,
+  "note": "partial correlation, temperature held fixed"
+ },
+ "p_rh_held_t_qv": {
+  "value": 0.43950085066329275,
+  "digits": 2,
+  "signed": true,
+  "note": "partial correlation, temperature and specific humidity held fixed"
+ },
+ "t_rh_raw": {
+  "value": -0.9450569128605311,
+  "digits": 3,
+  "signed": true,
+  "note": "temperature-relative humidity, raw"
+ },
+ "t_rh_deseason": {
+  "value": -0.31583631967229486,
+  "digits": 3,
+  "signed": true,
+  "note": "temperature-relative humidity, anomalies"
+ },
+ "rh_rebuilt_r": {
+  "value": 0.9817560935143065,
+  "digits": 2,
+  "signed": false,
+  "note": "relative humidity rebuilt from temperature and specific humidity vs NASA values"
+ },
+ "t_trend_decade": {
+  "value": -0.21167371297095178,
+  "digits": 2,
+  "signed": true,
+  "note": "deg C per decade, 2001-2024"
+ },
+ "t_trend_ci_low": {
+  "value": -0.665975658621859,
+  "digits": 2,
+  "signed": true,
+  "note": "deg C per decade, 95% CI"
+ },
+ "t_trend_ci_high": {
+  "value": 0.4644808743169401,
+  "digits": 2,
+  "signed": true,
+  "note": "deg C per decade, 95% CI"
+ },
+ "rh_trend_p": {
+  "value": 0.03499862949542659,
+  "digits": 3,
+  "signed": false,
+  "note": "Mann-Kendall p"
+ },
+ "rh_trend_q": {
+  "value": 0.10499588848627978,
+  "digits": 3,
+  "signed": false,
+  "note": "after false-discovery correction"
+ },
+ "rh_flip_years": {
+  "value": 5.0,
+  "digits": 0,
+  "signed": false,
+  "note": "years whose removal flips significance"
+ }
+}

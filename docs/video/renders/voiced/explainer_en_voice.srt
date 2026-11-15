@@ -1,0 +1,59 @@
+1
+00:00:00,322 --> 00:00:04,536
+Pavlodar, Kazakhstan: 288 months of NASA
+POWER data.
+
+2
+00:00:04,536 --> 00:00:08,103
+Do precipitation and humidity vary
+together?
+
+3
+00:00:08,711 --> 00:00:11,619
+Raw correlation: −0.285.
+
+4
+00:00:11,619 --> 00:00:17,194
+But the two seasonal cycles alone give
+−0.775.
+
+5
+00:00:17,730 --> 00:00:23,902
+Subtract each month's usual value, and the
+anomalies correlate at +0.593.
+
+6
+00:00:24,452 --> 00:00:30,156
+Temperature and humidity: −0.945 raw,
+−0.316 without seasons.
+
+7
+00:00:30,156 --> 00:00:35,582
+And relative humidity is partly computed
+from temperature.
+
+8
+00:00:36,128 --> 00:00:38,551
+In winter the link is not detected.
+
+9
+00:00:38,551 --> 00:00:43,188
+And it is a correlation inside one model,
+not a demonstrated cause.
+
+10
+00:00:43,654 --> 00:00:46,098
+“No warming” is not supported.
+
+11
+00:00:46,098 --> 00:00:48,704
+“Humidity is rising” is fragile.
+
+12
+00:00:49,154 --> 00:00:52,070
+Every claim comes with its evidence.
+
+13
+00:00:52,070 --> 00:00:53,204
+Open the data.
+

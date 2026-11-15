@@ -1,0 +1,447 @@
+{
+ "tool": "faster-whisper 1.2.1, model small, int8, CPU, beam 1",
+ "note": "similarity = difflib ratio of lower-cased words; numbers written as digits by Whisper lower the score; Kazakh recognition by Whisper small is weak",
+ "clips": [
+  {
+   "film": "hero_en",
+   "scene": "h1",
+   "similarity": 1.0,
+   "line": "This is one planet — and one connected system.",
+   "heard": "This is one planet and one connected system."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h2",
+   "similarity": 1.0,
+   "line": "Air, water and heat change together, month after month, all over the planet.",
+   "heard": "Air, water, and heat change together month after month all over the planet."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h3",
+   "similarity": 0.88,
+   "line": "We followed one place for twenty-four years: Pavlodar, in NASA POWER data.",
+   "heard": "We followed one place for 24 years, Pavlodar in NASA Power Data."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h4",
+   "similarity": 0.79,
+   "line": "At first glance, months with more precipitation have lower humidity: r equals minus zero point two eight five.",
+   "heard": "At first glance, months with more precipitation have lower humidity. R equals minus 0.285."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h5",
+   "similarity": 0.84,
+   "line": "Remove the seasonal cycle and the sign flips: plus zero point five nine three. Wetter-than-usual months are also more humid than usual.",
+   "heard": "Remove the seasonal cycle and the sign flips, plus 0.593. Wetter than usual months are also more humid than usual."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h6",
+   "similarity": 1.0,
+   "line": "The first number described the calendar, not the weather.",
+   "heard": "The first number described the calendar, not the weather."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h7",
+   "similarity": 0.87,
+   "line": "Earth Senses tests every relationship, keeps the evidence, and does not mistake correlation for cause.",
+   "heard": "EarthSense's tests every relationship, keeps the evidence, and does not mistake correlation for cause."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h8",
+   "similarity": 0.94,
+   "line": "“No warming” is not a valid conclusion here, and “humidity is rising” is a fragile result.",
+   "heard": "No warming is not a valid conclusion here, and humidity is rising as a fragile result."
+  },
+  {
+   "film": "hero_en",
+   "scene": "h9",
+   "similarity": 1.0,
+   "line": "Now, investigate for yourself.",
+   "heard": "Now, investigate for yourself."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h1",
+   "similarity": 1.0,
+   "line": "Это одна планета — и одна взаимосвязанная система.",
+   "heard": "Это одна планета и одна взаимосвязанная система."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h2",
+   "similarity": 1.0,
+   "line": "Воздух, вода и тепло меняются вместе — месяц за месяцем, по всей планете.",
+   "heard": "Воздух, вода и тепло меняются вместе, месяц за месяцем, по всей планете."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h3",
+   "similarity": 0.7,
+   "line": "Мы проследили одно место за двадцать четыре года: Павлодар, данные НАСА Пауэр.",
+   "heard": "Мы проследили одно место за 24 года. Повладар. Данные НАСА Power."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h4",
+   "similarity": 0.65,
+   "line": "На первый взгляд в месяцы с большими осадками влажность ниже: эр равно минус ноль целых двести восемьдесят пять тысячных.",
+   "heard": "На первый взгляд, в месяце с большими осадками влажность ниже. r равно минус 0,285."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h5",
+   "similarity": 0.74,
+   "line": "Уберём сезонный цикл — и знак меняется: плюс ноль целых пятьсот девяносто три тысячных. Месяцы с осадками выше нормы и влажнее обычного.",
+   "heard": "Уберём сезонный цикл и знак меняется, плюс 0,593, месяцы с осадками выше нормы и вложнее обычного."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h6",
+   "similarity": 1.0,
+   "line": "Первое число описывало календарь, а не погоду.",
+   "heard": "Первое число описывало календарь, а не погоду."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h7",
+   "similarity": 0.88,
+   "line": "Earth Senses проверяет каждую связь, сохраняет доказательства и не путает корреляцию с причиной.",
+   "heard": "EarthSenses проверяет каждую связь, сохраняет доказательства и не путает корреляцию с причиной."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h8",
+   "similarity": 1.0,
+   "line": "«Потепления нет» — неверный вывод, а «влажность растёт» — хрупкий результат.",
+   "heard": "Потепления нет неверный вывод, а влажность растет хрупкий результат."
+  },
+  {
+   "film": "hero_ru",
+   "scene": "h9",
+   "similarity": 1.0,
+   "line": "Теперь — исследуйте сами.",
+   "heard": "Теперь исследуйте сами."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h1",
+   "similarity": 0.57,
+   "line": "Бұл — бір планета және бір тұтас жүйе.",
+   "heard": "Бұл бір планеті, және бір тұас жүйі."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h2",
+   "similarity": 0.6,
+   "line": "Ауа, су және жылу бірге өзгереді — ай сайын, бүкіл планетада.",
+   "heard": "Ауа, су және жұлу бірге үзгірет, ай саен, бүкіл планетады."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h3",
+   "similarity": 0.38,
+   "line": "Біз бір аймақты жиырма төрт жыл бойы бақыладық: Павлодар, НАСА Пауэр деректері.",
+   "heard": "Біз браймахты жерматюр чылбойы бахладық. Павладар Наса Пауэр деректері."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h4",
+   "similarity": 0.27,
+   "line": "Бір қарағанда, жауын-шашын көп айларда ылғалдылық төмен: эр тең минус нөл бүтін мыңнан екі жүз сексен бес.",
+   "heard": "Бір қараданда жаунышашын көбайларда алғалдық төмен. Ертен минус нөл бөтін мүңнан 285."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h5",
+   "similarity": 0.27,
+   "line": "Маусымдық циклді алып тастасақ, таңба өзгереді: плюс нөл бүтін мыңнан бес жүз тоқсан үш. Жауын-шашыны нормадан көп айлар әдеттегіден ылғалдырақ.",
+   "heard": "Маусымдық циклді алптасты сақ танғы үзгірет, плюс нөльбетін мүңнан 593. Жауны шағшыны нормадан көвайлар әдеттегден ылғалдырақ."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h6",
+   "similarity": 0.31,
+   "line": "Алғашқы сан ауа райын емес, күнтізбені сипаттады.",
+   "heard": "Алғашқы сан аварайнимес, қүнтіз бенес епаттады."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h7",
+   "similarity": 0.17,
+   "line": "Earth Senses әр байланысты тексереді, дәлелдерді сақтайды және корреляцияны себеппен шатастырмайды.",
+   "heard": "Earth Senses Әрбайланысты тексеред Далилдерді сахтайд Жене кареляциан ас себе пенш атастормайд"
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h8",
+   "similarity": 0.2,
+   "line": "«Жылыну жоқ» деген қорытынды дұрыс емес, ал «ылғалдылық өсуде» — тұрақсыз нәтиже.",
+   "heard": "Жылыну жоқтеген кортынды дүрсімес, ал ылғалдығы осуде трахсыз натиже."
+  },
+  {
+   "film": "hero_kk",
+   "scene": "h9",
+   "similarity": 0.0,
+   "line": "Енді — өзіңіз зерттеңіз.",
+   "heard": "Оинді өзғғзерденңс"
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e1",
+   "similarity": 0.81,
+   "line": "Pavlodar, Kazakhstan: two hundred and eighty-eight months of NASA POWER data. Do precipitation and humidity vary together?",
+   "heard": "Pavlodar Kazakhstan, 288 months of NASA power data. Do precipitation and humidity vary together?"
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e2",
+   "similarity": 0.61,
+   "line": "Raw correlation: minus zero point two eight five. But the two seasonal cycles alone give minus zero point seven seven five.",
+   "heard": "Raw correlation minus 0.285. But the two seasonal cycles alone give minus 0.775."
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e3",
+   "similarity": 0.77,
+   "line": "Subtract each month's usual value, and the anomalies correlate at plus zero point five nine three.",
+   "heard": "Subtract each month's usual value, and the anomalies correlate at plus 0.593."
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e4",
+   "similarity": 0.7,
+   "line": "Temperature and humidity: minus zero point nine four five raw, minus zero point three one six without seasons. And relative humidity is partly computed from temperature.",
+   "heard": "Temperature and humidity minus 0.945 raw minus 0.316 without seasons and relative humidity is partly computed from temperature"
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e5",
+   "similarity": 1.0,
+   "line": "In winter the link is not detected. And it is a correlation inside one model, not a demonstrated cause.",
+   "heard": "In winter, the link is not detected, and it is a correlation inside one model, not a demonstrated cause."
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e6",
+   "similarity": 1.0,
+   "line": "“No warming” is not supported. “Humidity is rising” is fragile.",
+   "heard": "No warming is not supported. Humidity is rising, is fragile."
+  },
+  {
+   "film": "explainer_en",
+   "scene": "e7",
+   "similarity": 1.0,
+   "line": "Every claim comes with its evidence. Open the data.",
+   "heard": "Every claim comes with its evidence. Open the data."
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e1",
+   "similarity": 0.71,
+   "line": "Павлодар, Казахстан: двести восемьдесят восемь месяцев данных НАСА Пауэр. Меняются ли осадки и влажность вместе?",
+   "heard": "Павлодар, Казахстан. 288 месяцев данных NASA Power. Меняются ли осадки и влажность вместе?"
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e2",
+   "similarity": 0.56,
+   "line": "Сырая корреляция: минус ноль целых двести восемьдесят пять тысячных. Но одни только сезонные циклы дают минус ноль целых семьсот семьдесят пять тысячных.",
+   "heard": "сырая корреляция, минус 0,285, но одни только сезонные циклы дают минус 0,775."
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e3",
+   "similarity": 0.57,
+   "line": "Вычтем обычное для каждого месяца значение — аномалии коррелируют на плюс ноль целых пятьсот девяносто три тысячных.",
+   "heard": "Вычтем обычные для каждого месяца значения. Аномалии коррелируют на плюс 0,593."
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e4",
+   "similarity": 0.61,
+   "line": "Температура и влажность: минус ноль целых девятьсот сорок пять тысячных в сырых данных, минус ноль целых триста шестнадцать тысячных без сезонности. А относительная влажность частично вычисляется из температуры.",
+   "heard": "Температура и влажность. Минус 0,945 в сырых данных, минус 0,316 в бессезонности. А относительная влажность частично вычисляется из температуры."
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e5",
+   "similarity": 1.0,
+   "line": "Зимой связь не обнаруживается. И это корреляция внутри одной модели, а не установленная причина.",
+   "heard": "Зимой связь не обнаруживается, и это корреляция внутри одной модели, а не установленная причина."
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e6",
+   "similarity": 0.88,
+   "line": "«Потепления нет» — не подтверждается. «Влажность растёт» — хрупкий результат.",
+   "heard": "Потепление нет, не подтверждается. Влажность растет, хрупкий результат."
+  },
+  {
+   "film": "explainer_ru",
+   "scene": "e7",
+   "similarity": 1.0,
+   "line": "Каждый вывод — с доказательствами. Откройте данные.",
+   "heard": "Каждый вывод с доказательствами. Откройте данные."
+  },
+  {
+   "film": "explainer_kk",
+   "scene": "e1",
+   "similarity": 0.26,
+   "line": "Павлодар, Қазақстан: НАСА Пауэр-дың екі жүз сексен сегіз айлық деректері. Жауын-шашын мен ылғалдылық бірге өзгере ме?",
+   "heard": "Павладар, Казахстан. Наса Пауардым 266-егі зайлық деректері. Жауны шашынмен ылғалдылық бірге өзгіремі?"
+  },
+  {
+   "film": "explainer_kk",
+   "scene": "e2",
+   "similarity": 0.18,
+   "line": "Бастапқы корреляция: минус нөл бүтін мыңнан екі жүз сексен бес. Бірақ маусымдық циклдердің өзі минус нөл бүтін мыңнан жеті жүз жетпіс бес береді.",
+   "heard": "Бастапқы қареліация. Минус 0,4 мүннан екізжіз 6,5. Бұрқ мау сұндық цикл дердім өзі, минус 0,4 мүннан 7,7 паспейсперед."
+  },
+  {
+   "film": "explainer_kk",
+   "scene": "e4",
+   "similarity": 0.33,
+   "line": "Температура мен ылғалдылық: бастапқы деректе минус нөл бүтін мыңнан тоғыз жүз қырық бес, маусымдылықсыз минус нөл бүтін мыңнан үш жүз он алты. Салыстырмалы ылғалдылық ішінара температурадан есептеледі.",
+   "heard": "Температура мен ылғалдылық. Бастапқы деректе минус нөлбетін мүгнан 45, маусындылықсыз минус нөлбетін мүгнан 316. Салстырмалы ылғалдылық үшінара температура да не септелет."
+  },
+  {
+   "film": "explainer_kk",
+   "scene": "e6",
+   "similarity": 0.0,
+   "line": "«Жылыну жоқ» — расталмайды. «Ылғалдылық өсуде» — тұрақсыз нәтиже.",
+   "heard": "Желану жок расталмыйт, үлғалдыңу сөде трақ сізнет ежи."
+  },
+  {
+   "film": "teaser_en",
+   "scene": "t1",
+   "similarity": 1.0,
+   "line": "Same NASA data.",
+   "heard": "Same NASA data."
+  },
+  {
+   "film": "teaser_en",
+   "scene": "t2",
+   "similarity": 0.46,
+   "line": "Two opposite correlations: minus zero point two eight five and plus zero point five nine three.",
+   "heard": "two opposite correlations minus 0.285 and plus 0.593."
+  },
+  {
+   "film": "teaser_en",
+   "scene": "t3",
+   "similarity": 1.0,
+   "line": "The difference is the seasons.",
+   "heard": "The difference is the seasons."
+  },
+  {
+   "film": "teaser_en",
+   "scene": "t4",
+   "similarity": 1.0,
+   "line": "Earth Senses. Evidence before conclusions.",
+   "heard": "Earth Senses. Evidence before conclusions."
+  },
+  {
+   "film": "teaser_ru",
+   "scene": "t1",
+   "similarity": 0.83,
+   "line": "Одни и те же данные НАСА.",
+   "heard": "одни и те же данные NASA."
+  },
+  {
+   "film": "teaser_ru",
+   "scene": "t2",
+   "similarity": 0.36,
+   "line": "Две противоположные корреляции: минус ноль целых двести восемьдесят пять тысячных и плюс ноль целых пятьсот девяносто три тысячных.",
+   "heard": "2 противоположные корреляции, минус 0,285 и плюс 0,593."
+  },
+  {
+   "film": "teaser_ru",
+   "scene": "t3",
+   "similarity": 1.0,
+   "line": "Разница — в сезонности.",
+   "heard": "Разница в сезонности."
+  },
+  {
+   "film": "teaser_ru",
+   "scene": "t4",
+   "similarity": 1.0,
+   "line": "Earth Senses. Сначала доказательства, потом выводы.",
+   "heard": "Earth Senses. Сначала доказательства, потом выводы."
+  },
+  {
+   "film": "teaser_kk",
+   "scene": "t1",
+   "similarity": 0.0,
+   "line": "НАСА-ның бір ғана деректері.",
+   "heard": "Насаным Біргана директері."
+  },
+  {
+   "film": "teaser_kk",
+   "scene": "t3",
+   "similarity": 0.5,
+   "line": "Айырма — маусымдылықта.",
+   "heard": "Айірма, Маусымдылықта."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d0",
+   "similarity": 0.67,
+   "line": "We're Ali and Diyaz, team EARTH SENSES.",
+   "heard": "We're Allian Diaz, Team Earth Senses."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d1",
+   "similarity": 1.0,
+   "line": "Same NASA data.",
+   "heard": "Same NASA data."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d2b",
+   "similarity": 1.0,
+   "line": "Negative in the raw data — positive once the seasons are removed.",
+   "heard": "Negative in the raw data. Positive once the seasons are removed."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d3",
+   "similarity": 1.0,
+   "line": "The difference is the seasons.",
+   "heard": "The difference is the seasons."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d4",
+   "similarity": 1.0,
+   "line": "Earth Senses. Evidence before conclusions.",
+   "heard": "Earth Senses. Evidence before conclusions."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d5",
+   "similarity": 1.0,
+   "line": "In the app, it's the same NASA POWER data.",
+   "heard": "In the app, it's the same NASA power data."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d6b",
+   "similarity": 0.84,
+   "line": "Seasons removed, it's positive — but not in winter.",
+   "heard": "Season's removed, it's positive, but not in winter."
+  },
+  {
+   "film": "demo_en",
+   "scene": "d7c",
+   "similarity": 1.0,
+   "line": "Correlation is not causation.",
+   "heard": "correlation is not causation."
+  }
+ ]
+}
