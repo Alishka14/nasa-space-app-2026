@@ -3,7 +3,7 @@
   "film": "demo_en",
   "status": "DONE",
   "duration_s": 29.333,
-  "bytes": 11061312,
+  "bytes": 10222065,
   "loudness": {
    "input_lufs": -26.31,
    "target_lufs": -16.0,
