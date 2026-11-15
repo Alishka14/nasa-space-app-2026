@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { tr } from '../i18n'
+import { replicatedLabel, statusLabel, verdictLabel } from '../sciI18n'
 
 export type T = ReturnType<typeof tr>
 
@@ -26,7 +27,7 @@ const VERDICTS: Record<string, { icon: string; label: string; tone: string }> = 
 
 export function Verdict({ code }: { code: string | null | undefined }) {
   const v = VERDICTS[code ?? ''] ?? { icon: '·', label: code ?? 'n/a', tone: 'neutral' }
-  return <span className={`badge ${v.tone}`}><span aria-hidden="true">{v.icon}</span> {v.label}</span>
+  return <span className={`badge ${v.tone}`}><span aria-hidden="true">{v.icon}</span> {verdictLabel(code ?? '', v.label)}</span>
 }
 
 const STATUS_HELP: Record<string, string> = {
@@ -34,7 +35,7 @@ const STATUS_HELP: Record<string, string> = {
   OBSERVED: 'Computed from real data by this engine',
 }
 export function Status({ code }: { code: string }) {
-  return <span className={`status s-${code.toLowerCase()}`} title={STATUS_HELP[code] ?? code}>{code}</span>
+  return <span className={`status s-${code.toLowerCase()}`} title={STATUS_HELP[code] ?? code}>{statusLabel(code)}</span>
 }
 
 /** Record status plus, where independent reports agree, how many of its numbers were replicated. */
@@ -45,7 +46,7 @@ export function EvidenceStatus({ ev }: { ev: { status: string; replicated_values
     <>
       <Status code={ev.status} />
       {n > 0 && <span className="status s-replicated" title="These numbers were also reported independently and agree. The record as a whole stays OBSERVED.">
-        ✔ {n} {n === 1 ? 'value' : 'values'} replicated</span>}
+        {replicatedLabel(n)}</span>}
     </>
   )
 }
